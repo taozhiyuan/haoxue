@@ -1,0 +1,60 @@
+
+
+ul.course-main {
+    border: 1px solid #f39e09;
+    height: 220px;
+    padding: 20px 25px;
+    width: 950px;
+    margin-bottom: 30px;
+}
+    ul.course-main > li {
+        float: left;
+        height: 100%;
+    }
+    ul.course-main > li:nth-child(1){
+        width: 280px;
+        background-color: #bfbfbf;
+    }
+    ul.course-main > li:nth-child(2){
+        width: 500px;
+    }
+    ul.course-main > li:nth-child(3){
+        width: 118px;
+    }
+        li.course-main-text {
+            padding-left: 15px;
+            letter-spacing: 1px;
+        }
+            li.course-main-text > h5{
+                padding-bottom: 9px;
+            }
+                li.course-main-text > h5 > span {
+                    color: #666;
+                }
+                li.course-main-text > h5 > span.price {
+                    color: #fa5c31;
+                    font-size: 16px;
+                }
+                li.course-main-text > h5 > span.time {
+                    letter-spacing: 3px;
+                }
+                li.course-main-text > h5 > a {
+                    color: #999;
+                    padding-bottom: 1px;
+                    border-bottom: 1px solid #999;
+                }
+                li.course-main-text > h5 > i {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    background: red;
+                    margin-right: 5px;
+                    vertical-align: text-bottom;
+                }
+        ul.course-main > li > button {
+            width: 118px;
+            height: 40px;
+            color: #FFF;
+            margin-top: 100px;
+            background-color: #f39e09;
+        }

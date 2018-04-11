@@ -1,0 +1,64 @@
+
+
+    li.course-item-min {
+        width: 200px;
+        height: 230px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #c2c2c2;
+    }
+    li.course-item-min:hover {
+        box-shadow: 0px 0px 10px #c2c2c2;
+    }
+    li.course-item-min section {
+        height: 140px;
+        background-color: #bfbfbf;
+        position: relative;
+    }
+        li.course-item-min section > span {
+            font-size: 16px;
+            color: #fa5c31;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+        }
+        li.course-item-min section > span::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            background-image: url('../../img/stars.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+    li.course-item-min aside {
+        height: 90px;
+        background-color: #FFF;
+        padding: 15px;
+        position: relative;
+    }
+        li.course-item-min aside > h5 {
+            line-height: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        li.course-item-min aside > h4 {
+            line-height: 40px;
+            font-size: 16px;
+            color: #fa5c31;
+        }
+            li.course-item-min aside > h4 > i {
+                margin-right: 8px;
+                vertical-align: top;
+                color: #f39e09;
+                font-size: 20px;
+            }
+ 

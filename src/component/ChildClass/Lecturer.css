@@ -1,0 +1,32 @@
+
+div.lecturer{
+    width: 950px;
+    font-size: 0;
+}
+    ul.lecturer-cont {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+    ul.lecturer-cont > li {
+        display: inline-block;
+        vertical-align: top;
+    }
+    ul.lecturer-cont > li:nth-child(1){
+        padding-left: 20px;
+        padding-right: 35px;
+        width: 670px;
+    }
+    ul.lecturer-cont > li:nth-child(2){
+        height: 180px;
+        width: 280px;
+        background: #bfbfbf;
+    }
+        ul.lecturer-cont > li > h4 {
+            padding-bottom: 10px;
+            font-size: 16px;
+        }
+        ul.lecturer-cont > li > h6 {
+            margin-bottom: 20px;
+            line-height: 20px;
+            font-size: 12px;
+        }

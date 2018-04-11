@@ -1,0 +1,70 @@
+
+section.home-classroom {
+    height: 1085px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+    section.home-classroom > div > button {
+        width: 140px;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 18px;
+        color: #666;
+        background-color: #fff;
+        margin-top: 40px;
+        border: 1px solid #f2f2f2;
+    }
+    section.home-classroom > div > button.active {
+        color: #f39e09;
+        border: 1px solid #f39e09;
+    }
+    section.home-classroom > div > button:first-of-type {
+        margin-right: 25px;
+    }
+
+
+ul.home-classroom-list {
+    padding-top: 80px;
+    height: 730px;
+}
+    ul.home-classroom-list > li {
+        width: 200px;
+        float: left;
+        margin-right: 50px;
+    }
+    ul.home-classroom-list > li:nth-child(5n){
+        margin-right: 0px;
+    }
+    ul.home-classroom-list > li:nth-child(-n+5){
+        margin-bottom: 80px;
+    }
+        ul.home-classroom-list > li > div {
+            height: 145px;
+            position: relative;
+            background-color: #FFF;
+        }
+            ul.home-classroom-list > li > div > span {
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                color: #989898;
+                font-size: 14px;
+            }
+        ul.home-classroom-list > li > aside {
+            height: 100px;
+            background-color: #aeaeae;
+            padding: 10px;
+            text-align: left;
+        }
+            ul.home-classroom-list > li > aside > h5 {
+                font-size: 12px;
+                color: #FFF;
+            }
+            ul.home-classroom-list > li > aside > h6 {
+                font-size: 12px;
+                color: red;
+                line-height: 25px;
+            }
+            ul.home-classroom-list > li > aside > h4 {
+                color: #666;
+            }

@@ -1,0 +1,101 @@
+
+header.index-public-head {
+    height: 60px;
+    font-size: 0;
+    border-bottom: 1px solid #999;
+}
+    header.index-public-head img {
+        width: 120px;
+        margin-top: 15px;
+        margin-right: 45px;
+        vertical-align: top;
+        cursor: pointer;
+    }
+    ul.index-public-menu {
+        height: 100%;
+        width: 580px;
+        display: inline-block;
+        font-size: 16px;
+    }
+        ul.index-public-menu > li {
+            float: left;
+            width: 16.6%;
+            line-height: 60px;
+            color: #333;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        ul.index-public-menu > li.active {
+            color: #f39e09;
+        }
+        ul.index-public-menu > li.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f39e09;
+        }
+    div.index-head-search {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 15px;
+        height: 30px;
+        padding: 0px 25px;
+    }
+        div.index-head-search > span {
+            display: inline-block;
+            font-size: 14px;
+            color: #333; 
+            width: 60px;
+            text-align: center;
+            cursor: pointer;
+            line-height: 30px;
+            position: relative;
+        }
+            div.index-head-search > span > i {
+                display: inline-block;
+                font-size: 20px;
+                width: 30px;
+                height: 30px;
+                vertical-align: bottom;
+                color: #999;
+            }
+        div.index-head-search > input {
+            width: 205px;
+            height: 30px;
+            border: 1px solid #dad6d6;
+            border-radius: 5px;
+            padding: 0px 15px;
+            line-height: 30px;
+            font-size: 12px;
+        }
+        div.index-head-search > i {
+            font-size: 20px;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            cursor: pointer;
+            color: #676767;
+        }
+    div.index-head-sign {
+        display: inline-block;
+        color: #666;
+        font-size: 12px;
+        vertical-align: top;
+    }
+        div.index-head-sign > span {
+            display: inline-block;
+            width: 50px;
+            line-height: 15px;
+            text-align: center;
+            margin-top: 22px;
+        }
+        div.index-head-sign > span:first-child {
+            border-right: 1px solid #999;
+        }

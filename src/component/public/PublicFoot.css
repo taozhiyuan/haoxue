@@ -1,0 +1,35 @@
+
+footer.index-public-foot {
+    height: 370px;
+    background-color: #868686;
+}
+ul.public-foot-list {
+    width: 600px;
+    height: 270px;
+    padding-top: 40px;
+}
+    ul.public-foot-list > li {
+        width: 25%;
+        float: left;
+    }
+        ul.public-foot-list > li > dl {
+            line-height: 30px;
+            color: #FFF;
+        }
+            ul.public-foot-list > li > dl > dd {
+                font-size: 12px;
+                color: #e6e6e6;
+            }
+
+div.public-foot-prompt {
+    height: 100px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+    div.public-foot-prompt > img {
+        width: 100px;
+    }
+    div.public-foot-prompt > img:first-child {
+        margin-right: 35px;
+    }

@@ -1,0 +1,28 @@
+
+div.teachers{
+    width: 950px;
+    font-size: 0;
+}
+    ul.teachers-cont {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+    ul.teachers-cont > li {
+        display: inline-block;
+        vertical-align: top;
+    }
+    ul.teachers-cont > li:nth-child(1){
+        padding-left: 20px;
+        padding-right: 35px;
+        width: 670px;
+    }
+    ul.teachers-cont > li:nth-child(2){
+        height: 180px;
+        width: 280px;
+        background: #bfbfbf;
+    }
+        ul.teachers-cont > li > h6 {
+            margin-bottom: 20px;
+            line-height: 20px;
+            font-size: 12px;
+        }

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+header,section,nav,aside,article,footer{ display: block; }
+html,body{
+	width: 100%;
+	height: 100%;
+}
+body {
+	font-family: "Microsoft YaHei";
+	min-width: 1200px;
+	color: #333;
+}
+* {
+	margin: 0;
+	border: none;
+	padding: 0;
+	box-sizing: border-box;
+	/*-moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;*/
+}
+ul,ol,dl {
+	list-style: none;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+input {
+	outline: none;
+}
+button{
+	outline: none;
+	background: none;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+img {
+	vertical-align: bottom;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+}
+li > a {
+	display: block;
+	height: 100%;
+}
+div.main-public{
+	width: 1200px;
+	margin: 0 auto;
+	height: 100%;
+	position: relative;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+::-webkit-input-placeholder { /* Chrome */
+	color: #aaa;
+	transition: opacity 250ms ease-in-out;
+}
+:focus::-webkit-input-placeholder {
+	opacity: 0.5;
+}
+:-ms-input-placeholder { /* IE 10+ */
+	color: #aaa;
+	transition: opacity 250ms ease-in-out;
+}
+:focus:-ms-input-placeholder {
+	opacity: 0.5;
+}
+::-moz-placeholder { /* Firefox 19+ */
+	color: #aaa;
+	opacity: 1;
+	transition: opacity 250ms ease-in-out;
+}
+:focus::-moz-placeholder {
+	opacity: 0.5;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+	color: #aaa;
+	opacity: 1;
+	transition: opacity 250ms ease-in-out;
+}
+:focus:-moz-placeholder {
+	opacity: 0.5;
+}
+
+/* 去掉input[type=number]默认的加减号 */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

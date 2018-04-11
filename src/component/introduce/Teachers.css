@@ -1,0 +1,62 @@
+
+div.mechanism-teachers {
+    width: 870px;
+}
+    div.mechanism-teachers > h4 {
+        width: 100%;
+        line-height: 40px;
+        color: #f39e09;
+        padding-left: 20px;
+        border-left: 2px solid #f39e09;
+        border-bottom: 1px solid #c2c2c2;
+        position: relative;
+        font-size: 14px;
+        margin-top: 40px;
+    }
+        div.mechanism-teachers > h4 > span {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: block;
+            line-height: 40px;
+            width: 90px;
+            color: #666;
+        }
+    ul.mechanism-teachers-list {
+        font-size: 0;
+    }
+        ul.mechanism-teachers-list > li {
+            display: inline-block;
+            vertical-align: top;
+            width: 200px;
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        ul.mechanism-teachers-list > li:hover {
+            box-shadow: 0px 0px 10px #c2c2c2;
+        }
+        ul.mechanism-teachers-list > li:not(:nth-child(4n)){
+            margin-right: 23.3px;
+        }
+            ul.mechanism-teachers-list > li div {
+                height: 145px;
+                background: #a0a0a0;
+                position: relative;
+            }
+                ul.mechanism-teachers-list > li div > span {
+                    position: absolute;
+                    left: 10px;
+                    bottom: 10px;
+                    font-size: 14px;
+                    color: #666;
+                }
+            ul.mechanism-teachers-list > li h5 {
+                height: 115px;
+                background: #FFF;
+                font-size: 12px;
+                color: #666;
+                padding: 8px;
+                line-height: 18px;
+            }

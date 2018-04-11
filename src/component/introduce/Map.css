@@ -1,0 +1,11 @@
+
+div.map {
+    width: 300px;
+    height: 350px;
+    background-color: #b5b5b5;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    line-height: 350px;
+    text-align: center;
+}

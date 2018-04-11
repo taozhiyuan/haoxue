@@ -1,0 +1,67 @@
+
+
+    li.course-item {
+        display: inline-block;
+        width: 250px;
+        height: 300px;
+        margin-bottom: 35px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #c2c2c2;
+    }
+    li.course-item:hover {
+        box-shadow: 0px 0px 10px #c2c2c2;
+    }
+    li.course-item:not(:nth-child(4n)){
+        margin-right: 66.6px;
+    }
+    li.course-item section {
+        height: 180px;
+        background-color: #bfbfbf;
+        position: relative;
+    }
+        li.course-item section > span {
+            font-size: 16px;
+            color: #fa5c31;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+        }
+        li.course-item section > span::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            background-image: url('../../img/stars.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+    li.course-item aside {
+        height: 120px;
+        background-color: #FFF;
+        padding: 15px;
+        position: relative;
+    }
+        li.course-item aside > h4 {
+            line-height: 40px;
+            font-size: 16px;
+        }
+        li.course-item aside > h5 {
+            line-height: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        li.course-item aside > h5:first-of-type {
+            padding-bottom: 10px;
+        }
+        li.course-item aside > h5:nth-of-type(2) > b {
+            color: #fa5c31;
+        }

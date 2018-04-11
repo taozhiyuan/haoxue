@@ -1,0 +1,33 @@
+ul.home-paging {
+    text-align: center;
+}
+    ul.home-paging > li {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #999;
+        color: #999;
+        line-height: 40px;
+        border-radius: 5px;
+        vertical-align: top;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    ul.home-paging > li:last-child {
+        margin-right: 0;
+    }
+    ul.home-paging > li:first-child:hover {
+        color: #FFF;
+        background-color: #f39e09;
+        border-color: #f39e09;
+    }
+    ul.home-paging > li:last-child:hover {
+        color: #FFF;
+        background-color: #f39e09;
+        border-color: #f39e09;
+    }
+    ul.home-paging > li.active {
+        color: #FFF;
+        background-color: #f39e09;
+        border-color: #f39e09;
+    }

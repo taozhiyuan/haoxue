@@ -1,0 +1,49 @@
+
+
+    ul.courses-list {
+        font-size: 0;
+    }
+        ul.courses-list > li {
+            display: inline-block;
+            vertical-align: top;
+            width: 180px;
+            margin-bottom: 30px;
+        }
+        ul.courses-list > li:not(:nth-child(6n)){
+            margin-right: 24px;
+        }
+            /* ul.courses-list > li div {
+                height: 140px;
+                background: #bfbfbf;
+                position: relative;
+            }
+                ul.courses-list > li div > span {
+                    position: absolute;
+                    left: 10px;
+                    bottom: 10px;
+                    font-size: 14px;
+                    color: #666;
+                }
+            ul.courses-list > li aside {
+                height: 80px;
+                background: #FFF;
+                padding: 8px;
+            }
+                ul.courses-list > li aside > h5 {
+                    font-weight: bold;
+                    font-size: 12px;
+                    color: #666;
+                    line-height: 20px;
+                    height: 40px;
+                }
+                ul.courses-list > li aside > span {
+                    font-size: 16px;
+                    color: #fa5c31;
+                    line-height: 25px;
+                }
+                ul.courses-list > li aside > span > i {
+                    font-size: 25px;
+                    color: #f39e09;
+                    margin-right: 8px;
+                    vertical-align: text-bottom;
+                } */
