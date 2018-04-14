@@ -6,7 +6,10 @@ import Teachers from '../introduce/Teachers.js';
 import Curriculum from '../introduce/Curriculum.js';
 import Map from '../introduce/Map.js';
 import RelevantList from '../introduce/RelevantList.js';
+import CourseDetails from './CourseDetails.js';
 import Path from '../agency/Path.js';
+import AllTeacherList from './AllTeacherList.js';
+import CoursesList from './CoursesList.js';
 
 // import LoadMore from '../component/agency/LoadMore.js';
 import Axios from '../../request/axiosHome.js';
@@ -30,21 +33,25 @@ export default class AgencyDetailed extends Component {
         })
     }
     render() {
+        // console.log(this.props)
         const data = this.state.data;
-        console.log(this.props.match.url);
+        const { path } = this.props.match;
         if(!data) return false;
         return (
             <div className="agency-detailed">
                 <Switch>
-                    <Route exact path={ `${this.props.match.url}/teacher` } component={ TeacherDetailed } />
-                    <Route path={ `${this.props.match.url}` } render={ ({ match })=>(
+                    <Route path={ `${path}/course` } component={ CourseDetails } />
+                    <Route path={ `${path}/teacher` } component={ TeacherDetailed } />
+                    <Route path={ `${path}/teacherList` } component={ AllTeacherList } />
+                    <Route path={ `${path}/courseList` } component={ CoursesList } />
+                    <Route path={ path } render={ ({ match })=>(
                         <div className="main-public">
                             <Path />
                             <TextContainer data={ data.introduce }/>
                             <Teachers data={ data.teachers } url={ match.url }/>
                             <Curriculum data={ data.curriculum } url={ match.url }/>
                             <Map />
-                            <RelevantList />
+                            <RelevantList data={ data.other }/>
                         </div>
                     ) } />
                 </Switch>

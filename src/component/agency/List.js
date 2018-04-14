@@ -1,7 +1,6 @@
 
 // 教培机构列表
 import React, { Component } from 'react';
-import Item from './Item.js';
 import Axios from '../../request/axiosHome.js';
 import './List.css';
 
@@ -24,11 +23,12 @@ export default class List extends Component {
         })
     }
     render(){
+        const { path } = this.props;
         return (
             <ul className="mechanism-list">
             {this.state.data.map((item,index)=>(
                 <li key={ index }>
-                    <Link to="/agency/courses">
+                    <Link to={ `${path}/agency` }>
                         <div>
                             <span>人气：{ item.popularity }</span>
                         </div>

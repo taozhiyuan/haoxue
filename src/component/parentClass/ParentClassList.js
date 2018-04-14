@@ -21,8 +21,7 @@ export default class ParentClassList extends Component {
         })
     }
     render(){
-        const url = `${this.props.to}/detailed`;
-        console.log(this.props)
+        const url = `${this.props.url}/courseBeforehand`;
         return (
             <ul className="parentClass-list">
             {this.state.data.map((item,index)=>(

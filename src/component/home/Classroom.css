@@ -24,20 +24,20 @@ section.home-classroom {
 
 
 ul.home-classroom-list {
-    padding-top: 80px;
-    height: 730px;
+    height: 650px;
 }
     ul.home-classroom-list > li {
         width: 200px;
         float: left;
         margin-right: 50px;
+        margin-top: 80px;
     }
     ul.home-classroom-list > li:nth-child(5n){
         margin-right: 0px;
     }
-    ul.home-classroom-list > li:nth-child(-n+5){
+    /* ul.home-classroom-list > li:nth-child(-n+5){
         margin-bottom: 80px;
-    }
+    } */
         ul.home-classroom-list > li > div {
             height: 145px;
             position: relative;

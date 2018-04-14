@@ -10,7 +10,7 @@ export default class ItemMin extends Component {
                 <Link to={ this.props.to }>
                     <section></section>
                     <aside>
-                        <h5><b>{ data.name }</b></h5>
+                        <h5>{ data.name }</h5>
                         <h4><i className="iconfont icon-guanzhu"></i>{ data.fabulous }</h4>
                     </aside>
                 </Link>

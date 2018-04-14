@@ -1,8 +1,9 @@
 
-div.teachers{
+div.teachers-info {
     width: 950px;
     font-size: 0;
 }
+
     ul.teachers-cont {
         padding-top: 20px;
         padding-bottom: 50px;

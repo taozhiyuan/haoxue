@@ -11,11 +11,11 @@ export default class PublicHead extends Component {
             menuActive : 0,
             menuPara : [
                 { text : "首   页", path : "/", to : "/" },
-                { text : "教培机构", path : "/agency/:bar*", to : "/agency" },
-                { text : "父母课堂", path : "/parentClass/:bar*", to : "/parentClass" },
-                { text : "亲子课堂", path : "/childClass/:bar*", to : "/childClass" },
+                { text : "教培机构", path : "/agencyList/:bar*", to : "/agencyList" },
+                { text : "父母课堂", path : "/parentClassList/:bar*", to : "/parentClassList" },
+                { text : "亲子课堂", path : "/childClassList/:bar*", to : "/childClassList" },
                 { text : "好学分期", path : "/byStages/:bar*", to : "/byStages" },
-                { text : "关于我们", path : "/about/:bar*", to : "/about" }
+                { text : "关于我们", path : "/aboutUs/:bar*", to : "/aboutUs" }
             ],
             cityVisibi : false
         }

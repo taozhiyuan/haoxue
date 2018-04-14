@@ -51,7 +51,7 @@ const AxiosHome = {
         return Axios.get('/parent')
     },
     //亲子课堂列表
-    parentClassList : () => {
+    childClassList : () => {
         Mock.mock('/parent', {
             'result|20': [{
                 "fabulous|200-1000" : 1,
@@ -83,7 +83,8 @@ const AxiosHome = {
             "curriculum|6-8" : [{
                 "fabulous|200-1000" : 1,
                 "name" : "SSAT1v1课程_SSAT一对一辅导辅导"
-            }]
+            }],
+            "other|4" : ["新东方教育"]
         })
         return Axios.get('/detailed')
     },
@@ -93,6 +94,16 @@ const AxiosHome = {
             'result|20': [{
                 "fabulous|200-1000" : 1,
                 "name" : "SSAT1v1课程_SSAT一对一辅导辅导"
+            }]
+        })
+        return Axios.get('/coursesList')
+    },
+    //全部师资列表
+    teacherList : () => {
+        Mock.mock('/coursesList', {
+            'result|20': [{
+                "name" : "@cname",
+                "introduce" : Random.csentence(40, 60)
             }]
         })
         return Axios.get('/coursesList')

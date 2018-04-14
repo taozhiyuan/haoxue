@@ -1,0 +1,17 @@
+
+
+    ul.all-teacher-list {
+        font-size: 0;
+    }
+        ul.all-teacher-list > li {
+            display: inline-block;
+            vertical-align: top;
+            /* width: 180px; */
+            margin-bottom: 30px;
+        }
+        ul.all-teacher-list > li:not(:nth-child(5n)){
+            margin-right: 50px;
+        }
+        ul.all-teacher-list > li:nth-last-child(-n+5){
+            margin-bottom: 0px;
+        }

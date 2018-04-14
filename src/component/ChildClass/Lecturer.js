@@ -6,7 +6,7 @@ export default class Lecturer extends Component {
     render(){
         return (
             <div className="lecturer">
-                <Title>机构师资</Title>
+                <Title>师资</Title>
                 <ul className="lecturer-cont">
                     <li>
                         <h4>李璐</h4>

@@ -5,8 +5,8 @@ import Title from "./Title.js";
 export default class Teachers extends Component {
     render(){
         return (
-            <div className="teachers">
-                <Title>机构师资</Title>
+            <div className="teachers-info">
+                <Title>简介</Title>
                 <ul className="teachers-cont">
                     <li>
                         <h6>高思教育立志做高品质教育,专注于中小学的课外辅导培训,提供中小学最新资讯及学习方法,家教式一对一服务,高思教育让孩子爱上学习,收获成长!</h6>

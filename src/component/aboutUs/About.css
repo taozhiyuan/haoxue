@@ -1,0 +1,29 @@
+
+ul.about-introduce-text {
+    height: 465px;
+}
+    ul.about-introduce-text > li {
+        float: left;
+    }
+    ul.about-introduce-text > li:first-child {
+        width: 520px;
+        height: 300px;
+        background: #bfbfbf;
+    }
+    ul.about-introduce-text > li:last-child {
+        width: 680px;
+        height: 300px;
+        background: #FFF;
+        padding-left: 50px;
+    }
+        ul.about-introduce-text > li:last-child > h1 {
+            color: #f39e09;
+            line-height: 80px;
+            font-size: 42px;
+        }
+        ul.about-introduce-text > li:last-child > h5 {
+            color: #666;
+            line-height: 25px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }

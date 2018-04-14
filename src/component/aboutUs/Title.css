@@ -1,0 +1,22 @@
+
+
+section h1.about-us-title {
+    font-size: 27px;
+    padding-top: 65px;
+    padding-bottom: 30px;
+    width: 300px;
+    margin: 0px auto 90px;
+    border-bottom: 1px solid #f39e09;
+    text-align: center;
+    position: relative;
+}
+
+section h1.about-us-title:before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -20px;
+    left: 130px;
+    background-image: url('./img/core_0.svg');
+}

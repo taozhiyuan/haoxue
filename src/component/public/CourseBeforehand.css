@@ -1,0 +1,136 @@
+
+
+section.course-beforehand {
+    padding-bottom: 80px;
+}
+    ul.course-beforehand-state {
+        font-size: 0;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+        ul.course-beforehand-state > li {
+            display: inline-block;
+            width: 240px;
+            height: 40px;
+            background-color: #dcdcdc;
+            font-size: 14px;
+            color: #666;
+            line-height: 40px;
+        }
+        ul.course-beforehand-state > li.active {
+            background-color: #f39e09;
+            color: #FFF;
+        }
+
+        div.course-beforehand-container {
+            padding: 35px 50px;
+            height: 590px;
+            border: 1px solid #f39e09;
+        }
+            div.course-beforehand-simple {
+                float: left;
+                width: 330px;
+            }
+                div.course-beforehand-simple > div {
+                    height: 220px;
+                    background-color: #bfbfbf;
+                }
+                div.course-beforehand-simple > h4 {
+                    padding-top: 20px;
+                    font-weight: bold;
+                }
+                div.course-beforehand-simple > h5 {
+                    line-height: 40px;
+                }
+                div.course-beforehand-simple > h6 {
+                    line-height: 20px;
+                    color: #666;
+                }
+                div.course-beforehand-simple > h6.tel {
+                    line-height: 40px;
+                    color: #999;
+                }
+
+            div.course-beforehand-detailed {
+                float: left;
+                width: 760px;
+                padding-left: 90px;
+            }
+                div.course-beforehand-detailed p.title {
+                    color: #f39e09;
+                    border-bottom: 1px solid #f39e09;
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                }
+
+            /* 课程信息 */
+            div.beforehand-course-info {
+                margin-bottom: 30px;
+            }
+                div.beforehand-course-info > h5 {
+                    line-height: 30px;
+                    letter-spacing: 1px;
+                }
+                    div.beforehand-course-info > h5 > span {
+                        color: #666;
+                    }
+                    div.beforehand-course-info > h5 > span.time {
+                        letter-spacing: 3px;
+                    }
+                    div.beforehand-course-info > h5 > i {
+                        display: inline-block;
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 3px;
+                        border: 1px solid #999;
+                        font-style: normal;
+                        line-height: 16px;
+                        text-align: center;
+                        margin: 0px 3px;
+                        font-size: 12px;
+                        color: #999;
+                    }
+                    div.beforehand-course-info > h5 > i.beforehand-number {
+                        cursor: pointer;
+                        vertical-align: middle;
+                    }
+                    div.beforehand-course-info > h5 > i.beforehand-number:hover {
+                        background-color: #999;
+                        color: #FFF!important;
+                    }
+                    div.beforehand-course-info > h5 > input {
+                        display: inline-block;
+                        width: 35px;
+                        height: 18px;
+                        border-radius: 3px;
+                        border: 1px solid #999;
+                        font-style: normal;
+                        line-height: 16px;
+                        text-align: center;
+                        margin: 0px 3px;
+                        font-size: 12px;
+                        color: #999;
+                    }
+
+                /* 课程预定人信息 */
+                div.beforehand-user-info > h5 > input {
+                    width: 170px;
+                    line-height: 30px;
+                    color: #666;
+                    font-size: 14px;
+                    padding: 0px 5px;
+                    border-bottom: 1px solid #c2c2c2;
+                    margin-top: 5px;
+                    margin-left: 10px;
+                }
+                div.beforehand-user-info > h3 {
+                    height: 30px;
+                }
+                div.beforehand-user-info button {
+                    width: 140px;
+                    height: 40px;
+                    background-color: #f39e09;
+                    color: #FFF;
+                    margin-top: 35px;
+                }
+                

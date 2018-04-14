@@ -1,0 +1,31 @@
+
+
+        li.teacher-item {
+            width: 200px;
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        li.teacher-item:hover {
+            box-shadow: 0px 0px 10px #c2c2c2;
+        }
+            li.teacher-item div {
+                height: 145px;
+                background: #a0a0a0;
+                position: relative;
+            }
+                li.teacher-item div > span {
+                    position: absolute;
+                    left: 10px;
+                    bottom: 10px;
+                    font-size: 14px;
+                    color: #666;
+                }
+            li.teacher-item h5 {
+                height: 115px;
+                background: #FFF;
+                font-size: 12px;
+                color: #666;
+                padding: 8px;
+                line-height: 18px;
+            }

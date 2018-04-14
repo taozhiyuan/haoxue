@@ -1,5 +1,6 @@
 ul.home-paging {
     text-align: center;
+    padding: 70px 0px;
 }
     ul.home-paging > li {
         display: inline-block;

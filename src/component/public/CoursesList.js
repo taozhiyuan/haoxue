@@ -1,8 +1,9 @@
 
-//课程列表
+//全部课程列表
 import React, { Component } from 'react';
 import Path from '../agency/Path.js';
 import ItemMin from '../parentClass/ItemMin.js';
+import Paging from '../home/Paging.js';
 import Axios from '../../request/axiosHome.js';
 
 import './CoursesList.css';
@@ -25,7 +26,8 @@ export default class CoursesList extends Component {
     }
     render() {
         const data = this.state.data;
-        const url = `${this.props.to}/courses`;
+        const url = `${this.props.match.url}/courseDetails`;
+        // console.log(url)
         return (
             <div className="courses">
                 <div className="main-public">
@@ -33,15 +35,9 @@ export default class CoursesList extends Component {
                     <ul className="courses-list">
                         { data.map((item,index)=>(
                             <ItemMin data={ item } key={ index } to={ url }/>
-                            // <li key={ index }>
-                            //     <div></div>
-                            //     <aside>
-                            //         <h5>{ item.name }</h5>
-                            //         <span><i className="iconfont icon-guanzhu"></i>{ item.popularity }</span>
-                            //     </aside>
-                            // </li>
                         )) }
                     </ul>
+                    <Paging />
                 </div>
             </div>
         );

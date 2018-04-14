@@ -7,7 +7,9 @@ import Teachers from '../ChildClass/Teachers.js';
 import Lecturer from '../ChildClass/Lecturer.js';
 import Evaluate from '../ChildClass/Evaluate.js';
 import CourseDideBar from '../ChildClass/CourseDideBar.js';
+import CourseBeforehand from './CourseBeforehand.js';
 
+import { Route } from "react-router-dom";
 import Axios from '../../request/axiosHome.js';
 
 export default class CourseDetails extends Component {
@@ -19,7 +21,7 @@ export default class CourseDetails extends Component {
     }
     componentWillMount(){
         Axios.courseDetails().then((res)=>{
-            console.log(res.data.result)
+            // console.log(res.data.result)
             this.setState({
                 data : res.data.result
             })
@@ -28,17 +30,21 @@ export default class CourseDetails extends Component {
         })
     }
     render() {
-        console.log(this.state.data)
+        // console.log(this.state.data)
+        const { path } = this.props.match;
         return (
             <div className="course-details">
-                <div className="main-public">
-                    <Path />
-                    <CourseMain />
-                    <Teachers />
-                    <Lecturer />
-                    <Evaluate />
-                    <CourseDideBar to={ this.props.match.url } data={ this.state.data }/>
-                </div>
+                <Route path={ `${path}/courseBeforehand` } component={ CourseBeforehand } />
+                <Route path={ path } render={ ({ match })=>(
+                    <div className="main-public">
+                        <Path />
+                        <CourseMain url={ match.url }/>
+                        <Teachers />
+                        <Lecturer />
+                        <Evaluate />
+                        <CourseDideBar to={ match.url } data={ this.state.data }/>
+                    </div>
+                ) } />
             </div>
         );
     }

@@ -1,0 +1,54 @@
+
+ul.contact-us-list {
+    height: 400px;
+}
+    ul.contact-us-list > li {
+        float: left;
+        width: 50%;
+        height: 330px;
+    }
+    ul.contact-us-list > li.us-info > h1 {
+        line-height: 100px;
+        font-size: 28px;
+    }
+    ul.contact-us-list > li.us-info > h5 {
+        line-height: 20px;
+    }
+
+    ul.contact-us-list > li.message-leave {
+        border: 1px solid #f39e09;
+        padding: 10px 80px;
+        text-align: right;
+    }
+        ul.contact-us-list > li.message-leave > h4 {
+            line-height: 60px;
+            text-align: center;
+        }
+        ul.contact-us-list > li > p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+            ul.contact-us-list > li > p:nth-of-type(3) > span {
+                vertical-align: top;
+            }
+            ul.contact-us-list > li.message-leave input {
+                width: 300px;
+                line-height: 35px;
+                padding: 0px 10px;
+                margin-left: 10px;
+                border: 1px solid #c2c2c2;
+            }
+            ul.contact-us-list > li.message-leave textarea {
+                height: 75px;
+                width: 300px;
+                /* line-height: 35px; */
+                padding: 10px;
+                margin-left: 10px;
+                border: 1px solid #c2c2c2;
+            }
+            ul.contact-us-list > li.message-leave button {
+                width: 300px;
+                height: 35px;
+                color: #FFF;
+                background-color: #f39e09;
+            }

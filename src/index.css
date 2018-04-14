@@ -27,7 +27,7 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-input {
+input,textarea {
 	outline: none;
 }
 button{
@@ -35,6 +35,9 @@ button{
 	background: none;
 	cursor: pointer;
 	transition: all 0.5s;
+}
+button:hover {
+	opacity: 0.8;
 }
 img {
 	vertical-align: bottom;

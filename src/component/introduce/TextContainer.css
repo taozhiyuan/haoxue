@@ -4,6 +4,7 @@ div.text-container {
     width: 870px;
     height: 440px;
     padding: 20px;
+    margin-bottom: 40px;
     position: relative;
 }
     div.text-container > header {
