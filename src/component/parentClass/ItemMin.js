@@ -7,11 +7,11 @@ export default class ItemMin extends Component {
         const data = this.props.data;
         return (
             <li className="course-item-min">
-                <Link to={ this.props.to }>
+                <Link to={ `${this.props.url}/course` }>
                     <section></section>
                     <aside>
-                        <h5>{ data.name }</h5>
-                        <h4><i className="iconfont icon-guanzhu"></i>{ data.fabulous }</h4>
+                        <h5>{ data.courseName }</h5>
+                        <h4><i className="iconfont icon-guanzhu"></i>{ data.collections }</h4>
                     </aside>
                 </Link>
             </li>

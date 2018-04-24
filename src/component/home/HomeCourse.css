@@ -1,0 +1,113 @@
+
+section.home-course {
+    padding-top: 50px;
+}
+    h5.home-item-title {
+        color: #f39e09;
+        font-size: 14px;
+        position: relative;
+        padding-top: 15px;
+        padding-bottom: 60px;
+    }
+    h5.home-item-title::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        left: 90px;
+        top: 23px;
+        height: 1px;
+        border-bottom: 1px dashed #f39e09;
+    }
+
+
+    ul.home-course-type {
+        overflow: hidden;
+        position: absolute;
+        top: 15px;
+        left: 465px;
+    }
+        ul.home-course-type > li {
+            text-align: center;
+            float: left;
+            border-bottom: 1px solid #666;
+            font-size: 12px;
+            cursor: pointer;
+            color: #666;
+        }
+        ul.home-course-type > li:first-child {
+            margin-right: 25px;
+        }
+        ul.home-course-type > li.active {
+            color: #f39e09;
+            border-color: #f39e09;
+        }
+
+
+    ul.home-course-item {
+        overflow: hidden;
+    }
+        ul.home-course-item > li {
+            width: 280px;
+            border-radius: 10px;
+            float: left;
+            margin-right: 26.5px;
+            margin-bottom: 40px;
+        }
+        ul.home-course-item > li:nth-child(2){
+            margin-right: 607px;
+        }
+        ul.home-course-item > li:last-child{
+            margin-right: 0px;
+        }
+            ul.home-course-item > li img {
+                width: 280px;
+                height: 200px;
+                border-radius: 5px;
+            }
+            ul.home-course-item > li img:hover {
+                box-shadow: 0px 0px 10px #c2c2c2;
+            }
+            ul.home-course-item > li h5 {
+                padding-top: 15px;
+                text-align: center;
+            }
+        
+    aside.home-evaluation {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 587px;
+        height: 325px;
+        border-radius: 5px;
+        overflow: hidden;
+        text-align: center;
+        background: red;
+    }
+        aside.home-evaluation > div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+            aside.home-evaluation > div > h2 {
+                color: #FFF;
+                font-size: 24px;
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+            aside.home-evaluation > div > button {
+                width: 140px;
+                height: 40px;
+                border-radius: 5px;
+                border: 1px solid #FFF;
+                color: #f39e09;
+                font-size: 24px;
+            }
+            aside.home-evaluation > div > button:hover{
+                border: 1px solid #f39e09;
+                background-color: #f39e09;
+                color: #FFF;
+                opacity: 1;
+            }

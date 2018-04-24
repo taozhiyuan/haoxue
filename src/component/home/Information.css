@@ -1,0 +1,25 @@
+
+
+section.home-information {
+    overflow: hidden;
+    padding-bottom: 55px;
+}
+    h5.home-information-title {
+        color: #f39e09;
+        font-size: 14px;
+        position: relative;
+        padding-top: 15px;
+        padding-bottom: 45px;
+    }
+    h5.home-information-title::after {
+        content: "";
+        position: absolute;
+        width: 1120px;
+        right: 0px;
+        top: 23px;
+        height: 1px;
+        border-bottom: 1px dashed #f39e09;
+    }
+    section.home-information div.home-information-column:not(:last-child) {
+        margin-right: 45px;
+    }

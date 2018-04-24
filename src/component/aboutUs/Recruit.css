@@ -1,0 +1,85 @@
+
+section.about-recruit {
+    background-color: #f2f2f2;
+    height: 735px;
+}
+
+
+/* 员工风采 */
+ul.staff-style-list {
+    height: 490px;
+    width: 650px;
+    margin: 0px auto;
+    position: relative;
+}
+    ul.staff-style-list > li {
+        height: 390px;
+        width: 520px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        cursor: pointer;
+    }
+    ul.staff-style-list > li.active_0 {
+        z-index: 2;
+        transform: translateX(0px) scale(1);
+        position: relative;
+    }
+    ul.staff-style-list > li.active_1 {
+        z-index: 1;
+        transform: translateX(-200px) scale(0.8);
+    }
+    ul.staff-style-list > li.active_2 {
+        z-index: 0;
+        transform: translateX(-350px) scale(0.5);
+    }
+    ul.staff-style-list > li.active_3 {
+        z-index: -1;
+        transform: translateX(0px) scale(0.3);
+    }
+    ul.staff-style-list > li.active_4 {
+        z-index: 0;
+        transform: translateX(350px) scale(0.5);
+    }
+    ul.staff-style-list > li.active_5 {
+        z-index: 1;
+        transform: translateX(200px) scale(0.8);
+    }
+
+        ul.staff-style-list > li > div {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+        }
+            ul.staff-style-list > li > div > img {
+                width: 100%;
+                height: 100%;
+            }
+            ul.staff-style-list > li.active_0:hover div.about-recruit-item {
+                visibility: visible;
+            }
+            div.about-recruit-item {
+                visibility: hidden;
+                background-color: rgba(0,0,0,0.6);
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                color: #FFF;
+                padding: 40px 20px;
+            }
+                div.about-recruit-item > h3 {
+                    text-align: center
+                }
+                div.about-recruit-item > h5 {
+                    padding-top: 40px;
+                    padding-bottom: 15px;
+                }
+                div.about-recruit-item > h6 {
+                    line-height: 20px;
+                }

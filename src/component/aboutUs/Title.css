@@ -10,13 +10,3 @@ section h1.about-us-title {
     text-align: center;
     position: relative;
 }
-
-section h1.about-us-title:before {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    bottom: -20px;
-    left: 130px;
-    background-image: url('./img/core_0.svg');
-}

@@ -1,0 +1,93 @@
+
+div.my-collection {
+    padding: 60px 20px;
+}
+    ul.my-collection-type {
+        overflow: hidden;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+        ul.my-collection-type > li {
+            padding: 0px 15px;
+            line-height: 40px;
+            color: #666;
+            display: inline-block;
+            cursor: pointer;
+        }
+        ul.my-collection-type > li.active {
+            color: #f39e09;
+            border-bottom: 1px solid #f39e09;
+        }
+        ul.my-collection-type > li:first-child {
+            margin-right: 110px;
+        }
+
+        ul.my-collection-list > li {
+            height: 200px;
+            padding: 20px 15px;
+            border: 1px solid #f39e09;
+            overflow: hidden;
+        }
+        ul.my-collection-list > li:not(:last-child){
+            margin-bottom: 20px;
+        }
+            ul.my-collection-list > li > div {
+                float: left;
+                height: 100%;
+            }
+            ul.my-collection-list > li > div:nth-child(1){
+                width: 260px;
+                height: 160px;
+                border-radius: 5px;
+            }
+            div.my-collection-text {
+                padding-left: 25px;
+                width: 570px;
+                padding-top: 10px;
+            }
+                div.my-collection-text > h5 {
+                    line-height: 25px;
+                }
+                div.my-collection-text > h5:nth-of-type(2) {
+                    color: #f39e09;
+                }
+                    div.my-collection-text > h5 > i {
+                        font-size: 18px;
+                        margin-right: 5px;
+                    }
+                div.my-collection-text > h3 {
+                    line-height: 30px;
+                    color: #f36709;
+                }
+                    div.my-collection-text > h3 > span {
+                        font-size: 14px;
+                    }
+                div.my-collection-text > h6 {
+                    line-height: 20px;
+                    color: #666;
+                }
+                div.my-collection-text > h6.time {
+                    letter-spacing: 3px;
+                }
+            div.my-collection-inter {
+                width: 100px;
+            }
+                div.my-collection-inter button {
+                    height: 30px;
+                    border-radius: 5px;
+                    font-size: 12px;
+                    width: 100%;
+                    display: block;
+                }
+                div.my-collection-inter > a:first-child > button {
+                    margin-top: 20px;
+                    color: #FFF;
+                    background-color: #f39e09;
+                }
+                div.my-collection-inter > a:last-child > button {
+                    margin-top: 40px;
+                    background-color: #c2c2c2;
+                    color: #666;
+                }
+
+        

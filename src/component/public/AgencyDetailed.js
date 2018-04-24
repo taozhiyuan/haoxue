@@ -23,39 +23,55 @@ export default class AgencyDetailed extends Component {
         }
     }
     componentWillMount(){
-        Axios.detailed().then((res)=>{
-            // console.log(res)
+        // console.log(this.props)
+        // Axios.AgencyDetailed().then((res)=>{
+        //     console.log(res)
+        //     this.setState({
+        //         data : res.data
+        //     })
+        // }).catch((err)=>{
+        //     console.log(err)
+        // });
+        Promise.all([
+            Axios.AgencyDetailedServer({
+                ip : '192.168.10.88',
+                id : this.props.location.state.id,
+                userId : ''
+            }),
+            Axios.AgencyTeacherList({ orgId : this.props.location.state.id }),
+        ])
+        .then(([d, t]) => {
             this.setState({
-                data : res.data
+                data : {
+                    introduce : d.data.result,
+                    TeacherList : t.data.result
+                }
             })
-        }).catch((err)=>{
-            console.log(err)
-        })
+        });
     }
     render() {
-        // console.log(this.props)
         const data = this.state.data;
         const { path } = this.props.match;
         if(!data) return false;
         return (
-            <div className="agency-detailed">
-                <Switch>
-                    <Route path={ `${path}/course` } component={ CourseDetails } />
-                    <Route path={ `${path}/teacher` } component={ TeacherDetailed } />
-                    <Route path={ `${path}/teacherList` } component={ AllTeacherList } />
-                    <Route path={ `${path}/courseList` } component={ CoursesList } />
-                    <Route path={ path } render={ ({ match })=>(
+            <Switch>
+                <Route path={ `${path}/course` } component={ CourseDetails } />
+                <Route path={ `${path}/teacher` } component={ TeacherDetailed } />
+                <Route path={ `${path}/teacherList` } component={ AllTeacherList } />
+                <Route path={ `${path}/courseList` } component={ CoursesList } />
+                <Route path={ path } render={ ({ match })=>(
+                    <div className="agency-detailed">
                         <div className="main-public">
                             <Path />
                             <TextContainer data={ data.introduce }/>
-                            <Teachers data={ data.teachers } url={ match.url }/>
+                            <Teachers data={ data.TeacherList } url={ match.url }/>
                             <Curriculum data={ data.curriculum } url={ match.url }/>
                             <Map />
                             <RelevantList data={ data.other }/>
                         </div>
-                    ) } />
-                </Switch>
-            </div>
+                    </div>
+                ) } />
+            </Switch>
         );
     }
 }

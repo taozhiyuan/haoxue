@@ -10,6 +10,7 @@ div.lecturer{
     ul.lecturer-cont > li {
         display: inline-block;
         vertical-align: top;
+        overflow: hidden;
     }
     ul.lecturer-cont > li:nth-child(1){
         padding-left: 20px;

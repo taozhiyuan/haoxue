@@ -13,7 +13,7 @@ ul.course-main {
     }
     ul.course-main > li:nth-child(1){
         width: 280px;
-        background-color: #bfbfbf;
+        overflow: hidden;
     }
     ul.course-main > li:nth-child(2){
         width: 500px;
@@ -25,6 +25,9 @@ ul.course-main {
             padding-left: 15px;
             letter-spacing: 1px;
         }
+            ul.course-main > li > a {
+                height: auto;
+            }
             li.course-main-text > h5{
                 padding-bottom: 9px;
             }
@@ -44,17 +47,41 @@ ul.course-main {
                     border-bottom: 1px solid #999;
                 }
                 li.course-main-text > h5 > i {
-                    display: inline-block;
+                    /* display: inline-block; */
                     width: 15px;
                     height: 15px;
-                    background: red;
                     margin-right: 5px;
                     vertical-align: text-bottom;
+                    font-size: 20px;
+                    line-height: 15px;
+                    color: #f39e09;
                 }
-        ul.course-main > li > button {
+
+        ul.course-main h5.popularity {
+            text-align: right;
+            line-height: 50px;
+        }
+            ul.course-main h5.popularity > span {
+                color: #f39e09;
+                font-size: 18px;
+            }
+        ul.course-main h5.collection {
+            text-align: right;
+            line-height: 50px;
+        }
+            ul.course-main h5.collection > i {
+                color: #f39e09;
+                font-size: 25px;
+                margin-right: 10px;
+            }
+            ul.course-main h5.collection > span {
+                color: #f39e09;
+                font-size: 18px;
+            }
+        ul.course-main > li button {
             width: 118px;
             height: 40px;
             color: #FFF;
-            margin-top: 100px;
+            margin-top: 15px;
             background-color: #f39e09;
         }

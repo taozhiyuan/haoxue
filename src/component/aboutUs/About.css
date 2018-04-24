@@ -8,6 +8,7 @@ ul.about-introduce-text {
     ul.about-introduce-text > li:first-child {
         width: 520px;
         height: 300px;
+        overflow: hidden;
         background: #bfbfbf;
     }
     ul.about-introduce-text > li:last-child {

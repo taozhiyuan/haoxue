@@ -1,0 +1,104 @@
+
+div.person-info > h4.title {
+    line-height: 35px;
+    background-color: #f39e09;
+    color: #FFF;
+    padding-left: 10px;
+}
+
+div.picture-upload {
+    padding-top: 33px;
+    text-align: center;
+}
+    div.picture-upload > span {
+        font-size: 14px;
+    }
+    div.picture-upload > div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 105px;
+        height: 105px;
+        position: relative;
+        background: #f2f2f2;
+        color: #999;
+        font-size: 40px;
+        line-height: 2;
+    }
+        div.picture-upload > div > h4 {
+            line-height: 25px;
+            color: #FFF;
+            font-size: 14px;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        div.picture-upload > div > input[type="file"] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+    div.picture-upload > h5 {
+        color: #999;
+        line-height: 50px;
+        padding-bottom: 20px;
+    }
+
+div.person-info-form {
+    width: 280px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+    div.person-info-form input:not([type='radio']) {
+        width: 200px;
+        height: 30px;
+        padding: 0px 10px;
+        margin-bottom: 15px;
+        border: 1px solid #c2c2c2;
+    }
+    div.person-info-form input[type='radio']{
+        margin-bottom: 15px;
+        margin: 0px 10px 20px;
+    }
+    div.person-info-form label {
+        margin-right: 10px;
+    }
+    div.person-info-form > div {
+        position: relative;
+    }
+        div.person-info-form > div > i {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            right: -30px;
+            top: 5px;
+            font-size: 20px;
+            text-align: center;
+        }
+        div.person-info-form i.ion-ios-close-outline {
+            color: red;
+        }
+        div.person-info-form i.ion-ios-checkmark-outline {
+            color: green;
+        }
+        div.person-info-form > div.gender label:not(:first-of-type){
+            font-size: 12px;
+        }
+    div.person-info-form button {
+        width: 120px;
+        height: 35px;
+        border-radius: 5px;
+        color: #FFF;
+        background-color: #f39e09;
+        display: block;
+        margin: 50px auto;
+    }
+    div.person-info-form button.disable {
+        cursor: not-allowed;
+    }

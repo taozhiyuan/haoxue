@@ -1,0 +1,25 @@
+
+div.sign-up-success {
+    text-align: center;
+}
+    div.sign-up-success > h4 {
+        padding-top: 65px;
+        color: #288a18;
+        margin-bottom: 30px;
+        font-size: 22px;
+    }
+        div.sign-up-success > h4 > i {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            vertical-align: middle;
+            font-size: 50px;
+            line-height: 30px;
+        }
+    div.sign-up-success > a {
+        color: #999;
+        font-size: 14px;
+        padding-bottom: 1px;
+        border-bottom: 1px solid #999;
+    }

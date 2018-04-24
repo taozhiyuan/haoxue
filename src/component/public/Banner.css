@@ -1,9 +1,12 @@
 
 div.index-banner {
-    height: 455px;
+    min-height: 455px;
     background-color: #999;
     line-height: 455px;
     text-align: center;
     font-size: 50px;
     color: red;
+}
+div.index-banner img {
+    width: 100%;
 }

@@ -8,7 +8,7 @@ import TeacherDetailed from './TeacherDetailed.js';
 
 import Axios from '../../request/axiosHome.js';
 import './AllTeacherList.css';
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 export default class AllTeacherList extends Component {
     constructor(){
@@ -30,20 +30,22 @@ export default class AllTeacherList extends Component {
         const data = this.state.data;
         const { path, url } = this.props.match;
         return (
-            <div className="all-teacher">
+            <Switch>
                 <Route path={ `${path}/teacher` } component={ TeacherDetailed } />
                 <Route path={ path } render={ ()=>(
-                    <div className="main-public">
-                        <Path />
-                        <ul className="all-teacher-list">
-                            { data.map((item,index)=>(
-                                <TeacherItem data={ item } key={ index } url={ url }/>
-                            )) }
-                        </ul>
-                        <Paging />
+                    <div className="all-teacher">
+                        <div className="main-public">
+                            <Path />
+                            <ul className="all-teacher-list">
+                                { data.map((item,index)=>(
+                                    <TeacherItem data={ item } key={ index } url={ url }/>
+                                )) }
+                            </ul>
+                            <Paging />
+                        </div>
                     </div>
                 ) } />
-            </div>
+            </Switch>
         );
     }
 }

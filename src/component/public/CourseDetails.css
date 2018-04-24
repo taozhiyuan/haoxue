@@ -1,0 +1,20 @@
+
+div.course-dide-bar {
+    width: 200px;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+}
+
+    div.course-dide-bar > h5 {
+        height: 30px;
+        background-color: #f39e09;
+        border-radius: 2px;
+        color: #FFF;
+        line-height: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+        div.course-dide-bar > ul > li {
+            margin-bottom: 30px;
+        }

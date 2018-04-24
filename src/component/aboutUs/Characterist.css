@@ -1,0 +1,48 @@
+
+
+section.about-characterist {
+    height: 1100px;
+    background-color: #FFF;
+}
+ul.about-characterist-list {
+    counter-reset: wangxiaoer 00;
+}
+    ul.about-characterist-list > li {
+        float: left;
+        width: 550px;
+        height: 130px;
+        border: 1px solid #f39e09;
+        padding: 15px 20px 15px 140px;
+        margin-bottom: 20px;
+        position: relative;
+        counter-increment: wangxiaoer;
+    }
+    ul.about-characterist-list > li:hover {
+        background-color: #f39e09;
+    }
+    ul.about-characterist-list > li:hover * {
+        color: #FFF;
+    }
+    ul.about-characterist-list > li::after {
+        content: counter(wangxiaoer);
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        width: 100px;
+        height: 100px;
+        background-color: #fad89d;
+        color: #FFF;
+        font-size: 48px;
+        line-height: 100px;
+        text-align: center;
+    }
+    ul.about-characterist-list > li:nth-child(odd){
+        margin-right: 100px;
+    }
+        ul.about-characterist-list > li > h4 {
+            line-height: 30px;
+        }
+        ul.about-characterist-list > li > h6 {
+            color: #666;
+            line-height: 20px;
+        }

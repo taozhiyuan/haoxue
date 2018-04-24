@@ -12,7 +12,7 @@ export default class CourseDideBar extends Component {
                 <h5>类似机构</h5>
                 <ul>
                     {this.props.data.map((item,index)=>(
-                        <ItemMin data={ item } key={ index } to={ this.props.to }/>
+                        <ItemMin data={ item } key={ index } to={ this.props.url }/>
                     ))}
                 </ul>
             </div>

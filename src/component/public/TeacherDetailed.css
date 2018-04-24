@@ -37,16 +37,15 @@ ul.teacher-text {
 div.teacher-info {
     position: relative;
     border: 1px solid #f39e09;
-    height: 120px;
 }
-    div.teacher-info > button {
+    div.teacher-info button {
         width: 90px;
         height: 36px;
         background-color: #f38209;
         border-radius: 5px;
         font-size: 16px;
         position: absolute;
-        top: 40px;
+        top: 23px;
         right: 30px;
         color: #FFF;
     }

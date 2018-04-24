@@ -46,6 +46,7 @@ div.text-container {
         position: absolute;
         top: 27px;
         right: 20px;
+        overflow: hidden;
     }
     table.text-item {
         border-collapse:separate;
@@ -66,4 +67,7 @@ div.text-container {
             width: 400px;
             font-size: 12px;
             color: #666;
+        }
+        table.text-item  tr > td iframe {
+            width: 100%;
         }

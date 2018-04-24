@@ -1,0 +1,72 @@
+
+
+section.dev-history {
+    background-color: #f2f2f2;
+    height: 700px;
+}
+    ul.dev-history-list {
+        height: 200px;
+        padding-left: 20px;
+        position: relative;
+        border-bottom: 2px solid #f36709;
+    }
+    ul.dev-history-list::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        bottom: -8px;
+        width: 16px;
+        height: 16px;
+        background-color: #f36709;
+        border-radius: 50%;
+    }
+        ul.dev-history-list > li {
+            height: 100%;
+            width: 20%;
+            padding: 20px;
+            float: left;
+            position: relative;
+            border-left: 1px solid #f36709;
+        }
+        ul.dev-history-list > li::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: -8px;
+            border-radius: 50%;
+            background-color: #f39e09;
+        }
+        ul.dev-history-list > li::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10.5px;
+            border-radius: 50%;
+            border: 1px solid #f39e09;
+        }
+        ul.dev-history-list > li:nth-child(even){
+            bottom: -100%;
+        }
+        ul.dev-history-list > li:nth-child(odd)::after {
+            bottom: -8px;
+        }
+        ul.dev-history-list > li:nth-child(odd)::before {
+            bottom: -10.5px;
+        }
+        ul.dev-history-list > li:nth-child(even)::after {
+            top: -8px;
+        }
+        ul.dev-history-list > li:nth-child(even)::before {
+            top: -11px;
+        }
+            ul.dev-history-list > li > h4 {
+                font-size: 14px;
+                color: #666;
+                line-height: 50px;
+            }
+            ul.dev-history-list > li > h5 {
+                font-size: 14px;
+                line-height: 25px;
+            }

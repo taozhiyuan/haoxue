@@ -13,6 +13,7 @@
                 height: 145px;
                 background: #a0a0a0;
                 position: relative;
+                overflow: hidden;
             }
                 li.teacher-item div > span {
                     position: absolute;

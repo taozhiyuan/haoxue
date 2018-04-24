@@ -1,0 +1,33 @@
+
+div.person-data {
+    /* padding-bottom: 30px; */
+    height: 980px;
+}
+    div.person-data div.portrait {
+        width: 160px;
+        height: 160px;
+        background-color: #f2f2f2;
+        margin-bottom: 30px;
+    }
+    ul.person-data-list {
+        width: 160px;
+    }
+        ul.person-data-list > li {
+            font-size: 16px;
+            line-height: 40px;
+        }
+        ul.person-data-list > li.active {
+            color: #f39e09;
+        }
+        ul.person-data-list > li:hover {
+            color: #f39e09;
+        }
+    
+    div.person-data-content {
+        position: absolute;
+        right: 0px;
+        top: 50px;
+        height: 870px;
+        width: 1020px;
+        border: 1px solid #f39e09;
+    }
