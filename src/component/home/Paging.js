@@ -1,3 +1,5 @@
+
+// 分页器
 import React, { Component } from 'react';
 import './Paging.css';
 
@@ -5,36 +7,48 @@ export default class Paging extends Component {
     constructor(){
         super()
         this.state = {
-            star : 1,
-            index : 0,
-            number : 9
+            star : 1, //左第一个的数字
+            index : 1, //active的位置
+            number : 3 //分页数量
         }
+    }
+    componentWillMount(){
+        this.setState({
+            number : this.props.length //获取分页数量
+        })
     }
     changeActive = (parame) => {
         this.setState({
-            index : parame
+            index : parame+1 //获取当前位置
         })
-        if(this.state.number > 6 && parame === 5 ){
+        if(this.state.number > 6 && parame === 5 ){ //如果分页数量小于6 并且 当前点击位置等于5
             this.setState({
-                star : this.state.number - 5
+                star : this.state.number - 5 //起始数字跳至总长度减5
             })
         }
     }
-    pageAdd = () => {
-        if(this.state.index === 5) return false;
-        if(this.state.star === this.state.number-5 ) {
+    pageAdd = () => { //增页
+        //如果位置等于5 或者 当前位置等于分页数量（即分页数量小于6的时候）
+        if(this.state.index === 6 || this.state.number === this.state.index ) return false;
+        if(this.state.star === this.state.number-5 ) { //如果左起点等于总数减5
             this.setState({
-                index : this.state.index+1
+                index : this.state.index+1 //那么位置加1
             })
-            return false;
+            this.props.PagingCallback(this.state.index)//回调函数
+        }else if(this.state.number <= 6){ //如果总数小于6
+            this.setState({
+                index : this.state.index+1 //那么直接加1
+            })
+            this.props.PagingCallback(this.state.index)//回调函数
+        }else{
+            this.setState({
+                star : this.state.star+1
+            })
         }
-        this.setState({
-            star : this.state.star+1
-        })
     }
-    pageReduce = () => {
-        if(this.state.index === 0) {
-            if(this.state.star === 1 ) return false;
+    pageReduce = () => { //减页
+        if(this.state.index === 1) { //如果当前位置是1
+            if(this.state.star === 1 ) return false; //如果起点是1 
             this.setState({
                 star : this.state.star-1
             })
@@ -43,14 +57,16 @@ export default class Paging extends Component {
         this.setState({
             index : this.state.index-1
         })
+        this.props.PagingCallback(this.state.index-1)//回调函数
     }
     render(){
         const pagingList = [];
-        for (let i=0; i<6; i++) {
+        const n = this.state.number > 6 ? 6 : this.state.number;
+        for (let i=0; i<n; i++) {
             pagingList.push(
                 <li 
                     key={i}
-                    className={ i===this.state.index?"active":"" }
+                    className={ i===this.state.index-1?"active":"" }
                     onClick={ ()=>{ this.changeActive(i) } }
                 >{ i+this.state.star }</li>
             )
@@ -59,13 +75,13 @@ export default class Paging extends Component {
             pagingList[4] = <li key={4}>...</li>
             pagingList[5] = <li 
                                 key={5}
-                                className={ 5===this.state.index?"active":"" }
+                                className={ 5===this.state.index-1?"active":"" }
                                 onClick={ ()=>{ this.changeActive(5) } }
                             >{ this.state.number }</li>
             if(this.state.star === this.state.number-5){
                 pagingList[4] = <li 
                                 key={4}
-                                className={ 4===this.state.index?"active":"" }
+                                className={ 4===this.state.index-1?"active":"" }
                                 onClick={ ()=>{ this.changeActive(4) } }
                             >{ this.state.number-1 }</li>
             }

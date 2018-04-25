@@ -3,35 +3,78 @@
 import React, { Component } from 'react';
 import SignUpSuccess from './SignUpSuccess.jsx';
 import { Route, Switch, Link } from "react-router-dom";
+import Tel from './input/Tel.jsx';
+import Verification from './input/SMS_Verification.jsx';
+import Nickname from './input/Nickname.jsx';
+import Password from './input/Password.jsx';
+import RepeatPassword from './input/RepeatPassword.jsx';
 import './UserEntry.css';
 
+import Axios from '../../request/axiosHome.js';
+
 export default class SignUp extends Component {
+    constructor(){
+        super()
+        this.state = {
+            data : {
+                nickname : null,
+                tel : null,
+                verific : null,
+                password : null,
+                repeatPassword : null,
+            },
+            submit: false
+        }
+    }
+    getData = (param) => {
+        console.log(param)
+        this.setState({
+            data : { ...this.state.data, ...param }
+        },()=>{
+            const { nickname, verific, password, tel, repeatPassword } = this.state.data;
+            if(nickname&&tel&&password&&repeatPassword){
+                this.setState({
+                    submit : true
+                })
+                console.log('可以注册了')
+            }
+        })
+    }
+    getMobileCode = (param) => {
+        Axios.getMobileCode({ code : param }).then((res)=>{
+            console.log(0)
+        })
+    }
+    SignUpSubmit = () => {
+        Axios.UserRegist({
+            loginUser : this.state.data.tel,
+            userName : this.state.data.nickname,
+            password : this.state.data.password,
+        }).then((res)=>{
+            console.log(res)
+        })
+    }
     render() {
         const { path, url } = this.props.match;
+        // console.log(this.state.data.tel)
         return (
             <Switch>
                 <Route path={ `${ path }/signUpSuccess` } component={ SignUpSuccess } />
                 <Route path={ path } render={ ()=>(
                     <div className="sign-up">
                         <h3>用户注册</h3>
-                        <h5 className="user-name">
-                            <i className="ion-iphone"></i>
-                            <input type="number" placeholder="输入11位手机号" />
-                        </h5>
-                        <h5 className="mobile">
-                            <i className="ion-ios-email-outline"></i>
-                            <input type="text" placeholder="输入验证码" />
-                            <span>发送验证码</span>
-                        </h5>
-                        <h5 className="nickname">
-                            <i className="ion-android-person"></i>
-                            <input type="text" placeholder="请输入昵称" />
-                        </h5>
-                        <h5 className="password">
-                            <i className="ion-ios-locked-outline"></i>
-                            <input type="password" placeholder="设置6至16位字符的密码" />
-                        </h5>
-                        <Link to={ `${url}/signUpSuccess` }><button>注&emsp;册</button></Link>
+                        <Tel callback={ this.getData } />
+                        {/* <Verification callback={ this.getData } tel={ this.state.data.tel }/> */}
+                        <Nickname callback={ this.getData } />
+                        <Password callback={ this.getData } place="设置6至16位字符的密码" />
+                        <RepeatPassword callback={ this.getData } password={ this.state.data.password }/>
+                        { this.state.submit 
+                            ? <Link to={ `${url}/signUpSuccess` }>
+                                    <button onClick={ this.SignUpSubmit }>注&emsp;册</button>
+                                </Link>
+                            : <button className="disable">注&emsp;册</button>
+                        }
+                        
                         <footer>
                             <Link to="/userEntry/forgetPassword">忘记密码</Link>
                             <Link to="/userEntry/signIn">立即登录</Link>

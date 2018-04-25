@@ -264,6 +264,109 @@ const AxiosHome = {
             params : params,
         });
     },
+    // 我的收藏
+    Collection : (params) => {
+        // Mock.mock('/collection', {
+        //     'result|30': [{
+        //         "name" : "SSAT1v1课程_SSAT一对一辅导辅导",
+        //         "price|100-500" : 1,//价格
+        //         "purchase|500-1000" : 1,//已购
+        //         "like|10-50" : 1,
+        //         "add" : "岳麓大道",
+        //         "time" : "3月6日-6月19日;每周二下午13:30-15:20",
+        //         "tel" : "012345678",
+        //         "courseid" : '9',
+        //         "type|1" : ['course', 'agency']
+        //     }]
+        // })
+        // return Axios.get('/collection')
+        return Axios({
+            method:"get",
+            // baseURL:'http://120.79.247.254:1111/',
+            url:'http://120.79.247.254:1111/hxj-agency-ui/agencyCollection/queryAgencyCollection',
+            withCredentials: true,
+            params : params,
+        });
+    },
+    // 获取手机验证码
+    getMobileCode : (params) => {
+        return Axios({
+            method:"get",
+            // baseURL:'http://120.79.247.254:1111/',
+            // url:'http://120.79.247.254:1111/hxj-base-ui/code/sms?mobile=13950128774',
+            url:'http://192.192.168.11:8113/code/sms?mobile=13950128774',
+            withCredentials: true,
+            // params : params,
+            // headers: {
+            //     deviceId :'hxj'
+            // },
+            // auth: {
+            //     deviceId : "hxj"
+            // }
+        });
+    },
+    // 获取图形验证码
+    getGraphicCode : (params) => {
+        return Axios({
+            method:"get",
+            // baseURL:'http://120.79.247.254:1111/',
+            // url:'http://120.79.247.254:1111/hxj-base-ui/code/sms?mobile=13950128774',
+            url:'http://120.79.247.254:1111/hxj-base-ui/code/image',
+            withCredentials: true,
+            // params : params,
+            // headers: {
+            //     deviceId :'hxj'
+            // },
+            // auth: {
+            //     deviceId : "hxj"
+            // }
+        });
+    },
+    // 注册=》异步验证 手机是否重复
+    VerificationMobile : (params) => {
+        console.log(params)
+        return Axios({
+            method:"get",
+            // baseURL:'http://120.79.247.254:1111/',
+            url:'http://120.79.247.254:1111/hxj-base-noauthority-ui/user/checkLoginUser',
+            withCredentials: true,
+            params : params,
+        });
+    },
+    // 用户注册
+    UserRegist : (params) => {
+        return Axios({
+            method:"post",
+            // baseURL:'http://120.79.247.254:1111/',
+            url:'http://120.79.247.254:1111/hxj-base-ui/user/registered',
+            withCredentials: true,
+            params : params,
+        });
+    },
+    // 用户登录
+    UserRegist : (params) => {
+        return Axios({
+            method:"post",
+            // baseURL:'http://120.79.247.254:1111/',
+            url:'http://120.79.247.254:1111/hxj-base-ui/admin/admin',
+            withCredentials: true,
+            params : params,
+            headers: {
+                hxjAuth : 'Basic aHh3Omh4d1NlY3JldA==',
+                deviceId :'hxj'
+            },
+        });
+    },
+    // 用户完善信息
+    perfectInfo : (params) => {
+        return Axios({
+            method:"post",
+            // baseURL:'http://120.79.247.254:1111/',
+            url:'http://120.79.247.254:1111/hxj-base-ui/user/updateUser',
+            withCredentials: true,
+            params : params,
+        });
+    },
 }
 
 export default AxiosHome;

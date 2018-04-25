@@ -5,7 +5,7 @@ div.user-entry {
 }
     div.user-entry > div {
         width: 500px;
-        height: 420px;
+        min-height: 420px;
         background-color: #fff;
         margin: 0 auto;
         padding: 30px 85px;
@@ -22,7 +22,7 @@ div.user-entry {
             margin-bottom: 25px;
             position: relative;
         }
-            div.user-entry > div > h5 > i {
+            div.user-entry > div > h5 > i:first-of-type {
                 display: block;
                 width: 40px;
                 height: 100%;
@@ -33,6 +33,32 @@ div.user-entry {
                 left: 0px;
                 top: 0px;
             }
+
+            /* 表单状态 开始*/
+            div.user-entry > div > h5 > i.ion-ios-close-outline {
+                color: red;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                right: -30px;
+                top: 8px;
+                font-size: 20px;
+                text-align: center;
+            }
+            div.user-entry > div > h5 > i.ion-ios-checkmark-outline {
+                color: green;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                right: -30px;
+                top: 8px;
+                font-size: 20px;
+                text-align: center;
+            }
+            /* 表单状态 结束*/
+
             div.user-entry > div > h5 > input {
                 border: 1px solid #c2c2c2;
                 font-size: 14px;
@@ -57,6 +83,7 @@ div.user-entry {
                 vertical-align: top;
                 background-color: #bfbfbf;
                 margin: 0px 15px;
+                overflow: hidden;
             }
             div.user-entry > div > h5.graphical > a {
                 color: #999;
@@ -97,6 +124,10 @@ div.user-entry {
             font-size: 14px;
             margin: 30px auto;
             display: block;
+        }
+        div.user-entry > div button.disable{
+            cursor: not-allowed;
+            background-color: #999;
         }
 
     div.user-entry > div > footer {

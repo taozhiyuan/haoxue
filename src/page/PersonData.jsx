@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Path from '../component/agency/Path.js';
 import PersonInfo from '../component/personData/PersonInfo.jsx';
 import Collection from '../component/personData/Collection.jsx';
+import Study from '../component/personData/Study.jsx';
 import './PersonData.css';
 import { Route, Link } from "react-router-dom";
 
@@ -59,6 +60,7 @@ export default class PersonData extends Component {
                     <div className="person-data-content">
                         <Route exact path={ `${ path }/personInfo` } component={ PersonInfo } />
                         <Route exact path={ `${ path }/collection` } component={ Collection } />
+                        <Route exact path={ `${ path }/study` } component={ Study } />
                     </div>
                 </div>
             </div>

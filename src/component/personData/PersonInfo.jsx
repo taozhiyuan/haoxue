@@ -1,13 +1,13 @@
 
 // 个人信息
 import React, { Component } from 'react';
-import Nickname from './Nickname.jsx';
-import Name from './Name.jsx';
-import Birthday from './Birthday.jsx';
-import Gender from './Gender.jsx';
-import Tel from './Tel.jsx';
-import Address from './Address.jsx';
-import PictureUpload from './PictureUpload.jsx';
+import Nickname from './input/Nickname.jsx';
+import Name from './input/Name.jsx';
+import Birthday from './input/Birthday.jsx';
+import Gender from './input/Gender.jsx';
+import Tel from './input/Tel.jsx';
+import Address from './input/Address.jsx';
+import PictureUpload from './input/PictureUpload.jsx';
 import './PersonInfo.css';
 
 import Axios from '../../request/axiosHome.js';

@@ -5,12 +5,12 @@ import my_collection from './img/my_collection.png';
 import Paging from '../home/Paging.js';
 import CourseItem from './CourseItem.jsx';
 import AgencyItem from './AgencyItem.jsx';
-import './Collection.css';
+import './Study.css';
 
 import Axios from '../../request/axiosHome.js';
 import { Link } from "react-router-dom";
 
-export default class Collection extends Component {
+export default class Study extends Component {
     constructor(){
         super()
         this.state = {

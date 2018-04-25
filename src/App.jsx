@@ -49,7 +49,7 @@ class App extends Component {
             })
             console.log(2)
         });
-
+        // sessionStorage.setItem("nickname", '90');
         // //类型分类 
         // Axios.contentType().then((res)=>{
         //     this.setState({
