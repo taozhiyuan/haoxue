@@ -1,10 +1,9 @@
 
-// 我的收藏
+// 我的学习
 import React, { Component } from 'react';
 import my_collection from './img/my_collection.png';
 import Paging from '../home/Paging.js';
 import CourseItem from './CourseItem.jsx';
-import AgencyItem from './AgencyItem.jsx';
 import './Study.css';
 
 import Axios from '../../request/axiosHome.js';
@@ -14,41 +13,28 @@ export default class Study extends Component {
     constructor(){
         super()
         this.state = {
-            type : ['课程','教育机构'],
-            typeActive : 0,
             data : null,
             paging : 1,
         }
     }
     componentWillMount(){
-        Axios.Collection({userId:"admin"}).then((res)=>{
+        Axios.Collection({
+            access_token : sessionStorage.getItem("access_token")
+        }).then((res)=>{
             // console.log(res.data.result)
             let course = [];
-            let agency = [];
             for (const iterator of res.data.result) {
                 if(iterator.collectionType === "2"){
                     course = [...course,iterator]
-                }else{
-                    agency = [...agency,iterator]
                 }
             }
-            // console.log(course)
-            // console.log(agency)
             this.setState({
-                data : {
-                    course,
-                    agency
-                }
+                data : { course }
             })
         })
     }
-    typeClick = (parame) => {
-        this.setState({
-            typeActive : parame
-        })
-    }
     PagingCallback = (param) => {
-        console.log(param)
+        // console.log(param)
         this.setState({
             paging : param
         })
@@ -60,12 +46,9 @@ export default class Study extends Component {
         let pagingStart = paging * 2 - 2;
         let pagingEnd = paging * 2;
         const course = data.course.slice(pagingStart, pagingEnd);
-        const agency = data.agency.slice(pagingStart, pagingEnd);
-        // const target = typeActive === 0 ? course : agency ;
-        const dataLength = typeActive === 0 ? data.course.length : data.agency.length ;
         return (
             <div className="my-collection">
-                <ul className="my-collection-type">
+                {/* <ul className="my-collection-type">
                     { this.state.type.map((item,index)=>(
                         <li
                             key={ index }
@@ -73,19 +56,14 @@ export default class Study extends Component {
                             onClick={ ()=>{this.typeClick(index)} }
                         >{ item }</li>
                     )) }
-                </ul>
+                </ul> */}
                 <ul className="my-collection-list">
-                    { typeActive === 0 ? (course.map((item, index)=>(
+                    { course.map((item, index)=>(
                         <CourseItem data={ item } key={ index } />
-                    )))
-                    :
-                    (agency.map((item, index)=>(
-                        <AgencyItem data={ item } key={ index } />
-                    )))
-                    }
+                    ))}
                 </ul>
                 <Paging 
-                    length={ Math.ceil(dataLength/2) }
+                    length={ Math.ceil(data.course.length/2) }
                     PagingCallback={ this.PagingCallback }
                 />
             </div>

@@ -21,34 +21,35 @@ class App extends Component {
     constructor(props){
         super(props)
         this.state = {
-            classType: [],
-            courseList : [],
-            AgencyList : []
+            response: false
         }
-        console.log(3)
+        sessionStorage.setItem("imgPrefix", "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/");
     }
-    getChildContext() {
-        return { 
-            classType: this.state.classType,
-            courseList : this.state.courseList,
-            AgencyList : this.state.AgencyList,
-            imgPrefix : "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/",
-        };
-    }
+    // getChildContext() {
+    //     return { 
+    //         classType: this.state.classType,
+    //         courseList : this.state.courseList,
+    //         // AgencyList : this.state.AgencyList,
+    //         imgPrefix : "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/",
+    //     };
+    // }
     componentWillMount(){
-        Promise.all([
-            Axios.contentType(),
-            Axios.parentClassList(),
-            Axios.MechanismList()
-        ])
-        .then(([c, p, m]) => {
-            this.setState({
-                classType: c.data.result,
-                courseList : p.data.result,
-                AgencyList : m.data.result
-            })
-            console.log(2)
-        });
+        // Axios.parentClassList().then((res)=>{
+        //     this.setState({
+        //         response: true
+        //     })
+        //     let parentArr = [];
+        //     let childArr = [];
+        //     for( let i of res.data.result ){
+        //         if(i.courseType==="parent"){
+        //             parentArr = [...parentArr,i]
+        //         }else{
+        //             childArr = [...childArr,i]
+        //         }
+        //     }
+        //     sessionStorage.setItem("parentList", parentArr);
+        //     sessionStorage.setItem("childList", childArr);
+        // })
         // sessionStorage.setItem("nickname", '90');
         // //类型分类 
         // Axios.contentType().then((res)=>{
@@ -73,7 +74,7 @@ class App extends Component {
     }
     render() {
         // const AboutUsRouter = withRouter(AboutUs);
-        if(this.state.classType.length===0){ return false }
+        // if( !this.state.response ){ return false }
         return (
             <div className="App">
                 <PublicHead />
@@ -94,11 +95,11 @@ class App extends Component {
     }
 }
 
-App.childContextTypes = {
-    classType: PropTypes.array,
-    courseList : PropTypes.array,
-    AgencyList : PropTypes.array,
-    imgPrefix : PropTypes.string,
-};
+// App.childContextTypes = {
+//     classType: PropTypes.array,
+//     courseList : PropTypes.array,
+//     // AgencyList : PropTypes.array,
+//     imgPrefix : PropTypes.string,
+// };
 
 export default withRouter(App);

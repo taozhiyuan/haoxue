@@ -10,6 +10,12 @@ export default class Gender extends Component {
             female : false,
         }
     }
+    componentWillMount(){
+        this.setState({
+            male : this.props.data?true:false,
+            female : this.props.data?false:true,
+        })
+    }
     getSexMale = (e) => {
         this.setState({
             male : true,

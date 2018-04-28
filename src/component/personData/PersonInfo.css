@@ -24,6 +24,10 @@ div.picture-upload {
         font-size: 40px;
         line-height: 2;
     }
+        div.picture-upload > div > img {
+            width: 100%;
+            height: 100%;
+        }
         div.picture-upload > div > h4 {
             line-height: 25px;
             color: #FFF;

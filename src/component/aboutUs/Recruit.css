@@ -83,3 +83,7 @@ ul.staff-style-list {
                 div.about-recruit-item > h6 {
                     line-height: 20px;
                 }
+                div.about-recruit-item > iframe {
+                    width: 100%;
+                    height: 100%;
+                }

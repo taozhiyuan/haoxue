@@ -2,7 +2,7 @@
 // 用户注册
 import React, { Component } from 'react';
 import SignUpSuccess from './SignUpSuccess.jsx';
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, Redirect } from "react-router-dom";
 import Tel from './input/Tel.jsx';
 import Verification from './input/SMS_Verification.jsx';
 import Nickname from './input/Nickname.jsx';
@@ -27,22 +27,17 @@ export default class SignUp extends Component {
         }
     }
     getData = (param) => {
-        console.log(param)
+        // console.log(param)
         this.setState({
             data : { ...this.state.data, ...param }
         },()=>{
             const { nickname, verific, password, tel, repeatPassword } = this.state.data;
-            if(nickname&&tel&&password&&repeatPassword){
+            if(nickname&&tel&&password&&repeatPassword,verific){
                 this.setState({
                     submit : true
                 })
                 console.log('可以注册了')
             }
-        })
-    }
-    getMobileCode = (param) => {
-        Axios.getMobileCode({ code : param }).then((res)=>{
-            console.log(0)
         })
     }
     SignUpSubmit = () => {
@@ -59,12 +54,16 @@ export default class SignUp extends Component {
         // console.log(this.state.data.tel)
         return (
             <Switch>
+                {/* <Redirect to="/userEntry/signIn" /> */}
                 <Route path={ `${ path }/signUpSuccess` } component={ SignUpSuccess } />
                 <Route path={ path } render={ ()=>(
                     <div className="sign-up">
                         <h3>用户注册</h3>
                         <Tel callback={ this.getData } />
-                        {/* <Verification callback={ this.getData } tel={ this.state.data.tel }/> */}
+                        <Verification 
+                            callback={ this.getData }
+                            tel={ this.state.data.tel }
+                        />
                         <Nickname callback={ this.getData } />
                         <Password callback={ this.getData } place="设置6至16位字符的密码" />
                         <RepeatPassword callback={ this.getData } password={ this.state.data.password }/>

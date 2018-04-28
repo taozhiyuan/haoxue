@@ -11,6 +11,11 @@ export default class Tel extends Component {
             visibi : false
         }
     }
+    componentWillMount(){
+        this.setState({
+            value : this.props.data || ""
+        })
+    }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
     }

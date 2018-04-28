@@ -5,10 +5,13 @@ import "./Item.css";
 export default class Item extends Component {
     render(){
         const data = this.props.data;
-        const imgPrefix = "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/";
+        const imgPrefix = sessionStorage.getItem("imgPrefix");
         return (
             <li className="course-item">
-                <Link to={ this.props.to }>
+                <Link to={{
+                    pathname: this.props.to,
+                    search: `id=${ data.id }`,
+                }}>
                     <section>
                         <span>{ data.browsing }</span>
                         <img src={ imgPrefix + data.photoOsskey } alt=""/>

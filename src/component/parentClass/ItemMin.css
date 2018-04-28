@@ -10,12 +10,12 @@
     li.course-item-min:hover {
         box-shadow: 0px 0px 10px #c2c2c2;
     }
-    li.course-item-min section {
+    li.course-item-min div {
         height: 140px;
         background-color: #bfbfbf;
         position: relative;
     }
-        li.course-item-min section > span {
+        li.course-item-min div > span {
             font-size: 16px;
             color: #fa5c31;
             position: absolute;
@@ -25,7 +25,7 @@
             width: 30px;
             height: 20px;
         }
-        li.course-item-min section > span::after {
+        li.course-item-min div > span::after {
             content: "";
             position: absolute;
             top: 0px;

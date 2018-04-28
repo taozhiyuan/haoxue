@@ -23,7 +23,7 @@ export default class Tel extends Component {
         })
         const match = value.match(/^1[3|4|5|8][0-9]\d{4,8}$/);
         if( value.length > 10 && match ){
-            Axios.VerificationMobile({ loginUser : '13950128774' }).then((res)=>{
+            Axios.VerificationMobile({ loginUser : value }).then((res)=>{
                 // console.log(res)
                 if(res.data.code === "0"){
                     this.setState({judge : true}) 
@@ -49,7 +49,7 @@ export default class Tel extends Component {
         return (
             <h5 className="user-name">
                 <i className="ion-iphone"></i>
-                <input type="number" placeholder="例如：139******32" name="tel" maxLength="11"
+                <input type="text" placeholder="例如：139******32" name="tel" maxLength="11"
                     value={ value }
                     onChange={ this.getDate }
                 />

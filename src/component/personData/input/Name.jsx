@@ -11,6 +11,11 @@ export default class Name extends Component {
             visibi : false
         }
     }
+    componentWillMount(){
+        this.setState({
+            value : this.props.data
+        })
+    }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
@@ -30,7 +35,6 @@ export default class Name extends Component {
     }
     render() {
         const { value, judge, visibi } = this.state;
-        
         return (
             <div className="name">
                 <label>真实姓名：</label>

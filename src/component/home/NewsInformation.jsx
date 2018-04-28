@@ -19,7 +19,7 @@ export default class NewsInformation extends Component {
                 <ul className="home-information-main">
                     { top.map((item,index)=>(
                         <li key={ index }>
-                            <img src={ information_main } alt=""/>
+                            <div className="imgPlaceholder"><img src={ information_main } alt=""/></div>
                             <h6>{ item.articleTitle }</h6>
                             <h6>发布时间：<time>{ item.createTime }</time></h6>
                         </li>

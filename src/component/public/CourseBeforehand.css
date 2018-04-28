@@ -34,6 +34,7 @@ section.course-beforehand {
                 div.course-beforehand-simple > div {
                     height: 220px;
                     background-color: #bfbfbf;
+                    overflow: hidden;
                 }
                 div.course-beforehand-simple > h4 {
                     padding-top: 20px;
@@ -109,7 +110,7 @@ section.course-beforehand {
                         text-align: center;
                         margin: 0px 3px;
                         font-size: 12px;
-                        color: #999;
+                        color: #f39e09;
                     }
 
                 /* 课程预定人信息 */

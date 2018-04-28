@@ -15,7 +15,8 @@ export default class HomeCourse extends Component {
         this.state = {
             courseType : ['父母课程','孩子课程'],
             typeActive : 0,
-            data : null
+            data : null,
+            imgPrefix : sessionStorage.getItem("imgPrefix")
         }
     }
     componentWillMount(){
@@ -51,7 +52,9 @@ export default class HomeCourse extends Component {
                     pathname: '/parentClassList/course',
                     state: { pushId: item.pushId }
                 }}>
-                    <img src={ this.context.imgPrefix + item.photoOsskey } alt=""/>
+                    <div className="imgPlaceholder">
+                        <img src={ this.state.imgPrefix + item.photoOsskey } alt=""/>
+                    </div>
                     <h5>{ item.courseName }</h5>
                 </Link>
             </li>
@@ -62,7 +65,9 @@ export default class HomeCourse extends Component {
                     pathname: '/childClassList/course',
                     state: { pushId: item.pushId }
                 }}>
-                    <img src={ this.context.imgPrefix + item.photoOsskey } alt=""/>
+                    <div className="imgPlaceholder">
+                        <img src={ this.state.imgPrefix + item.photoOsskey } alt=""/>
+                    </div>
                     <h5>{ item.courseName }</h5>
                 </Link>
             </li>
@@ -80,7 +85,7 @@ export default class HomeCourse extends Component {
                             >{ item }</li>
                         )) }
                     </ul>
-                    <ul className="home-course-item">
+                    <ul className="home-course-item followingHeight">
                         { typeActive===0?parentDom:childDom }
                     </ul>
                     <aside className="home-evaluation">

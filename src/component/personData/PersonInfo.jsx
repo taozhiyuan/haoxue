@@ -17,48 +17,52 @@ export default class PersonInfo extends Component {
     constructor(){
         super()
         this.state = {
-            data : {
-                nickname : "",
-                name : "",
-                birthday : "",
-                male : true,
-                female : false,
-                tel : "",
-                address : "",
-            },
-            submit: false
+            data : null,
+            submit : false
         }
     }
     componentWillMount(){
+        Axios.queryInfo({
+            access_token : sessionStorage.getItem("access_token")
+        }).then((res)=>{
+            this.setState({
+                data : res.data.result
+            })
+        })
         
     }
     getData = (param) => {
         this.setState({
-            data : { ...this.state.data,...param }
-        },()=>{
-            const { nickname, name, birthday, tel, address } = this.state.data;
-            if(nickname&&name&&birthday&&tel&&address){
-                this.setState({
-                    submit : true
-                })
-            }
+            data : { ...this.state.data,...param },
+            submit: true
+        })
+    }
+    InfoSubmit = () => {
+        Axios.PerfectInfo({
+            access_token : sessionStorage.getItem("access_token"),
+            ...this.state.data
+        }).then((res)=>{
+            console.log(res.data.result)
         })
     }
     render() {
         // const { path } = this.props.match;
-        const { submit } = this.state;
+        const { submit, data } = this.state;
+        if(!data){ return false }
         return (
             <div className="person-info">
                 <h4 className="title">个人信息</h4>
-                <PictureUpload />
+                <PictureUpload data={ data.photoOsskey }/>
                 <div className="person-info-form">
-                    <Nickname callback={ this.getData }/>
-                    <Name callback={ this.getData }/>
-                    <Birthday callback={ this.getData }/>
-                    <Gender callback={ this.getData }/>
-                    <Tel callback={ this.getData }/>
-                    <Address callback={ this.getData } />
-                    <button className={ submit?null:"disable" }>保存</button>
+                    {/* <Nickname callback={ this.getData } data={ data. } /> */}
+                    <Name callback={ this.getData } data={ data.trueName } />
+                    <Birthday callback={ this.getData } data={ data.born } />
+                    <Gender callback={ this.getData } data={ data.userSex } />
+                    <Tel callback={ this.getData } data={ data.mobile } />
+                    <Address callback={ this.getData } data={ data.userHomeAddress } />
+                    <button 
+                        className={ submit?null:"disable" }
+                        onClick={ this.InfoSubmit }>保存</button>
                 </div>
                 {/* <Route path={ `${ path }/signIn` } component={ SignIn } /> */}
             </div>

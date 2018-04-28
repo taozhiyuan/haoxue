@@ -1,7 +1,12 @@
 
 section.home-course {
     padding-top: 50px;
+    min-height: 600px;
 }
+    section.home-course img {
+        width: 100%;
+        height: 100%;
+    }
     h5.home-item-title {
         color: #f39e09;
         font-size: 14px;
@@ -43,9 +48,6 @@ section.home-course {
         }
 
 
-    ul.home-course-item {
-        overflow: hidden;
-    }
         ul.home-course-item > li {
             width: 280px;
             border-radius: 10px;
@@ -59,12 +61,11 @@ section.home-course {
         ul.home-course-item > li:last-child{
             margin-right: 0px;
         }
-            ul.home-course-item > li img {
-                width: 280px;
+            ul.home-course-item > li div {
                 height: 200px;
                 border-radius: 5px;
             }
-            ul.home-course-item > li img:hover {
+            ul.home-course-item > li div:hover {
                 box-shadow: 0px 0px 10px #c2c2c2;
             }
             ul.home-course-item > li h5 {

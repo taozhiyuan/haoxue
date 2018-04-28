@@ -6,7 +6,9 @@ import PersonInfo from '../component/personData/PersonInfo.jsx';
 import Collection from '../component/personData/Collection.jsx';
 import Study from '../component/personData/Study.jsx';
 import './PersonData.css';
-import { Route, Link } from "react-router-dom";
+import { Redirect, Route, Link } from "react-router-dom";
+
+import Axios from '../request/axiosHome.js';
 
 export default class PersonData extends Component {
     constructor(){
@@ -30,34 +32,47 @@ export default class PersonData extends Component {
                     path : "/personData/setUp/:bar*",
                     to : "/personData/setUp"
                 }],
-            target : 0
+            target : 0,
+            imgPrefix : sessionStorage.getItem("imgPrefix")
         }
+    }
+    componentWillMount(){
+        Axios.queryInfo({
+            access_token : sessionStorage.getItem("access_token")
+        }).then((res)=>{
+            this.setState({
+                photo : res.data.result.photoOsskey
+            })
+        })
     }
     render() {
         const { path } = this.props.match;
-        const { target, catalog } = this.state;
+        const { target, catalog, imgPrefix, photo } = this.state;
         let menuDom = catalog.map(( item, index ) => (
             <Route exact path={ item.path } key={ index }
                 children={({ match }) => (
-                    <li 
-                        className={ match ? "active" : "" }
-                    >
+                    <li className={ match ? "active" : "" }>
                         <Link to={ item.to }>{ item.text }</Link>
                     </li>
                 )}
             />
         ));
+        console.log(sessionStorage.getItem("access_token"))
         return (
             <div className="person-data">
                 <div className="main-public">
                     <Path />
                     <div className="portrait">
-                        <i className="ion-person-add"></i>
+                        { this.state.imgPrefix?
+                            <img src={ imgPrefix + photo } alt=""/>:
+                            <i className="ion-person-add"></i>
+                        }
                     </div>
                     <ul className="person-data-list">
                         { menuDom }
                     </ul>
                     <div className="person-data-content">
+                        { sessionStorage.getItem("access_token") ? null : <Redirect to="/userEntry/signIn" /> }
                         <Route exact path={ `${ path }/personInfo` } component={ PersonInfo } />
                         <Route exact path={ `${ path }/collection` } component={ Collection } />
                         <Route exact path={ `${ path }/study` } component={ Study } />

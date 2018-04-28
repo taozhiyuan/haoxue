@@ -16,7 +16,7 @@
     "react-swipe": "^5.1.1",
     "redux": "^4.0.0",
     "swipe-js-iso": "^2.0.4",
-    "swiper": "^4.2.2",
+    "swiper": "^3.4.2",
     "validate.js": "^0.12.0",
     "validator.tool": "^1.0.10"
   },

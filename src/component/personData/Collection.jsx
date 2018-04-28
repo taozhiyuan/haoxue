@@ -21,8 +21,11 @@ export default class Collection extends Component {
         }
     }
     componentWillMount(){
-        Axios.Collection({userId:"admin"}).then((res)=>{
-            // console.log(res.data.result)
+        console.log(sessionStorage.getItem("access_token"))
+        Axios.Collection({
+            access_token : sessionStorage.getItem("access_token")
+        }).then((res)=>{
+            console.log(res.data.result)
             let course = [];
             let agency = [];
             for (const iterator of res.data.result) {

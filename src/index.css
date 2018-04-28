@@ -109,3 +109,23 @@ input[type=number]::-webkit-outer-spin-button {
 	-o-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 }
+
+
+div.imgPlaceholder {
+	overflow: hidden;
+	background-image: url('./img/placeholder.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #f2f2f2;
+}
+ul.followingHeight::after {
+	content: "."; 
+	height: 0; 
+	visibility: hidden; 
+	display: block; 
+	clear: both; 
+}
+button.disable {
+	cursor: not-allowed;
+    background-color: #999!important;
+}

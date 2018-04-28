@@ -6,9 +6,16 @@ import Title from "./Title.js";
 import PropTypes from 'prop-types';
 
 export default class Lecturer extends Component {
+    constructor(){
+        super()
+        this.state = {
+            imgPrefix : sessionStorage.getItem("imgPrefix")
+        }
+    }
     render(){
         // console.log(this.props.data[0])
         const data  = this.props.data;
+        if(!data){return false}
         return (
             <div className="lecturer">
                 <Title>讲师</Title>
@@ -21,7 +28,9 @@ export default class Lecturer extends Component {
                             <h6>{ item.teacherStyle }</h6>
                         </li>
                         <li>
-                            <img src={ this.context.imgPrefix + item.photoOsskey } alt=""/>
+                            <div className="imgPlaceholder">
+                                <img src={ this.state.imgPrefix + item.photoOsskey } alt=""/>
+                            </div>
                         </li>
                     </ul>
                 )) }

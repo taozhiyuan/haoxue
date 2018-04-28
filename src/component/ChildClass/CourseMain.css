@@ -15,6 +15,9 @@ ul.course-main {
         width: 280px;
         overflow: hidden;
     }
+        ul.course-main > li:nth-child(1) > div {
+            height: 100%;
+        }
     ul.course-main > li:nth-child(2){
         width: 500px;
     }
@@ -73,6 +76,7 @@ ul.course-main {
                 color: #f39e09;
                 font-size: 25px;
                 margin-right: 10px;
+                cursor: pointer;
             }
             ul.course-main h5.collection > span {
                 color: #f39e09;

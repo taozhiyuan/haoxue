@@ -38,6 +38,8 @@ export default class ParentClass extends Component {
         }).catch((err)=>{
             console.log(err)
         })
+
+
         // 类型分类
         Axios.contentType().then((res)=>{
             let arr = [];

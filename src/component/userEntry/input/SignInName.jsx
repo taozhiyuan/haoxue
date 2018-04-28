@@ -1,8 +1,8 @@
 
-// 家庭地址：
+// 登录名
 import React, { Component } from 'react';
 
-export default class Address extends Component {
+export default class SignInName extends Component {
     constructor(){
         super()
         this.state = {
@@ -10,11 +10,6 @@ export default class Address extends Component {
             judge : false,
             visibi : false
         }
-    }
-    componentWillMount(){
-        this.setState({
-            value : this.props.data || ""
-        })
     }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -25,25 +20,26 @@ export default class Address extends Component {
             value : value,
             visibi : true
         })
-        if( value.length > 4 ){ 
+        if( value.length > 1 ){
             this.setState({judge : true})
-            this.props.callback({ address:value })
+            this.props.callback({ nickname : value })
         }else{ 
             this.setState({judge : false})
-            this.props.callback({ address:"" })
+            this.props.callback({ nickname : null })
         }
     }
     render() {
         const { value, judge, visibi } = this.state;
+        
         return (
-            <div className="address">
-                <label>家庭地址：</label>
-                <input type="text" placeholder="例如：长沙市岳麓区文川路28号" name="address" maxLength="25"
+            <h5 className="nickname">
+                <i className="ion-android-person"></i>
+                <input type="text" placeholder="请输入昵称" name="nickname" maxLength="15" 
                     value={ value }
                     onChange={ this.getDate }
                 />
                 {visibi && <i className={ judge ? "ion-ios-checkmark-outline":"ion-ios-close-outline" } />}
-            </div>
+            </h5>
         );
     }
 }
