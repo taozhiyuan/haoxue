@@ -11,64 +11,96 @@ export default class CourseMain extends Component {
     constructor(){
         super()
         this.state = {
-            data : null,
-            popup : false
+            popup : false,
+            popupText : null,
+            popupState : false,
+            token : sessionStorage.getItem("access_token"),
+            collectionState : "false",
+            imgPrefix : sessionStorage.getItem("imgPrefix")
         }
     }
     componentWillMount(){
-        this.setState({
-            data : this.props.data
-        })
+        if(this.state.token){
+            Axios.CollectionState({
+                token : this.state.token,
+                id : this.props.data.id
+            }).then(res=>{
+                // console.log(res)
+                this.setState({ collectionState : res.data.result })
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
     }
     collection = () => {
-        if(!sessionStorage.getItem("access_token")){
-            console.log("请登录")
+        const { token } = this.state;
+        if(!token){
             this.setState({
-                popup : true
-            },()=>{
-                setTimeout(() => {
-                    this.setState({
-                        popup : false
-                    })
-                }, 1000);
+                popup : true,
+                popupText : "请登录",
             })
-            return false;
+        }else{
+            Axios.collectionCourse({
+                collectionType : "2",
+                collectionId : getUrlParam(this.props.location).id,
+            },{
+                access_token : token
+            }).then((res)=>{
+                // console.log(res)
+                if(res.data.code === "0"){
+                    this.setState({
+                        popupState : true,
+                        collectionState : 'true'
+                    })
+                }else{
+                    this.setState({
+                        popupState : false
+                    })
+                }
+                this.setState({
+                    popup : true,
+                    popupText : res.data.msg
+                })
+            })
         }
-        Axios.collectionCourse({
-            collectionType : "1",
-            collectionId : getUrlParam(this.props.location).id,
-        },{
-            access_token : sessionStorage.getItem("access_token")
-        }).then((res)=>{
-            console.log(res)
-        })
+        setTimeout(() => { this.setState({ popup : false }) }, 1000);
     }
     cancel = () => {
-        if(!sessionStorage.getItem("access_token")){
-            console.log("请登录")
+        const { token } = this.state;
+        if(!token){
             this.setState({
-                popup : true
-            },()=>{
-                setTimeout(() => {
-                    this.setState({
-                        popup : false
-                    })
-                }, 1000);
+                popup : true,
+                popupText : "请登录",
             })
-            return false;
+        }else{
+            Axios.cancelCollectionCourse({
+                collectionType : "2",
+                collectionId : getUrlParam(this.props.location).id,
+            },{
+                access_token : token
+            }).then((res)=>{
+                if(res.data.code === "0"){
+                    this.setState({
+                        popupState : true,
+                        collectionState : 'false'
+                    })
+                }else{
+                    this.setState({
+                        popupState : false
+                    })
+                }
+                this.setState({
+                    popup : true,
+                    popupText : res.data.msg
+                })
+            })
         }
-        Axios.cancelCollectionCourse({
-            collectionId : getUrlParam(this.props.location).id,
-        },{
-            access_token : sessionStorage.getItem("access_token")
-        }).then((res)=>{
-            console.log(res)
-        })
+        setTimeout(() => { this.setState({ popup : false }) }, 1000);
     }
     render(){
-        const { url, search } = this.props;
-        const { data, popup } = this.state;
-        const imgPrefix = sessionStorage.getItem("imgPrefix");
+        const { url, search, data } = this.props;
+        const { popup, popupText, popupState, collectionState, imgPrefix } = this.state;
+        if(!data){ return false }
         return (
             <ul className="course-main">
                 <li>
@@ -88,7 +120,7 @@ export default class CourseMain extends Component {
                 <li>
                     <h5 className="popularity">人气：<span>{ data.browsing }</span></h5>
                     <h5 className="collection">
-                        { data.collectionState===1?
+                        { collectionState === 'true'?
                             <i className="iconfont icon-guanzhu2" onClick={ this.cancel }></i>:
                             <i className="iconfont icon-guanzhu" onClick={ this.collection }></i>
                         }
@@ -99,7 +131,7 @@ export default class CourseMain extends Component {
                             search,
                         }}><button>预约试听课程</button>
                     </Link>
-                    { popup ? <Popup state={false}>请先登录</Popup> : null }
+                    { popup ? <Popup state={ popupState }>{ popupText }</Popup> : null }
                 </li>
             </ul>
         );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../component/agency/Nav.js';
 import List from '../component/parentClass/List.js';
-import CourseDetails from '../component/public/CourseDetails.js';
+import CourseDetails from '../component/public/CourseDetails.jsx';
 import LoadMore from '../component/agency/LoadMore.js';
 
 import Axios from '../request/axiosHome.js';

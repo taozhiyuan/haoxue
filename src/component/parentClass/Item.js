@@ -12,14 +12,14 @@ export default class Item extends Component {
                     pathname: this.props.to,
                     search: `id=${ data.id }`,
                 }}>
-                    <section>
+                    <div className="imgPlaceholder">
                         <span>{ data.browsing }</span>
                         <img src={ imgPrefix + data.photoOsskey } alt=""/>
-                    </section>
+                    </div>
                     <aside>
-                        <h5><b>{ data.courseName }</b></h5>
-                        <h5>价格：<b>￥{ data.coursePrice }</b></h5>
-                        <h4>{ data.orgName }</h4>
+                        <h4><b>{ data.courseName }</b></h4>
+                        {/* <h5>价格：<b>￥{ data.coursePrice }</b></h5> */}
+                        <h5>{ data.orgName }</h5>
                     </aside>
                 </Link>
             </li>

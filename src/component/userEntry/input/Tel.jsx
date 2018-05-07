@@ -21,7 +21,7 @@ export default class Tel extends Component {
             value : value,
             visibi : true
         })
-        const match = value.match(/^1[3|4|5|8][0-9]\d{4,8}$/);
+        const match = value.match(/^[1][3,4,5,7,8][0-9]{9}$/);
         if( value.length > 10 && match ){
             Axios.VerificationMobile({ loginUser : value }).then((res)=>{
                 // console.log(res)

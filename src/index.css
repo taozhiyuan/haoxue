@@ -118,6 +118,10 @@ div.imgPlaceholder {
 	background-repeat: no-repeat;
 	background-color: #f2f2f2;
 }
+	div.imgPlaceholder > img {
+		width: 100%;
+		height: 100%;
+	}
 ul.followingHeight::after {
 	content: "."; 
 	height: 0; 

@@ -40,9 +40,15 @@ export default class PersonData extends Component {
         Axios.queryInfo({
             access_token : sessionStorage.getItem("access_token")
         }).then((res)=>{
+            // console.log(res)
             this.setState({
                 photo : res.data.result.photoOsskey
             })
+            sessionStorage.setItem("headUrl",res.data.result.photoOsskey);
+        }).catch((err)=>{
+            // console.log(err)
+            this.props.history.push('/userEntry/signIn');
+            sessionStorage.removeItem("imgPrefix");
         })
     }
     render() {
@@ -57,13 +63,12 @@ export default class PersonData extends Component {
                 )}
             />
         ));
-        console.log(sessionStorage.getItem("access_token"))
         return (
             <div className="person-data">
                 <div className="main-public">
                     <Path />
                     <div className="portrait">
-                        { this.state.imgPrefix?
+                        { this.state.photo?
                             <img src={ imgPrefix + photo } alt=""/>:
                             <i className="ion-person-add"></i>
                         }

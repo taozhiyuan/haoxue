@@ -45,6 +45,27 @@ export default class CourseDetails extends Component {
             })
         })
     }
+    componentWillReceiveProps(nextProps){
+        Promise.all([
+            Axios.courseDetails({
+                ip : window.returnCitySN["cip"],
+                id : getUrlParam(nextProps.location).id,
+                // id : '1'
+            }),
+            Axios.courseTeacherList({ courseId : getUrlParam(this.props.location).id }),
+            Axios.SimilarCourses({ courseId : getUrlParam(this.props.location).id })
+        ]).then(([
+            courseDetails,
+            courseTeacherList,
+            SimilarCourses
+        ])=>{
+            this.setState({
+                data : courseDetails.data.result,
+                teacherList : courseTeacherList.data.result,
+                SimilarCourses : SimilarCourses.data.result
+            })
+        })
+    }
     render() {
         const { path } = this.props.match;
         const { search } = this.props.location;
@@ -56,7 +77,12 @@ export default class CourseDetails extends Component {
                     <div className="course-details">
                         <div className="main-public">
                             <Path />
-                            <CourseMain url={ match.url } data={ data } search={ search }/>
+                            <CourseMain 
+                                url={ match.url } 
+                                data={ data } 
+                                search={ search }
+                                location={ this.props.location }
+                            />
                             <AgencyInfo data={ data.richTextKey } />
                             <Lecturer data={ teacherList }/>
                             <Evaluate data={ data.courseBewrite }/>
@@ -64,7 +90,7 @@ export default class CourseDetails extends Component {
                                 <h5>类似课程推荐</h5>
                                 <ul>
                                     {SimilarCourses.map((item,index)=>(
-                                        <ItemMin data={ item } key={ index } url={ match.url }/>
+                                        <ItemMin data={ item } key={ index } />
                                     ))}
                                 </ul>
                             </div>
@@ -76,7 +102,3 @@ export default class CourseDetails extends Component {
         );
     }
 }
-
-// CourseDetails.contextTypes = {
-//     AgencyList : PropTypes.array,
-// };

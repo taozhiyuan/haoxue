@@ -1,32 +1,16 @@
 
-div.my-collection {
-    padding: 60px 20px;
+div.my-study {
+    /* padding: 60px 20px; */
 }
-    ul.my-collection-type {
-        overflow: hidden;
-        text-align: center;
-        margin-bottom: 40px;
+    ul.my-study-list {
+        width: 980px;
+        margin: 40px auto 0px;
     }
-        ul.my-collection-type > li {
-            padding: 0px 15px;
-            line-height: 40px;
-            color: #666;
-            display: inline-block;
-            cursor: pointer;
-        }
-        ul.my-collection-type > li.active {
-            color: #f39e09;
-            border-bottom: 1px solid #f39e09;
-        }
-        ul.my-collection-type > li:first-child {
-            margin-right: 110px;
-        }
-
-        ul.my-collection-list > li:not(:last-child){
+        ul.my-study-list > li:not(:last-child){
             margin-bottom: 20px;
         }
 
-    div.my-collection ul.home-paging {
+    div.my-study ul.home-paging {
         position: absolute;
         bottom: 0px;
         left: 0px;

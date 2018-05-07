@@ -16,33 +16,33 @@ export default class Collection extends Component {
         this.state = {
             type : ['课程','教育机构'],
             typeActive : 0,
-            data : null,
+            data : {
+                course : [],
+                agency : []
+            },
             paging : 1,
         }
     }
     componentWillMount(){
-        console.log(sessionStorage.getItem("access_token"))
         Axios.Collection({
             access_token : sessionStorage.getItem("access_token")
         }).then((res)=>{
-            console.log(res.data.result)
             let course = [];
             let agency = [];
-            for (const iterator of res.data.result) {
-                if(iterator.collectionType === "2"){
-                    course = [...course,iterator]
-                }else{
-                    agency = [...agency,iterator]
+            if(res.data.result instanceof Array){
+                for (const iterator of res.data.result) {
+                    if(iterator.collectionType === "2"){
+                        course = [...course,iterator]
+                    }else{
+                        agency = [...agency,iterator]
+                    }
                 }
+                this.setState({ data : {course,agency} })
+            }else{
+                console.log(res)
             }
-            // console.log(course)
-            // console.log(agency)
-            this.setState({
-                data : {
-                    course,
-                    agency
-                }
-            })
+        }).catch((err)=>{
+            console.log(err)
         })
     }
     typeClick = (parame) => {
@@ -59,15 +59,16 @@ export default class Collection extends Component {
     render() {
         // const { path } = this.props.match;
         const { type, typeActive, data, paging } = this.state;
-        if(!data) { return false }
-        let pagingStart = paging * 2 - 2;
-        let pagingEnd = paging * 2;
-        const course = data.course.slice(pagingStart, pagingEnd);
-        const agency = data.agency.slice(pagingStart, pagingEnd);
-        // const target = typeActive === 0 ? course : agency ;
+        let pagingStart = paging * 2 - 2; //起始点=页码*2-2
+        let pagingEnd = paging * 2; //结束点=页码*2
+        const course = data.course.slice(pagingStart, pagingEnd); //切开课程列表，只显示2个
+        const agency = data.agency.slice(pagingStart, pagingEnd); //切开机构列表，只显示2个
         const dataLength = typeActive === 0 ? data.course.length : data.agency.length ;
+        console.log(typeof dataLength)
+        //如果当前类型是0(0代表课程，1代表机构)，则显示相应的页码数量
         return (
             <div className="my-collection">
+                <h4 className="title">我的收藏</h4>
                 <ul className="my-collection-type">
                     { this.state.type.map((item,index)=>(
                         <li
@@ -77,20 +78,11 @@ export default class Collection extends Component {
                         >{ item }</li>
                     )) }
                 </ul>
-                <ul className="my-collection-list">
-                    { typeActive === 0 ? (course.map((item, index)=>(
-                        <CourseItem data={ item } key={ index } />
-                    )))
-                    :
-                    (agency.map((item, index)=>(
-                        <AgencyItem data={ item } key={ index } />
-                    )))
-                    }
-                </ul>
-                <Paging 
+                { typeActive ? <CourseItem data={ course } /> : <AgencyItem data={ agency }/> }
+                { dataLength === 0 ? null : <Paging 
                     length={ Math.ceil(dataLength/2) }
                     PagingCallback={ this.PagingCallback }
-                />
+                /> }
             </div>
         );
     }

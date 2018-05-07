@@ -14,8 +14,7 @@ export default class Lecturer extends Component {
     }
     render(){
         // console.log(this.props.data[0])
-        const data  = this.props.data;
-        if(!data){return false}
+        const data  = this.props.data || [];
         return (
             <div className="lecturer">
                 <Title>讲师</Title>

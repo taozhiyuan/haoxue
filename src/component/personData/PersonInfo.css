@@ -23,6 +23,8 @@ div.picture-upload {
         color: #999;
         font-size: 40px;
         line-height: 2;
+        border-radius: 50%;
+        overflow: hidden;
     }
         div.picture-upload > div > img {
             width: 100%;

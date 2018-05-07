@@ -21,7 +21,10 @@ export default class CourseBeforehand extends Component {
             email : "",
             number : 1,
             imgPrefix : sessionStorage.getItem("imgPrefix"),
-            popup : false
+            token : sessionStorage.getItem("access_token"),
+            popup : false,
+            popupText : null,
+            submitState : false
         }
     }
     componentWillMount(){
@@ -58,46 +61,69 @@ export default class CourseBeforehand extends Component {
         }
     }
     changeUserValue = (event, parame) => {
+        const { name, tel, QQ, email, number } = this.state;
         this.setState({
             [parame] : event.target.value
+        },()=>{
+            if( name&&tel&&QQ&&email ){
+                this.setState({ submitState : true })
+            }
         })
     }
     SubmitReservation = () => {
-        if(!sessionStorage.getItem("access_token")){
+        // const { pathname, search } = this.props.location;
+        // const { name, tel, QQ, email, token, number, data } = this.state;
+        // this.props.history.push(`${pathname}/success${search}`,{
+        //     orgName: data.orgName,
+        //     courseName : data.courseName
+        // });
+        const { name, tel, QQ, email, token, number, data } = this.state;
+        const { pathname, search } = this.props.location;
+        if(!token){
             console.log("请登录")
-            this.setState({
-                popup : true
-            },()=>{
+            this.setState({ popup : true, popupText : "请先登录" },()=>{
                 setTimeout(() => {
-                    this.setState({
-                        popup : false
-                    })
+                    this.setState({ popup : false, popupText : "请登录" })
                 }, 1000);
             })
             return false;
         }
-        const { name, tel, QQ, email } = this.state;
         if( name&&tel&&QQ&&email ){
             Axios.ReservationInfo({
-                reservePerson : this.state.number,
-                courseId : this.state.data.id,
-                userName : this.state.name,
-                reservePhone : this.state.tel,
-                qq : this.state.QQ,
-                email : this.state.email,
-                orgId : this.state.data.orgId,
-                access_token : sessionStorage.getItem("access_token"),
+                access_token : token,
+                form : {
+                    reservePerson : number,
+                    courseId : data.id,
+                    userName : name,
+                    reservePhone : tel,
+                    qq : QQ,
+                    email : email,
+                    orgId : data.orgId
+                }
             }).then((res)=>{
                 console.log(res)
+                if(res.data.code === "0"){
+                    this.props.history.push(`${pathname}/success${search}`,{
+                        orgName: data.orgName,
+                        courseName : data.courseName
+                    });
+                }else{
+                    this.setState({
+                        popup : true,
+                        popupText : res.data.msg,
+                    },()=>{
+                        setTimeout(()=>{
+                            this.setState({ popup : false })
+                        },1000)
+                    })
+                }
             })
-        }else{
-            console.log('参数不完整')
         }
     }
     render() {
-        // console.log(this.props)
+        // console.log(this.props.location)
         const { url, path } = this.props.match;
-        const { name, tel, QQ, email, number, data, imgPrefix, popup } = this.state;
+        const { name, tel, QQ, email, number, data, imgPrefix, popup, submitState, popupText } = this.state;
         if(!data){ return false }
         const userInfo = [{
                 name : "预定姓名：",
@@ -126,10 +152,10 @@ export default class CourseBeforehand extends Component {
             }];
         let userDOM = userInfo.map((item, index)=>(
             <h5 key={ index }>
-                {item.name}
+                { item.name }
                 <input 
                     type={ item.type } 
-                    placeholder={item.placeholder} 
+                    placeholder={ item.placeholder } 
                     value={ item.value }
                     onChange={ (e)=>{this.changeUserValue(e,item.state)} }
                 />
@@ -149,7 +175,7 @@ export default class CourseBeforehand extends Component {
                             </ul>
                             <div className="course-beforehand-container">
                                 <div className="course-beforehand-simple">
-                                    <div><img src={ imgPrefix + data.photoOsskey } /></div>
+                                    <div className="imgPlaceholder"><img src={ imgPrefix + data.photoOsskey } /></div>
                                     <h4>{ data.orgName }</h4>
                                     <h5>课程简介：</h5>
                                     <h6>{ data.courseBewrite }</h6>
@@ -181,16 +207,12 @@ export default class CourseBeforehand extends Component {
                                     <div className="beforehand-user-info">
                                         <p className="title">课程预定人信息</p>
                                         { userDOM }
-                                        { sessionStorage.getItem("access_token") ? 
-                                            <Link to={ `${url}/success` }>
-                                                <button onClick={ this.SubmitReservation }>马上预约</button>
-                                            </Link> : 
-                                            <button className="disable" onClick={ this.SubmitReservation }>马上预约</button> }
+                                        <button className={ submitState?null:"disable" } onClick={ this.SubmitReservation }>马上预约</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        { popup ? <Popup state={false}>请先登录</Popup> : null }
+                        { popup && <Popup state={false}>{ popupText }</Popup> }
                     </section>
                 ) } />
             </Switch>

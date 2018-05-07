@@ -1,55 +1,42 @@
 
-// 会员名称
+// 性别
 import React, { Component } from 'react';
 
 export default class Gender extends Component {
     constructor(){
         super()
         this.state = {
-            male : true,
-            female : false,
+            userSex : true
         }
     }
     componentWillMount(){
         this.setState({
-            male : this.props.data?true:false,
-            female : this.props.data?false:true,
+            userSex : this.props.data
         })
     }
     getSexMale = (e) => {
         this.setState({
-            male : true,
-            female : false
+            userSex : true
         })
-        this.props.callback({
-            male : true,
-            female : false
-        });
+        this.props.callback( {userSex : true} );
     }
     getSexFemale = (e) => {
         this.setState({
-            male : false,
-            female : true
+            userSex : false
         })
-        this.props.callback({
-            male : false,
-            female : true
-        });
-    }
-    componentDidMount(){
-        this.props.callback(...this.state);
+        this.props.callback( {userSex : false} );
     }
     render() {
-        const { female, male } = this.state;
+        const { userSex } = this.state;
         return (
             <div className="gender">
                 <label>性&emsp;&emsp;别：</label>
                 <input type="radio" id="male" name="gender" value="male"
-                    checked={ male }
+                    checked={ userSex?true:false }
                     onChange={ this.getSexMale }
                 /><label htmlFor="male">男</label>
                 <input type="radio" id="female" name="gender" value="female"
-                    checked={ female }
+                    checked={ userSex?false:true }
                     onChange={ this.getSexFemale }
                 /><label htmlFor="female">女</label>
             </div>

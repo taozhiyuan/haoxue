@@ -25,11 +25,11 @@ export default class Verification extends Component {
         })
         // const match = value.match(/^1[3|4|5|8][0-9]\d{4,8}$/);
         if( value.length === 6 && this.props.tel ){
-            Axios.VerifyingSMS({ smsCode : value }).then((res)=>{ //异步验证输入的验证码
-                console.log(res)
+            // Axios.VerifyingSMS({ smsCode : value }).then((res)=>{ //异步验证输入的验证码
+            //     console.log(res)
                 this.setState({ judge : true }) //设置注册按钮状态
                 this.props.callback({ verific : value }) //回传验证码
-            })
+            // })
         }else{
             this.setState({judge : false}) 
             this.props.callback({ verific : null })

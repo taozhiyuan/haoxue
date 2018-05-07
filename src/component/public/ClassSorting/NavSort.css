@@ -1,0 +1,22 @@
+
+
+ul.nav-sort {
+    height: 50px;
+    border: 1px solid #f39e09;
+    margin-top: 35px;
+}
+    ul.nav-sort > li {
+        float: left;
+        width: 100px;
+        line-height: 48px;
+        text-align: center;
+        color: #666;
+        cursor: pointer;
+    }
+    ul.nav-sort > li.active {
+        background-color: #f39e09;
+        color: #FFF;
+    }
+        ul.nav-sort > li > i {
+            margin-right: 5px;
+        }

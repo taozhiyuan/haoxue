@@ -1,28 +1,47 @@
 .App {
-  text-align: center;
+/* text-align: center; */
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+section.public-body {
+    min-height: 600px;
+}
+
+ul.agency-course-list {
+    font-size: 0;
+}
+ul.agency-course-list > li:hover {
+    box-shadow: 0px 0px 10px #c2c2c2;
+}
+ul.agency-course-list > li:not(:nth-child(4n)){
+    margin-right: 66.6px;
+}
+
+/* 导航分类排序 */
+nav.nav-class-sorting {
+    padding-bottom: 50px;
 }

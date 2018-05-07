@@ -8,8 +8,6 @@ import AgencyDetailed from '../component/public/AgencyDetailed.js';
 
 import Axios from '../request/axiosHome.js';
 import { Route, Switch } from "react-router-dom";
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
 
 export default class Agency extends Component {
     constructor(props){
@@ -24,7 +22,6 @@ export default class Agency extends Component {
             sortText : ['综合','规模','人气'],
             classType : [],
         }
-        console.log( 1, this.context )
     };
     componentDidCatch(error, info) {
         // Display fallback UI
@@ -146,7 +143,3 @@ export default class Agency extends Component {
         );
     }
 }
-
-Agency.contextTypes = {
-    AgencyList : PropTypes.array,
-};

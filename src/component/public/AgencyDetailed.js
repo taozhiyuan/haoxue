@@ -6,7 +6,7 @@ import Teachers from '../introduce/Teachers.js';
 import Curriculum from '../introduce/Curriculum.js';
 import Map from '../introduce/Map.js';
 import RelevantList from '../introduce/RelevantList.js';
-import CourseDetails from './CourseDetails.js';
+import CourseDetails from './CourseDetails.jsx';
 import Path from '../agency/Path.js';
 import AllTeacherList from './AllTeacherList.js';
 import CoursesList from './CoursesList.js';

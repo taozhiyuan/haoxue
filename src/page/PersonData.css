@@ -3,6 +3,12 @@ div.person-data {
     /* padding-bottom: 30px; */
     height: 980px;
 }
+    div.person-data h4.title {
+        line-height: 35px;
+        background-color: #f39e09;
+        color: #FFF;
+        padding-left: 10px;
+    }
     div.person-data img {
         width: 100%;
         height: 100%;
@@ -16,6 +22,8 @@ div.person-data {
         text-align: center;
         line-height: 160px;
         color: #999;
+        border-radius: 50%;
+        overflow: hidden;
     }
     ul.person-data-list {
         width: 160px;
@@ -23,6 +31,7 @@ div.person-data {
         ul.person-data-list > li {
             font-size: 16px;
             line-height: 40px;
+            padding-left: 25px;
         }
         ul.person-data-list > li.active {
             color: #f39e09;
@@ -35,7 +44,7 @@ div.person-data {
         position: absolute;
         right: 0px;
         top: 50px;
-        height: 870px;
+        height: 720px;
         width: 1020px;
         border: 1px solid #f39e09;
     }

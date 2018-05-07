@@ -1,98 +1,68 @@
 import Mock from 'mockjs';
 import Axios from 'axios';
 
-const Random = Mock.Random;
-// const imgPrefix = "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/";
+// 192.192.168.8:8113
+const urlPath = process.env.NODE_ENV === "development"?
+                // "http://120.79.247.254:1111":
+                "http://120.79.247.254:1111":
+                "http://47.107.18.73:1111";
+const imgPath = process.env.NODE_ENV === "development"?
+                "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/":
+                "http://hxj-oss-prod.oss-cn-shenzhen.aliyuncs.com/";
+
+sessionStorage.setItem("imgPrefix", imgPath);
+Axios.defaults.baseURL = urlPath;
+// Axios.defaults.headers.deviceId = "fynmm";
+// Axios.defaults.headers.post['content-Type'] = 'multipart/form-data';
+
+console.log(typeof window.returnCitySN["cip"])
+export function ImportToken( props ) {
+    // Axios.defaults.headers.common["Authorization"] = props;
+};
+export { urlPath };
+
+//添加一个请求拦截器
+Axios.interceptors.request.use(function(config){
+    //在请求发出之前进行一些操作
+    console.log('发送了一个请求')
+    return config;
+},function(err){
+    console.error('发现一个请求错误')
+    //Do something with request error
+    return Promise.reject(err);
+});
+
+// 添加一个响应拦截器
+Axios.interceptors.response.use(function(res){
+    //在这里对返回的数据进行处理
+    console.log('响应了一个请求')
+    return res;
+  },function(err){
+    console.error('发现一个响应错误')
+    //Do something with response error
+    return Promise.reject(err);
+  })
+
 const AxiosHome = {
-    classRoom : () => {
-        //主页课程列表
-        Mock.mock('/classRoom', {
-            'result|10': [{
-                "collection" : 678,
-                "name" : "SSAT1V1课程_SSAT一对一辅导课程",
-                "price" : "价格：5999元",
-                "team" : "高思教育"
-            }]
-        })
-        return Axios.get('/classRoom')
-    },
-    //主页新闻列表
-    news : () => {
-        Mock.mock('/news', {
-            'result|6': [{
-                "title" : "高中语文怎么学？人大附中名师带你走进古典说诗词写作",
-                "time" : "2018-03-21"
-            }]
-        })
-        return Axios.get('/news')
-    },
     //机构列表
     MechanismList : () => {
-        // areaId  —— 地区id
-        // classId  —— 分类id
-        // address  —— 地址
-        // praise  —— 点赞
-        // name  —— 机构名字
-        // tel  —— 电话
-        // popularity —— 人气
-        // imgUrl  —— 图片链接
-
-        // area:"430104"
-        // orgAddressDetail:"岳麓大道37号"
-        // orgClassify:"string3"
-        // orgName:"高思教育"
-        // orgPhone:"0734-0123456789"
-        // photoOsskey:"png/admin/20180416/152385113659231741.png"
-        // praise: 0
-        // scale: 0
-
-        // 430102: '芙蓉区',
-        // 430103: '天心区',
-        // 430104: '岳麓区',
-        // 430105: '开福区',
-        // 430111: '雨花区',
-        // 430112: '望城区',
-        // 430121: '长沙县',
-        // 430124: '宁乡县',
-        // 430181: '浏阳市'
-
-        // Mock.mock('/list', {
-        //     'result|136': [{
-        //         "synthesiss|500-1000" : 1,//综合
-        //         "area|0-9" : 1,  //区域
-        //         "scale|200-1000" : 1, //规模
-        //         "like|200-1000" : 1, //点赞
-        //         "orgName" : "高思教育", //机构名字
-        //         "orgAddressDetail" : "岳麓大道37号", //地址
-        //         "orgPhone" : "0734-012345678", //电话
-        //         "praise|1000-5000" : 1, //好评
-        //         "browsing|10000-50000" : 1, //人气
-        //         "orgClassify|0-8": 1, //机构分类
-        //         "photoOsskey" : "png/admin/20180416/152385113659231741.png" //照片
-        //     }]
-        // })
-        // return Axios.get('/list')
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgAll',
-            withCredentials: true
+            url:'/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgAll',
         });
     },
     //内容分类 
     contentType : () => {
         return Axios({
             method:"get",
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/commClassify/getCommClassifyAll',
-            withCredentials: true
+            url:'/hxj-agency-noauthority-ui/commClassify/getCommClassifyAll',
         });
     },
     //父母课堂列表
     parentClassList : () => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyCourse/getAgencyCourseAll',
+            url:'/hxj-agency-noauthority-ui/agencyCourse/getAgencyCourseAll',
         });
     },
     //亲子课堂列表
@@ -110,20 +80,9 @@ const AxiosHome = {
     //机构介绍
     AgencyDetailed : (params) => {
         Mock.mock('/detailed', {
-            // 'introduce': {
-            //     "name" : "高思教育",
-            //     "seeing" : Random.natural(6000, 10000),
-            //     "collection" : Random.natural(2000, 3000),
-            //     "like" : Random.natural(3000, 5000),
-            //     "reachers" : "高思老师80%以上来自211、985重 点院校—清华、北大、人大、北航、北师、北外等名校，优秀的老师能够把知识更好地教授给学生",
-            //     "curriculum" : "语言类-少儿英语、商务英语、英语口语、出国英语",
-            //     "address" : "北京市北四环中路283号高思教育大厦",
-            //     "tel" : "010-8893569",
-            //     "text" : "高思教育立志做高品质教育,专注于中小学的课外辅导培训,提供中小学最新资讯及学习方法,家教式一对一服务,高思教育让孩子爱上学习,收获成长!从2009年底创立至今，高思从1间50平米办公室扩充为拥有11层5500多平米的现代化写字楼“高思教育大厦”，教学区由1所发展至近20所，员工由18人增长至1400多人，学员由843人增长至60000余人。所有校区都配置有现代化的教学设备，保证学生上课的质量和环境，干净整洁的教室，明亮通透的窗户，整齐崭新的桌椅，每一个细节都让家长放心， 让孩子舒心。"
-            // },
             "teachers|12-15" : [{
                 "name" : "@cname",
-                "introduce" : Random.csentence(40, 60)
+                "introduce" : "60"
             }],
             "curriculum|6-8" : [{
                 "fabulous|200-1000" : 1,
@@ -134,9 +93,7 @@ const AxiosHome = {
         return Axios.get('/detailed')
         // return Axios({
         //     method:"get",
-        //     // baseURL:'http://120.79.247.254:1111/',
-        //     url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgDetail',
-        //     withCredentials: true,
+        //     url:'/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgDetail',
         //     params : params,
         // });
     },
@@ -144,9 +101,7 @@ const AxiosHome = {
     AgencyDetailedServer : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgDetail',
-            withCredentials: true,
+            url:'/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgDetail',
             params : params,
         });
     },
@@ -165,7 +120,7 @@ const AxiosHome = {
         Mock.mock('/coursesList', {
             'result|20': [{
                 "name" : "@cname",
-                "introduce" : Random.csentence(40, 60)
+                "introduce" : "90"
             }]
         })
         return Axios.get('/coursesList')
@@ -175,35 +130,24 @@ const AxiosHome = {
         console.log(params)
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyCourse/getAgencyCourseDetail',
+            url:'/hxj-agency-noauthority-ui/agencyCourse/getAgencyCourseDetail',
             params : params
         });
     },
     // 关于我们-功能特色
     characterist : (params) => {
-        // Mock.mock('/characterist', {
-        //     'result|10': [{
-        //         "title" : "国际视野",
-        //         "text" : "与韦氏、SCL90心理测评、FDSP、C8HR、惠诚等数十家国内外顶尖测评机构深度战略合作。"
-        //     }]
-        // })
-        // return Axios.get('/characterist')
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-noauthority-ui/article/getArticleList',
-            withCredentials: true,
-            params : params
+            url:'/hxj-base-noauthority-ui/article/getArticleList',
+            params : params,
+            
         });
     },
     // 主页-资讯 form  文章列表接口
     homeInformation : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-noauthority-ui/article/getArticleList',
-            withCredentials: true,
+            url:'/hxj-base-noauthority-ui/article/getArticleList',
             params : params,
         });
     },
@@ -211,9 +155,7 @@ const AxiosHome = {
     recommend : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/push/getPushList',
-            withCredentials: true,
+            url:'/hxj-agency-noauthority-ui/push/getPushList',
             params : params,
         });
     },
@@ -221,9 +163,7 @@ const AxiosHome = {
     AgencyTeacherList : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/teacher-noauthority-ui/teacher/queryTeacherAll',
-            withCredentials: true,
+            url:'/teacher-noauthority-ui/teacher/queryTeacherAll',
             params : params,
         });
     },
@@ -232,9 +172,7 @@ const AxiosHome = {
         console.log(params)
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-teacher-noauthority-ui/teacher/queryTeacherCourse',
-            withCredentials: true,
+            url:'/hxj-teacher-noauthority-ui/teacher/queryTeacherCourse',
             params : params,
         });
     },
@@ -242,87 +180,43 @@ const AxiosHome = {
     TeacherDetailed : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-teacher-noauthority-ui/teacher/queryTeacher',
-            withCredentials: true,
+            url:'/hxj-teacher-noauthority-ui/teacher/queryTeacher',
             params : params,
         });
     },
     // 我的收藏
-    Collection : (params) => {
-        // Mock.mock('/collection', {
-        //     'result|30': [{
-        //         "name" : "SSAT1v1课程_SSAT一对一辅导辅导",
-        //         "price|100-500" : 1,//价格
-        //         "purchase|500-1000" : 1,//已购
-        //         "like|10-50" : 1,
-        //         "add" : "岳麓大道",
-        //         "time" : "3月6日-6月19日;每周二下午13:30-15:20",
-        //         "tel" : "012345678",
-        //         "courseid" : '9',
-        //         "type|1" : ['course', 'agency']
-        //     }]
-        // })
-        // return Axios.get('/collection')
-        return Axios({
-            method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-ui/agencyCollection/queryAgencyCollection',
-            params : params,
-        });
+    Collection : (token) => {
+        console.log(token)
+        return Axios.get(`/hxj-agency-ui/agencyCollection/queryAgencyCollection?access_token=${token.access_token}`);
     },
     // 我的学习
     study : (params) => {
-        // Mock.mock('/collection', {
-        //     'result|30': [{
-        //         "name" : "SSAT1v1课程_SSAT一对一辅导辅导",
-        //         "price|100-500" : 1,//价格
-        //         "purchase|500-1000" : 1,//已购
-        //         "like|10-50" : 1,
-        //         "add" : "岳麓大道",
-        //         "time" : "3月6日-6月19日;每周二下午13:30-15:20",
-        //         "tel" : "012345678",
-        //         "courseid" : '9',
-        //         "type|1" : ['course', 'agency']
-        //     }]
-        // })
-        // return Axios.get('/collection')
         return Axios({
-            method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-ui/courseReserve/getUserCourseAll?userId=admin&access_token=01834374-fc32-4e75-b199-2418a74bd94d',
-            // withCredentials: true,
-            // params : params,
+            method: "get",
+            url: '/hxj-agency-ui/courseReserve/getUserCourseAll',
+            params
         });
     },
     // 获取手机验证码
     getMobileCode : (params) => {
         console.log(params)
         return Axios({
-            method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            // url:'http://120.79.247.254:1111/hxj-base-ui/code/sms?mobile=13950128774',
-            url:'http://120.79.247.254:1111/hxj-base-ui/code/sms',
+            method: "get",
+            url: '/hxj-base-ui/code/sms',
             params : params,
-            headers : {
-                deviceId : "hxj"
-            }
+            headers : { deviceId : window.returnCitySN["cip"] }
         });
     },
     // 获取图形验证码
     getGraphicCode : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            // url:'http://120.79.247.254:1111/hxj-base-ui/code/sms?mobile=13950128774',
-            url:'http://120.79.247.254:1111/hxj-base-ui/code/image',
-            // params : params,
-            // headers: {
-            //     deviceId :'hxj'
-            // },
-            // auth: {
-            //     deviceId : "hxj"
-            // }
+            url:'/hxj-base-ui/code/image',
+            params,
+            // responsetype: 'blob',
+            headers : {
+                Accept: "image/webp,image/apng,image/*,*/*;q=0.8"
+            }
         });
     },
     // 注册=》异步验证 手机是否重复
@@ -330,39 +224,21 @@ const AxiosHome = {
         console.log(params)
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-noauthority-ui/user/checkLoginUser',
+            url:'/hxj-base-noauthority-ui/user/checkLoginUser',
             params : params,
         });
     },
     // 用户注册
     UserRegist : (params) => {
         console.log(params)
-        // return Axios({
-        //     method:"post",
-        //     // baseURL:'http://120.79.247.254:1111/',
-        //     url:'http://120.79.247.254:1111/hxj-base-ui/user/registered',
-        //     params : params,
-        //     headers : { deviceId : "hxj" }
-        // });
-        return Axios.post('http://120.79.247.254:1111/hxj-base-ui/user/registered', params, {headers : { deviceId : "hxj" }});
+        return Axios.post('/hxj-base-ui/user/registered', params);
     },
     // 用户登录
     SignIn : (params) => {
         console.log(params)
         return Axios({
             method:"post",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-ui/admin/admin',
-            params : params,
-        });
-    },
-    // 用户完善信息
-    perfectInfo : (params) => {
-        return Axios({
-            method:"post",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-ui/user/updateUser',
+            url:'/hxj-base-ui/admin/admin',
             params : params,
         });
     },
@@ -370,27 +246,24 @@ const AxiosHome = {
     HomeScroll : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-noauthority-ui/article/getArticleList',
-            params : params,
+            url:'/hxj-base-noauthority-ui/article/getArticleList',
+            params : params
         });
     }, 
     // 用户完善信息
     PerfectInfo : (params) => {
         console.log(params)
         return Axios({
-            method:"post",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-ui/user/updateUser',
-            params : params,
+            method: "post",
+            url: `/hxj-base-ui/user/updateUser?access_token=${params.access_token}`,
+            data : params,
         });
     }, 
     // 查询个人信息
     queryInfo : (params) => {
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-ui/user/getLoginUser',
+            url:'/hxj-base-ui/user/getLoginUser',
             params : params,
         });
     }, 
@@ -398,10 +271,9 @@ const AxiosHome = {
     ReservationInfo : (params) => {
         console.log(params)
         return Axios({
-            method:"post",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-ui/courseReserve/insertCourseReserve',
-            params : params,
+            method: "post",
+            url: `/hxj-agency-ui/courseReserve/insertCourseReserve?access_token=${params.access_token}`,
+            data : params.form
         });
     }, 
     // 类似课程
@@ -409,46 +281,61 @@ const AxiosHome = {
         console.log(params)
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-agency-noauthority-ui/agencyCourse/pushAgencyCourse',
+            url:'/hxj-agency-noauthority-ui/agencyCourse/pushAgencyCourse',
             params : params,
         });
     }, 
     // 收藏课程
     collectionCourse : (params, token) => {
         console.log(params)
-        // return Axios({
-        //     method:"post",
-        //     // baseURL:'http://120.79.247.254:1111/',
-        //     url:'http://120.79.247.254:1111/hxj-agency-ui/agencyCollection/insertAgencyCollection',
-        //     params : params,
-        // });
-        return Axios.post(`http://120.79.247.254:1111/hxj-agency-ui/agencyCollection/insertAgencyCollection?access_token=${token.access_token}`, params);
+        return Axios.post(`/hxj-agency-ui/agencyCollection/insertAgencyCollection?access_token=${token.access_token}`, params);
     }, 
     // 取消收藏课程
     cancelCollectionCourse : (params, token) => {
         console.log(params)
-        // return Axios({
-        //     method: "post",
-        //     // baseURL:'http://120.79.247.254:1111/',
-        //     url: `http://120.79.247.254:1111/hxj-age ncy-ui/agencyCollection/cancelCollection?access_token=${token.access_token}`,
-        //     params : params,
-        // });
-        return Axios.post(`http://120.79.247.254:1111/hxj-agency-ui/agencyCollection/cancelCollection?access_token=${token.access_token}`, params);
+        return Axios.post(`/hxj-agency-ui/agencyCollection/cancelCollection?access_token=${token.access_token}`, params);
     },
     // 注册短信验证码验证
     VerifyingSMS : (params) => {
         console.log(params)
         return Axios({
             method:"get",
-            // baseURL:'http://120.79.247.254:1111/',
-            url:'http://120.79.247.254:1111/hxj-base-ui/code/validate/sms',
-            params : params,
-            headers : {
-                deviceId : "hxj"
-            }
+            url:'/hxj-base-ui/code/validate/sms',
+            params : params
         });
     }, 
+    // 获取收藏状态
+    CollectionState : (params) => {
+        console.log(params)
+        return Axios({
+            method: "get",
+            url: '/hxj-agency-ui/agencyCollection/queryCollectionState',
+            params : {
+                access_token : params.token,
+                id : params.id
+            }
+        });
+    },
+    // 头像上传
+    PictureUpload : (token, params) => {
+        console.log(params)
+        let config = { headers: {'Content-Type': 'multipart/form-data'}}
+        return Axios({
+            method: "post",
+            url: '/hxj-base-ui/user/headImage?access_token='+sessionStorage.getItem("access_token"),
+            data : params.param,
+            config
+        })
+    },
+    // 注册短信验证码验证
+    SMSVerification : (params) => {
+        console.log(params)
+        return Axios({
+            method: "get",
+            url: '/hxj-base-ui/code/validate/sms',
+            params
+        })
+    }
 }
 
 export default AxiosHome;

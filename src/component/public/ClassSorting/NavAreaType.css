@@ -1,0 +1,25 @@
+
+    h4.nav-area-type {
+        padding: 0px 20px;
+        border: 1px solid #c2c2c2;
+    }
+        h4.nav-area-type > span {
+            color: #f39e09;
+            display: inline-block;
+            width: 70px;
+            text-align: center;
+        }
+        h4.nav-area-type > ul {
+            color: #666;
+            display: inline-block;
+            vertical-align: top;
+        }
+            h4.nav-area-type > ul > li {
+                display: inline-block;
+                width: 70px;
+                text-align: center;
+                cursor: pointer;
+            }
+            h4.nav-area-type > ul > li.active {
+                color: #f39e09;
+            }

@@ -28,10 +28,10 @@ export default class Birthday extends Component {
         const match = value.match(/^((?:19|20)\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
         if( value.length > 2 && match ){ 
             this.setState({judge : true})
-            this.props.callback({ birthday:value })
+            this.props.callback({ born: value })
         }else{ 
             this.setState({judge : false})
-            this.props.callback({ birthday:"" })
+            this.props.callback({ born: "" })
         }
     }
     render() {

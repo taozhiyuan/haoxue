@@ -33,7 +33,7 @@ section.beforehand-state-wrap {
                 color: #f39e09;
             }
 
-        div.beforehand-success > span {
+        div.beforehand-success > a {
             position: absolute;
             right: 55px;
             bottom: 22px;

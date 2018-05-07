@@ -24,9 +24,7 @@ export default class BannerScroll extends Component {
                     swiperObj : new Swiper('#swiper1', {
                         autoplay: 5000,//可选选项，自动滑动
                         grabCursor : true,
-                        pagination: {
-                            el: '.swiper-pagination',
-                        },
+                        pagination : '.swiper-pagination',
                     })
                 })
             }, 100)
@@ -47,7 +45,7 @@ export default class BannerScroll extends Component {
             <section className="home-banner-scroll">
                 <div className="swiper-container" id="swiper1">
                     <div className="swiper-wrapper">
-                    {this.state.data.map((item, index)=>(
+                    { this.state.data.map((item, index)=>(
                         <div className="swiper-slide" key={index}>
                             { item.articleFileType === '1'?
                                 <img src={ imgPrefix + item.articleFile } alt="" />:
@@ -66,7 +64,7 @@ export default class BannerScroll extends Component {
                                 </div>
                             }
                         </div>
-                    ))}
+                    )) }
                     </div>
                     <div className="swiper-pagination"></div>
                 </div>

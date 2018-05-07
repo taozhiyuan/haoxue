@@ -19,14 +19,15 @@ export default class AgencyInfo extends Component {
                     </li>
                     <li></li>
                 </ul> */}
-                <iframe 
+                { this.props.data && <iframe 
                     frameBorder="0"
                     scrolling="yes"
                     seamless
                     width="100%"
                     height="100%"
                     src ={ this.state.imgPrefix + this.props.data }>
-                </iframe>
+                </iframe> }
+                
             </div>
         );
     }

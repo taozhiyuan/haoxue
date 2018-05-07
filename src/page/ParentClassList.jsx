@@ -2,12 +2,13 @@
 // 父母课堂
 import React, { Component } from 'react';
 import Nav from '../component/agency/Nav.js';
+import Path from '../component/agency/Path.js';
 import List from '../component/parentClass/List.js';
 import LoadMore from '../component/agency/LoadMore.js';
-import CourseDetails from '../component/public/CourseDetails.js';
+import CourseDetails from '../component/public/CourseDetails.jsx';
 
 import Axios from '../request/axiosHome.js';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 export default class ParentClass extends Component {
     constructor(props){
@@ -124,6 +125,7 @@ export default class ParentClass extends Component {
                 <Route exact path={ path } render={({ match })=>(
                     <div className="parent-class">
                         <div className="main-public">
+                            <Path> / 父母课堂</Path>
                             <Nav 
                                 getType={ this.getType } 
                                 getArea={ this.getArea } 

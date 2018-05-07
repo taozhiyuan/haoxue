@@ -1,7 +1,7 @@
 
 // 验证码
 import React, { Component } from 'react';
-import Axios from '../../../request/axiosHome.js';
+import Axios, { urlPath } from '../../../request/axiosHome.js';
 
 export default class Verification extends Component {
     constructor(){
@@ -12,9 +12,28 @@ export default class Verification extends Component {
             visibi : false,
             btnText : "发送验证码",
             number : 30,
-            // refresh : false,
-            refresh : "http://120.79.247.254:1111/hxj-base-ui/code/image?deviceId=hxj&width=90&height=36"
+            refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36`
         }
+    }
+    componentWillMount(){
+
+        // Axios.getGraphicCode({
+        //     deviceId : "hxj",
+        //     width : "90",
+        //     height : "36"
+        // }).then((res)=>{
+        //     // let img = window.URL.createObjectURL( new Blob([res.data], {type:'image/jpeg'}) )
+        //     // let img = window.URL.createObjectURL(res.data)
+        //     let img = new Blob([res], {type:'image/jpeg'})
+        //     var reader = new window.FileReader();  
+        //     reader.readAsDataURL(img)
+        //     reader.onload = (e)=>{
+        //         this.setState({
+        //             refresh : e.target.result  
+        //         })
+        //     } 
+        //     console.log(reader)
+        // })
     }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -39,7 +58,7 @@ export default class Verification extends Component {
         }
     }
     refresh = () => {
-        this.setState({ refresh : `http://120.79.247.254:1111/hxj-base-ui/code/image?deviceId=hxj&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
+        this.setState({ refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
     }
     render() {
         const { value, judge, visibi, btnText } = this.state;

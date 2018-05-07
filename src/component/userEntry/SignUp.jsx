@@ -8,6 +8,7 @@ import Verification from './input/SMS_Verification.jsx';
 import Nickname from './input/Nickname.jsx';
 import Password from './input/Password.jsx';
 import RepeatPassword from './input/RepeatPassword.jsx';
+import Popup from '../public/Popup.jsx';
 import './UserEntry.css';
 
 import Axios from '../../request/axiosHome.js';
@@ -23,7 +24,8 @@ export default class SignUp extends Component {
                 password : null,
                 repeatPassword : null,
             },
-            submit: false
+            submit: false,
+            popup : false
         }
     }
     getData = (param) => {
@@ -32,7 +34,7 @@ export default class SignUp extends Component {
             data : { ...this.state.data, ...param }
         },()=>{
             const { nickname, verific, password, tel, repeatPassword } = this.state.data;
-            if(nickname&&tel&&password&&repeatPassword,verific){
+            if( nickname&&tel&&password&&repeatPassword&&verific ){
                 this.setState({
                     submit : true
                 })
@@ -41,12 +43,39 @@ export default class SignUp extends Component {
         })
     }
     SignUpSubmit = () => {
-        Axios.UserRegist({
-            loginUser : this.state.data.tel,
-            userName : this.state.data.nickname,
-            password : this.state.data.password,
+        Axios.SMSVerification({
+            smsCode : this.state.data.verific,
+            deviceId : window.returnCitySN["cip"]
         }).then((res)=>{
             console.log(res)
+            if(res.data.code === "0"){
+                Axios.UserRegist({
+                    loginUser : this.state.data.tel,
+                    userName : this.state.data.nickname,
+                    password : this.state.data.password,
+                }).then((res)=>{
+                    console.log(res)
+                    if(res.data.code === "0"){
+                        this.props.history.push('/userEntry/signUp/signUpSuccess')
+                    }else{
+                        this.setState({
+                            popup : true,
+                            popupText : res.data
+                        })
+                        setTimeout(() => {
+                            this.setState({ popup : false })
+                        }, 1000);
+                    }
+                })
+            }else{
+                this.setState({
+                    popup : true,
+                    popupText : res.data.msg
+                })
+                setTimeout(() => {
+                    this.setState({ popup : false })
+                }, 1000);
+            }
         })
     }
     render() {
@@ -68,9 +97,7 @@ export default class SignUp extends Component {
                         <Password callback={ this.getData } place="设置6至16位字符的密码" />
                         <RepeatPassword callback={ this.getData } password={ this.state.data.password }/>
                         { this.state.submit 
-                            ? <Link to={ `${url}/signUpSuccess` }>
-                                    <button onClick={ this.SignUpSubmit }>注&emsp;册</button>
-                                </Link>
+                            ? <button onClick={ this.SignUpSubmit }>注&emsp;册</button>
                             : <button className="disable">注&emsp;册</button>
                         }
                         
@@ -78,6 +105,7 @@ export default class SignUp extends Component {
                             <Link to="/userEntry/forgetPassword">忘记密码</Link>
                             <Link to="/userEntry/signIn">立即登录</Link>
                         </footer>
+                        { this.state.popup && <Popup state={false}>{ this.state.popupText }</Popup> }
                     </div>
                 ) } />
             </Switch>

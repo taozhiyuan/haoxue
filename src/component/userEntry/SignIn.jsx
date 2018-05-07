@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import Password from './input/Password.jsx';
 import SignInName from './input/SignInName.jsx';
 import Verification from './input/Graphic_Verification.jsx';
+import Popup from '../public/Popup.jsx';
 import './UserEntry.css';
+
 import { Route, Switch, Link, Redirect } from "react-router-dom";
 
-import Axios from '../../request/axiosHome.js';
+import Axios, { ImportToken } from '../../request/axiosHome.js';
 
 export default class SignIn extends Component {
     constructor(){
@@ -19,13 +21,11 @@ export default class SignIn extends Component {
                 password : null,
             },
             submit: false,
+            popup : false
         }
     }
-    componentWillMount(){
-        this.setState({ Redirect : false })
-    }
     getData = (param) => {
-        console.log(param)
+        // console.log(param)
         this.setState({
             data : { ...this.state.data, ...param }
         },()=>{
@@ -43,13 +43,22 @@ export default class SignIn extends Component {
             username : this.state.data.nickname,
             password : this.state.data.password,
             imageCode : this.state.data.verific,
-            deviceId : 'hxj'
+            deviceId : window.returnCitySN["cip"]
         }).then((res)=>{
-            console.log(res.data.access_token)
+            console.log(res)
             if(res.data.access_token){
                 console.log("存入sessionStorage")
                 sessionStorage.setItem("access_token", res.data.access_token);
-                this.setState({ Redirect : true })
+                this.props.history.push('/personData/personInfo');
+                ImportToken(res.data.access_token)
+            }else{
+                this.setState({
+                    popup : true,
+                    popupText : res.data
+                })
+                setTimeout(() => {
+                    this.setState({ popup : false })
+                }, 1000);
             }
         })
     }
@@ -69,7 +78,7 @@ export default class SignIn extends Component {
                     <Link to="/userEntry/forgetPassword">忘记密码</Link>
                     <Link to="/userEntry/signUp">立即注册</Link>
                 </footer>
-                { this.state.Redirect?<Redirect to="/personData/personInfo" />:null }
+                { this.state.popup && <Popup state={false}>{ this.state.popupText }</Popup> }
             </div>
         );
     }

@@ -1,21 +1,34 @@
-import { observable, useStrict, action,autorun, runInAction } from 'mobx';
-import Axios from './axiosHome.js';
+import { observable, computed, autorun } from "mobx";
 
-class AppStore {
-    @observable classType = [];
-    @observable courseList = [];
-    @observable AgencyList = [];
-    @action getData = (parame) => {
-        this.classType = parame;
-    };
+class ObservableTodoStore {
+    @observable todos = [];
+    @observable pendingRequests = 0;
+    @observable touxiang = "./wwww.andffjslsf";
+
+    constructor() {
+        autorun(() => console.log(this.report));
+    }
+
+    @computed get completedTodosCount() {
+    	return this.todos.filter(
+			todo => todo.completed === true
+		).length;
+    }
+
+    @computed get report() {
+        if (this.todos.length === 0)
+            return "<none>";
+	return `Next todo: "${this.todos[0].task}". ` + 
+	    `Progress: ${this.completedTodosCount}/${this.todos.length}`; 
+	}
+
+    addTodo(task) {
+	this.todos.push({ 
+	    task: task,
+	    completed: false,
+	    assignee: null
+	});
+    }
 }
 
-const Store = new AppStore();
-
-export default Store;
-// 课程列表
-// Axios.parentClassList().then((res)=>{
-//     store.ClassList = res.data.result;
-// }).catch((err)=>{
-//     console.log(err)
-// })
+export default new ObservableTodoStore();

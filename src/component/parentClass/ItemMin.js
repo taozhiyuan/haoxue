@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./ItemMin.css";
 
-export default class ItemMin extends Component {
+class ItemMin extends Component {
     constructor(){
         super()
         this.state = {
@@ -14,7 +14,7 @@ export default class ItemMin extends Component {
         return (
             <li className="course-item-min">
                 <Link to={{
-                    pathname: this.props.url,
+                    pathname: this.props.location.pathname,
                     search: `id=${ data.id }`,
                 }}>
                     <div className="imgPlaceholder">
@@ -29,3 +29,5 @@ export default class ItemMin extends Component {
         );
     }
 }
+
+export default withRouter(ItemMin);

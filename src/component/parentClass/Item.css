@@ -15,16 +15,16 @@
     li.course-item:not(:nth-child(4n)){
         margin-right: 66.6px;
     }
-    li.course-item section {
+    li.course-item div {
         height: 180px;
         background-color: #bfbfbf;
         position: relative;
     }
-        li.course-item section > img {
+        li.course-item div > img {
             width: 100%;
             height: 100%;
         }
-        li.course-item section > span {
+        li.course-item div > span {
             font-size: 16px;
             color: #fa5c31;
             position: absolute;
@@ -34,7 +34,7 @@
             width: 30px;
             height: 20px;
         }
-        li.course-item section > span::after {
+        li.course-item div > span::after {
             content: "";
             position: absolute;
             top: 0px;
@@ -57,6 +57,9 @@
         li.course-item aside > h4 {
             line-height: 40px;
             font-size: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         li.course-item aside > h5 {
             line-height: 15px;

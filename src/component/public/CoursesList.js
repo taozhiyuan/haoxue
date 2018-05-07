@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Path from '../agency/Path.js';
 import ItemMin from '../parentClass/ItemMin.js';
 import Paging from '../home/Paging.js';
-import CourseDetails from './CourseDetails.js';
+import CourseDetails from './CourseDetails.jsx';
 
 import Axios from '../../request/axiosHome.js';
 import './CoursesList.css';

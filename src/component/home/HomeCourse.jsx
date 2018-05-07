@@ -50,7 +50,7 @@ export default class HomeCourse extends Component {
             <li key={ index }>
                 <Link to={{
                     pathname: '/parentClassList/course',
-                    state: { pushId: item.pushId }
+                    search: `id=${ item.pushId }`
                 }}>
                     <div className="imgPlaceholder">
                         <img src={ this.state.imgPrefix + item.photoOsskey } alt=""/>
@@ -63,7 +63,7 @@ export default class HomeCourse extends Component {
             <li key={ index }>
                 <Link to={{
                     pathname: '/childClassList/course',
-                    state: { pushId: item.pushId }
+                    search: `id=${ item.pushId }`
                 }}>
                     <div className="imgPlaceholder">
                         <img src={ this.state.imgPrefix + item.photoOsskey } alt=""/>
