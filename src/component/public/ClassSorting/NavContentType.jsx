@@ -5,22 +5,18 @@ export default class NavContentType extends Component {
     constructor(props){
         super(props)
         this.state = {
-            classActive : [{
-                id : 0,
-                typeName : "全部"
-            },{
-                id : 1,
-                typeName : "父母教育"
-            }]
+            classActive : 0
         }
     }
     clickClass = (parame, id) => {
         this.setState({
             classActive : parame
         })
+        this.props.getType(id)
     }
     render(){
         const { classActive } = this.state;
+        const { classType } = this.props;
         return (
             <h4 className="nav-content-type">
                 内容分类：
@@ -28,7 +24,7 @@ export default class NavContentType extends Component {
                 { classType.map((item,index)=>(
                     <li key={ index }
                         onClick={ ()=>{ this.clickClass(index, item.id) } }
-                        className={ classActive===index?"active":null }
+                        className={ classActive === index?"active":null }
                     >{ item.typeName }</li>
                 )) }
                 </ul>

@@ -1,14 +1,14 @@
 
 // 个人资料
 import React, { Component } from 'react';
-import Path from '../component/agency/Path.js';
+import Path from '../component/public/Path.jsx';
 import PersonInfo from '../component/personData/PersonInfo.jsx';
 import Collection from '../component/personData/Collection.jsx';
 import Study from '../component/personData/Study.jsx';
 import './PersonData.css';
 import { Redirect, Route, Link } from "react-router-dom";
 
-import Axios from '../request/axiosHome.js';
+import Axios from '../global/axios.js';
 
 export default class PersonData extends Component {
     constructor(){
@@ -32,7 +32,6 @@ export default class PersonData extends Component {
                     path : "/personData/setUp/:bar*",
                     to : "/personData/setUp"
                 }],
-            target : 0,
             imgPrefix : sessionStorage.getItem("imgPrefix")
         }
     }
@@ -53,7 +52,7 @@ export default class PersonData extends Component {
     }
     render() {
         const { path } = this.props.match;
-        const { target, catalog, imgPrefix, photo } = this.state;
+        const { catalog, imgPrefix, photo } = this.state;
         let menuDom = catalog.map(( item, index ) => (
             <Route exact path={ item.path } key={ index }
                 children={({ match }) => (

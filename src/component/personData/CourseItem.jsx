@@ -1,7 +1,6 @@
 
-// 我的收藏
+// 我的收藏 => 收藏项目
 import React, { Component } from 'react';
-import my_collection from './img/my_collection.png';
 import './CourseItem.css';
 
 export default class CourseItem extends Component {

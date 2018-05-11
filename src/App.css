@@ -45,3 +45,6 @@ ul.agency-course-list > li:not(:nth-child(4n)){
 nav.nav-class-sorting {
     padding-bottom: 50px;
 }
+    nav.nav-class-sorting > h4:nth-of-type(1){
+        margin-bottom: 10px;
+    }

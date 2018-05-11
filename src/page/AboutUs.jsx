@@ -1,7 +1,7 @@
 
 // 关于我们
 import React, { Component } from 'react';
-import Banner from '../component/public/Banner.js';
+import Banner from '../component/public/Banner.jsx';
 import DevHistory from '../component/aboutUs/DevHistory.jsx';
 import About from '../component/aboutUs/About.jsx';
 import Characterist from '../component/aboutUs/Characterist.jsx';
@@ -14,9 +14,6 @@ export default class AboutUs extends Component {
     render() {
         return (
             <div className="about-us">
-                <Banner>
-                    <img src={ require('../component/aboutUs/img/about-us-banner.png') } alt=""/>
-                </Banner>
                 <About />
                 <DevHistory />
                 <Characterist />

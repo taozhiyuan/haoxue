@@ -5,7 +5,7 @@ import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import stores from './request/mobx.js';
+import stores from './global/mobx.js';
 
 ReactDOM.render((
     <BrowserRouter>

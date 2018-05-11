@@ -1,0 +1,9 @@
+
+div.AgencyInfo-info {
+    width: 950px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+    div.AgencyInfo-info > div {
+        padding: 20px;
+    }

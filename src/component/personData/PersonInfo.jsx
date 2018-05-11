@@ -1,7 +1,6 @@
 
 // 个人信息
 import React, { Component } from 'react';
-import Nickname from './input/Nickname.jsx';
 import Name from './input/Name.jsx';
 import Birthday from './input/Birthday.jsx';
 import Gender from './input/Gender.jsx';
@@ -11,7 +10,7 @@ import PictureUpload from './input/PictureUpload.jsx';
 import Popup from '../public/Popup.jsx';
 import './PersonInfo.css';
 
-import Axios, { ImportToken } from '../../request/axiosHome.js';
+import Axios, { ImportToken } from '../../global/axios.js';
 // import { Route, Switch } from "react-router-dom";
 
 export default class PersonInfo extends Component {
@@ -62,10 +61,9 @@ export default class PersonInfo extends Component {
             this.setState({ 
                 popup : true
             })
-            let timer = setTimeout(()=>{
+            setTimeout(()=>{
                 this.setState({ popup : false })
             },1000)
-            timer = null;
         })
     }
     render() {

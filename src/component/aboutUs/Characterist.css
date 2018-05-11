@@ -1,10 +1,11 @@
 
 
 section.about-characterist {
-    height: 1100px;
+    padding-bottom: 50px;
     background-color: #FFF;
 }
 ul.about-characterist-list {
+    overflow: hidden;
     counter-reset: wangxiaoer 00;
 }
     ul.about-characterist-list > li {

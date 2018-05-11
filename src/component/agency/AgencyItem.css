@@ -1,0 +1,70 @@
+
+    li.Agency-Item {
+        display: inline-block;
+        width: 250px;
+        height: 300px;
+        margin-bottom: 35px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #c2c2c2;
+    }
+    li.Agency-Item:hover {
+        box-shadow: 0px 0px 10px #c2c2c2;
+    }
+    li.Agency-Item div {
+        height: 180px;
+        background-color: #bfbfbf;
+        position: relative;
+    }
+        li.Agency-Item div > span {
+            background-color: #4c4c4c;
+            width: 90px;
+            line-height: 30px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            position: absolute;
+            left: 0px;
+            top: 12px;
+            font-size: 12px;
+            color: #fa5c31;
+            text-align: center;
+        }
+        li.Agency-Item div > img {
+            width: 100%;
+            height: 100%;
+        }
+
+    li.Agency-Item aside {
+        height: 120px;
+        background-color: #FFF;
+        padding: 15px;
+        position: relative;
+    }
+        li.Agency-Item aside > h4 {
+            line-height: 40px;
+            font-size: 16px;
+            width: 180px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        li.Agency-Item aside > h5 {
+            line-height: 25px;
+            font-size: 14px;
+            color: #666;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        li.Agency-Item aside > span {
+            font-size: 16px;
+            color: #fa5c31;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+            li.Agency-Item aside > span > i {
+                font-size: 20px;
+                margin-right: 5px;
+                color: #7d7d7d;
+            }

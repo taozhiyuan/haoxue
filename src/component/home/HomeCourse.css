@@ -98,7 +98,7 @@ section.home-course {
                 padding-top: 120px;
                 padding-bottom: 40px;
             }
-            aside.home-evaluation > div > button {
+            aside.home-evaluation > div button {
                 width: 140px;
                 height: 40px;
                 border-radius: 5px;
@@ -106,7 +106,7 @@ section.home-course {
                 color: #f39e09;
                 font-size: 24px;
             }
-            aside.home-evaluation > div > button:hover{
+            aside.home-evaluation > div button:hover{
                 border: 1px solid #f39e09;
                 background-color: #f39e09;
                 color: #FFF;

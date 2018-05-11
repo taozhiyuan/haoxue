@@ -1,0 +1,21 @@
+
+div.curriculum {
+    width: 870px;
+    padding-bottom: 60px;
+}
+    div.curriculum > div {
+        padding: 20px;
+        color: #999;
+    }
+
+    ul.curriculum-list {
+        font-size: 0;
+    }
+        ul.curriculum-list > li {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 30px;
+        }
+        ul.curriculum-list > li:not(:nth-child(4n)){
+            margin-right: 23.3px;
+        }

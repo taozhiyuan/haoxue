@@ -5,13 +5,11 @@ import Password from './input/Password.jsx';
 import SignInName from './input/SignInName.jsx';
 import Verification from './input/Graphic_Verification.jsx';
 import Popup from '../public/Popup.jsx';
-import './UserEntry.css';
 
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import Axios from '../../global/axios.js';
 
-import Axios, { ImportToken } from '../../request/axiosHome.js';
-
-export default class SignIn extends Component {
+class SignIn extends Component {
     constructor(){
         super()
         this.state = {
@@ -25,16 +23,14 @@ export default class SignIn extends Component {
         }
     }
     getData = (param) => {
-        // console.log(param)
         this.setState({
             data : { ...this.state.data, ...param }
         },()=>{
             const { verific, password, nickname } = this.state.data;
             if(nickname && verific && password){
-                this.setState({
-                    submit : true
-                })
-                console.log('可以登录了')
+                this.setState({ submit : true })
+            }else{
+                this.setState({ submit : false })
             }
         })
     }
@@ -45,12 +41,9 @@ export default class SignIn extends Component {
             imageCode : this.state.data.verific,
             deviceId : window.returnCitySN["cip"]
         }).then((res)=>{
-            console.log(res)
             if(res.data.access_token){
-                console.log("存入sessionStorage")
                 sessionStorage.setItem("access_token", res.data.access_token);
                 this.props.history.push('/personData/personInfo');
-                ImportToken(res.data.access_token)
             }else{
                 this.setState({
                     popup : true,
@@ -63,7 +56,7 @@ export default class SignIn extends Component {
         })
     }
     render() {
-        const { path, url } = this.props.match;
+        // const { path, url } = this.props.match;
         return (
             <div className="sign-in">
                 <h3>用户登录</h3>
@@ -83,3 +76,5 @@ export default class SignIn extends Component {
         );
     }
 }
+
+export default withRouter(SignIn)

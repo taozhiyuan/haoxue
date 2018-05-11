@@ -1,0 +1,8 @@
+
+div.No-Search {
+    text-align: center;
+}
+
+    div.No-Search > img {
+        width: 200px;
+    }

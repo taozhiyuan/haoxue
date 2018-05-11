@@ -5,8 +5,7 @@ import './HomeCourse.css';
 import courseImg from './img/course.png';
 import evaluation from './img/evaluation.png';
 
-import Axios from '../../request/axiosHome.js';
-import PropTypes from 'prop-types';
+import Axios from '../../global/axios.js';
 import { Link } from "react-router-dom";
 
 export default class HomeCourse extends Component {
@@ -15,7 +14,10 @@ export default class HomeCourse extends Component {
         this.state = {
             courseType : ['父母课程','孩子课程'],
             typeActive : 0,
-            data : null,
+            data : {
+                parent : [],
+                child : []
+            },
             imgPrefix : sessionStorage.getItem("imgPrefix")
         }
     }
@@ -23,11 +25,13 @@ export default class HomeCourse extends Component {
         let parentArr = [];
         let childArr = [];
         Axios.recommend().then((res)=>{
-            for (const iterator of res.data.result) {
-                if(iterator.pushType === "parent"){
-                    parentArr = [...parentArr,iterator]
-                }else{
-                    childArr = [...childArr,iterator]
+            if(res.data.result instanceof Array){
+                for (const iterator of res.data.result) {
+                    if(iterator.pushType === "parent"){
+                        parentArr = [...parentArr,iterator]
+                    }else{
+                        childArr = [...childArr,iterator]
+                    }
                 }
             }
             this.setState({
@@ -45,7 +49,6 @@ export default class HomeCourse extends Component {
     }
     render() {
         const { courseType, typeActive, data } = this.state;
-        if(!data){ return false }
         const parentDom = data.parent.map((item,index)=>(
             <li key={ index }>
                 <Link to={{
@@ -92,7 +95,7 @@ export default class HomeCourse extends Component {
                         <img src={ evaluation } alt=""/>
                         <div>
                             <h2>不知道怎么选课?先测评一下吧</h2>
-                            <button>进入测评</button>
+                            <a href="http://www.haoxuehome.com/cp/"><button>进入测评</button></a>
                         </div>
                     </aside>
                 </div>
@@ -100,8 +103,3 @@ export default class HomeCourse extends Component {
         );
     }
 }
-
-
-HomeCourse.contextTypes = {
-    imgPrefix : PropTypes.string,
-};

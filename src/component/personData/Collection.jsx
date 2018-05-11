@@ -1,14 +1,11 @@
 
 // 我的收藏
 import React, { Component } from 'react';
-import my_collection from './img/my_collection.png';
-import Paging from '../home/Paging.js';
+import Paging from '../public/Paging.jsx';
 import CourseItem from './CourseItem.jsx';
 import AgencyItem from './AgencyItem.jsx';
 import './Collection.css';
-
-import Axios from '../../request/axiosHome.js';
-import { Link } from "react-router-dom";
+import Axios from '../../global/axios.js';
 
 export default class Collection extends Component {
     constructor(){
@@ -70,7 +67,7 @@ export default class Collection extends Component {
             <div className="my-collection">
                 <h4 className="title">我的收藏</h4>
                 <ul className="my-collection-type">
-                    { this.state.type.map((item,index)=>(
+                    { type.map((item,index)=>(
                         <li
                             key={ index }
                             className={ typeActive===index?'active':null }
@@ -78,7 +75,7 @@ export default class Collection extends Component {
                         >{ item }</li>
                     )) }
                 </ul>
-                { typeActive ? <CourseItem data={ course } /> : <AgencyItem data={ agency }/> }
+                { typeActive ? <AgencyItem data={ agency }/> : <CourseItem data={ course } /> }
                 { dataLength === 0 ? null : <Paging 
                     length={ Math.ceil(dataLength/2) }
                     PagingCallback={ this.PagingCallback }

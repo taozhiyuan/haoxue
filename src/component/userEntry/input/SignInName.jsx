@@ -21,7 +21,7 @@ export default class SignInName extends Component {
             visibi : true
         })
         if( value.length > 1 ){
-            this.setState({judge : true})
+            this.setState({ judge : true })
             this.props.callback({ nickname : value })
         }else{ 
             this.setState({judge : false})

@@ -1,0 +1,40 @@
+
+
+nav.information-nav {
+    position: relative;
+    border: 1px solid #f39e09;
+    margin-bottom: 20px;
+}
+    nav.information-nav > ul {
+        overflow: hidden;
+    }
+        nav.information-nav > ul > li {
+            float: left;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+    /* 类型 */
+    ul.information-type > li {
+        width: 160px;
+    }
+    ul.information-type > li.active {
+        color: #FFF;
+        background-color: #f39e09;
+    }
+    /* 排序 */
+    ul.information-sort {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+        ul.information-sort > li {
+            width: 100px;
+            color: #666;
+        }
+        ul.information-sort > li.active {
+            color: #f39e09;
+        }

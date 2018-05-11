@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 import Home from './page/Home.jsx';
 import './App.css';
-import AgencyList from './page/AgencyList.jsx';
-import ParentClassList from './page/ParentClassList.jsx';
-import ChildClassList from './page/ChildClassList.jsx';
+import AgencyList from './page/agency/AgencyList.jsx';
+import ByStages from './page/byStages/ByStages.jsx';
+import ParentClassList from './page/course/ParentClassList.jsx';
+import ChildClassList from './page/course/ChildClassList.jsx';
 import PersonData from './page/PersonData.jsx';
 import UserEntry from './page/UserEntry.jsx';
 import AboutUs from './page/AboutUs.jsx';
 import Search from './page/Search.jsx';
-import Banner from './component/public/Banner.js';
-import NoMatch from './component/public/NoMatch.js';
-import PublicHead from './component/public/PublicHead.js';
-import PublicFoot from './component/public/PublicFoot.js';
+import Information from './page/information/Information.jsx';
+import Banner from './component/public/Banner.jsx';
+import NoMatch from './component/public/NoMatch.jsx';
+import PublicHead from './component/public/PublicHead.jsx';
+import PublicFoot from './component/public/PublicFoot.jsx';
 
-import Axios from './request/axiosHome.js';
 // import { observer } from 'mobx-react';
 
 // @observer
@@ -35,11 +36,12 @@ class App extends Component {
                         <Route path="/agencyList" component={ AgencyList } />
                         <Route path="/parentClassList" component={ ParentClassList } />
                         <Route path="/childClassList" component={ ChildClassList } />
-                        <Route path="/byStages" render={()=><Banner>好学分期</Banner>} />
+                        <Route path="/byStages" component={ ByStages } />
                         <Route path="/aboutUs" component={ AboutUs } />
                         <Route path="/userEntry" component={ UserEntry } />
                         <Route path="/personData" component={ PersonData } />
                         <Route path="/search" component={ Search } />
+                        <Route path="/information" component={ Information } />
                         <Route component={ NoMatch } />
                     </Switch>
                 </section>

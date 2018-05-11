@@ -2,16 +2,15 @@
 // 用户注册
 import React, { Component } from 'react';
 import SignUpSuccess from './SignUpSuccess.jsx';
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import Tel from './input/Tel.jsx';
 import Verification from './input/SMS_Verification.jsx';
 import Nickname from './input/Nickname.jsx';
 import Password from './input/Password.jsx';
 import RepeatPassword from './input/RepeatPassword.jsx';
 import Popup from '../public/Popup.jsx';
-import './UserEntry.css';
 
-import Axios from '../../request/axiosHome.js';
+import Axios from '../../global/axios.js';
 
 export default class SignUp extends Component {
     constructor(){
@@ -79,11 +78,10 @@ export default class SignUp extends Component {
         })
     }
     render() {
-        const { path, url } = this.props.match;
-        // console.log(this.state.data.tel)
+        const { path } = this.props.match;
+        const { data, popup, popupText, submit } = this.state;
         return (
             <Switch>
-                {/* <Redirect to="/userEntry/signIn" /> */}
                 <Route path={ `${ path }/signUpSuccess` } component={ SignUpSuccess } />
                 <Route path={ path } render={ ()=>(
                     <div className="sign-up">
@@ -91,12 +89,12 @@ export default class SignUp extends Component {
                         <Tel callback={ this.getData } />
                         <Verification 
                             callback={ this.getData }
-                            tel={ this.state.data.tel }
+                            tel={ data.tel }
                         />
                         <Nickname callback={ this.getData } />
                         <Password callback={ this.getData } place="设置6至16位字符的密码" />
-                        <RepeatPassword callback={ this.getData } password={ this.state.data.password }/>
-                        { this.state.submit 
+                        <RepeatPassword callback={ this.getData } password={ data.password }/>
+                        { submit 
                             ? <button onClick={ this.SignUpSubmit }>注&emsp;册</button>
                             : <button className="disable">注&emsp;册</button>
                         }
@@ -105,7 +103,7 @@ export default class SignUp extends Component {
                             <Link to="/userEntry/forgetPassword">忘记密码</Link>
                             <Link to="/userEntry/signIn">立即登录</Link>
                         </footer>
-                        { this.state.popup && <Popup state={false}>{ this.state.popupText }</Popup> }
+                        { popup && <Popup state={false}>{ popupText }</Popup> }
                     </div>
                 ) } />
             </Switch>

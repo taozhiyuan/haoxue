@@ -1,7 +1,6 @@
 
 // 忘记密码
 import React, { Component } from 'react';
-import './UserEntry.css';
 import { Link } from "react-router-dom";
 
 export default class ForgetPassword extends Component {

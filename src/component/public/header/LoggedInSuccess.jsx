@@ -1,3 +1,5 @@
+
+//公共头 =》 登录成功后
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 
@@ -9,7 +11,6 @@ class LoggedInSuccess extends Component {
         }, 100);
     }
     render() {
-        const token = sessionStorage.getItem("access_token");
         const imgPrefix = sessionStorage.getItem("imgPrefix");
         const headUrl = sessionStorage.getItem("headUrl");
         return (

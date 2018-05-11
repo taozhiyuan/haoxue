@@ -3,7 +3,7 @@ import HomeCourse from '../component/home/HomeCourse.jsx';
 // import Evaluation from '../component/home/Evaluation.js';
 // import Classroom from '../component/home/Classroom.js';
 import Information from '../component/home/Information.jsx';
-import BannerScroll from '../component/home/BannerScroll.js';
+import BannerScroll from '../component/home/BannerScroll.jsx';
 
 export default class Home extends Component {
     render() {

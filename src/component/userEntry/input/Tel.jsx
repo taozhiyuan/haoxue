@@ -1,7 +1,7 @@
 
 // 会员名称
 import React, { Component } from 'react';
-import Axios from '../../../request/axiosHome.js';
+import Axios from '../../../global/axios.js';
 
 export default class Tel extends Component {
     constructor(){
@@ -41,7 +41,6 @@ export default class Tel extends Component {
             })
         }else{ 
             this.setState({judge : false}) 
-            this.props.callback({ tel : null })
         }
     }
     render() {

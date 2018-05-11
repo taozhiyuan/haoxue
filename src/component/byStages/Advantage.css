@@ -1,0 +1,28 @@
+
+div.byStages-Advantage {
+    padding-bottom: 80px;
+}
+    div.byStages-Advantage ul {
+        overflow: hidden;
+        text-align: center;
+    }
+        div.byStages-Advantage ul > li {
+            float: left;
+        }
+        div.byStages-Advantage ul > li:not(:last-child) {
+            margin-right: 120px;
+        }
+            div.byStages-Advantage ul > li > div {
+                width: 205px;
+                height: 150px;
+                border-radius: 5px;
+            }
+            div.byStages-Advantage ul > li > h3 {
+                font-size: 20px;
+                padding-top: 18px;
+            }
+            div.byStages-Advantage ul > li > h5 {
+                font-size: 14px;
+                color: #999;
+                padding-top: 9px;
+            }

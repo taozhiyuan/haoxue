@@ -1,0 +1,32 @@
+
+h3.information-details-title {
+    text-align: center;
+    padding-bottom: 14px;
+    padding-top: 20px;
+}
+h6.information-details-time {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 20px;
+}
+h4.information-details-author {
+    font-size: 14px;
+    color: #666;
+    padding-bottom: 34px;
+    text-align: center;
+}
+
+footer.information-details-foot {
+    padding: 50px 0px;
+}
+    footer.information-details-foot button {
+        width: 210px;
+        height: 30px;
+        border: 1px solid #c2c2c2;
+        font-size: 12px;
+        color: #666;
+    }
+    footer.information-details-foot button:first-child {
+        margin-right: 50px;
+    }

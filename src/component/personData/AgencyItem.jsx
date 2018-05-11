@@ -1,7 +1,6 @@
 
 // 我的收藏
 import React, { Component } from 'react';
-import my_collection from './img/my_collection.png';
 import './AgencyItem.css';
 
 export default class AgencyItem extends Component {

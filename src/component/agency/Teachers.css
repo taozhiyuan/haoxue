@@ -1,0 +1,21 @@
+
+div.agency-detailed-region {
+    width: 870px;
+    padding-bottom: 20px;
+}
+
+    div.agency-detailed-region-wrap {
+        padding: 20px;
+        color: #999;
+    }
+
+    ul.agency-detailed-region-list {
+        font-size: 0;
+    }
+        ul.agency-detailed-region-list > li {
+            vertical-align: top;
+            margin-top: 10px;
+        }
+        ul.agency-detailed-region-list > li:not(:nth-child(4n)){
+            margin-right: 23.3px;
+        }

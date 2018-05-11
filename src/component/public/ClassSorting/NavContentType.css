@@ -2,13 +2,10 @@
     h4.nav-content-type {
         padding: 0px 20px;
         border: 1px solid #c2c2c2;
+        line-height: 50px;
+        font-size: 14px;
+        text-align: left;
     }
-        h4.nav-content-type > span {
-            color: #f39e09;
-            display: inline-block;
-            width: 70px;
-            text-align: center;
-        }
         h4.nav-content-type > ul {
             color: #666;
             display: inline-block;

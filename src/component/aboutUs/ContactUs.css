@@ -1,6 +1,6 @@
 
 section.contact-us {
-    height: 550px;
+    height: 400px;
     background-color: #FFF;
 }
 
@@ -10,8 +10,8 @@ section.contact-us {
         text-align: center;
     }
         ul.contact-us-list > li > img {
-            width: 160px;
-            height: 160px;
+            width: 60px;
+            height: 60px;
             margin-bottom: 20px;
         }
         ul.contact-us-list > li > h5 {

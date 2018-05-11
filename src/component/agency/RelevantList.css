@@ -1,0 +1,26 @@
+
+ul.relevant-list {
+    position: absolute;
+    top: 450px;
+    right: 0px;
+}
+    ul.relevant-list > li {
+        width: 300px;
+        height: 40px;
+        background-color: #FFF;
+        line-height: 40px;
+        padding-left: 20px;
+        color: #f39e09;
+        border: 1px solid #c2c2c2;
+        margin-bottom: 10px;
+    }
+    ul.relevant-list > li:first-child {
+        background-color: #f39e09;
+        color: #FFF;
+        border-color: #FFF;
+    }
+    ul.relevant-list > li:hover {
+        background-color: #f39e09;
+        color: #FFF;
+        border-color: #FFF;
+    }

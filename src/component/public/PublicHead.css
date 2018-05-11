@@ -89,7 +89,7 @@ header.index-public-head {
             padding: 0px 5px;
             cursor: pointer;
         }
-        div.index-head-search > a {
+        div.index-head-search > i {
             font-size: 20px;
             line-height: 30px;
             width: 30px;

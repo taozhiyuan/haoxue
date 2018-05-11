@@ -1,12 +1,11 @@
 
 // 我的学习
 import React, { Component } from 'react';
-import my_collection from './img/my_collection.png';
-import Paging from '../home/Paging.js';
+import Paging from '../public/Paging.jsx';
 import StudyItem from './StudyItem.jsx';
 import './Study.css';
 
-import Axios from '../../request/axiosHome.js';
+import Axios from '../../global/axios.js';
 import { Link } from "react-router-dom";
 
 export default class Study extends Component {

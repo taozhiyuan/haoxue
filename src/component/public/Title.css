@@ -1,0 +1,13 @@
+
+
+section div.about-us-title {
+    text-align: center;
+}
+    section div.about-us-title > h1 {
+        font-size: 27px;
+        padding-top: 65px;
+        padding-bottom: 30px;
+        margin: 0px auto 80px;
+        border-bottom: 2px solid #f39e09;
+        display: inline-block;
+    }

@@ -1,7 +1,7 @@
 
-// 验证码
+// 图形验证码
 import React, { Component } from 'react';
-import Axios, { urlPath } from '../../../request/axiosHome.js';
+import Axios, { urlPath } from '../../../global/axios.js';
 
 export default class Verification extends Component {
     constructor(){
@@ -10,8 +10,7 @@ export default class Verification extends Component {
             value : "",
             judge : false,
             visibi : false,
-            btnText : "发送验证码",
-            number : 30,
+            number : 60,
             refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36`
         }
     }
@@ -61,7 +60,7 @@ export default class Verification extends Component {
         this.setState({ refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
     }
     render() {
-        const { value, judge, visibi, btnText } = this.state;
+        const { value, judge, visibi } = this.state;
         return (
             <h5 className="graphical">
                 <i></i>
@@ -70,7 +69,7 @@ export default class Verification extends Component {
                     onChange={ this.getDate }
                 />
                 <span><img src={ this.state.refresh } alt=""/></span>
-                <a href="javascript:void(0);" onClick={ this.refresh }>看不清 ？换一张</a>
+                <a onClick={ this.refresh }>看不清 ？换一张</a>
                 {visibi && <i className={ judge ? "ion-ios-checkmark-outline":"ion-ios-close-outline" } />}
             </h5>
         );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './NavAreaType.css';
-import { Route } from "react-router-dom";
 
 export default class NavAreaType extends Component {
     constructor(props){
@@ -21,10 +20,11 @@ export default class NavAreaType extends Component {
             areaActive : 0
         }
     }
-    clickArea = (parame) => {
+    clickArea = (parame, id) => { //点击区域
         this.setState({
             areaActive : parame
         })
+        this.props.getArea(id)
     }
     render(){
         const { area, areaActive } = this.state;
@@ -34,7 +34,7 @@ export default class NavAreaType extends Component {
                 <ul>
                 { area.map((item, index)=>(
                     <li key={ index }
-                        onClick={ ()=>{ this.clickArea(index) } }
+                        onClick={ ()=>{ this.clickArea(index, item.id) } }
                         className={ areaActive===index?"active":null }
                     >{ item.name }</li>
                 )) }

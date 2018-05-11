@@ -1,0 +1,25 @@
+
+ul.Information-List {
+    min-height: 500px;
+}
+    ul.Information-List > li {
+        height: 180px;
+        border: 1px solid #c2c2c2;
+        padding: 30px 20px;
+        margin-bottom: 20px;
+    }
+    ul.Information-List > li:hover {
+        border-color: #f39e09;
+    }
+        ul.Information-List > li > a > h4 {
+            padding-bottom: 15px;
+        }
+        ul.Information-List > li > a > p {
+            font-size: 13px;
+            color: #666;
+            padding-bottom: 25px;
+        }
+        ul.Information-List > li > a > h5 {
+            font-size: 13px;
+            color: #999;
+        }

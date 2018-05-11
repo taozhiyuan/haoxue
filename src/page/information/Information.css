@@ -1,0 +1,23 @@
+
+h3.information-details-title {
+    text-align: center;
+    padding-bottom: 14px;
+}
+h6.information-details-time {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 20px;
+}
+h4.information-details-author {
+    font-size: 14px;
+    color: #666;
+    padding-bottom: 34px;
+}
+section.information-details > button {
+    width: 210px;
+    height: 30px;
+    border: 1px solid #c2c2c2;
+    font-size: 12px;
+    color: #666;
+}

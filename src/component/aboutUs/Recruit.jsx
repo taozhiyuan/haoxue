@@ -1,9 +1,9 @@
 
 // 关于我们 》招贤纳士
 import React, { Component } from 'react';
-import Title from './Title.jsx';
+import Title from '../public/Title.jsx';
 import "./Recruit.css";
-import Axios from '../../request/axiosHome.js';
+import Axios from '../../global/axios.js';
 
 export default class Recruit extends Component {
     state = {
@@ -48,14 +48,16 @@ export default class Recruit extends Component {
                                 <div>
                                     <img src={ imgPrefix + item.articleFile } alt=""/>
                                     <div className="about-recruit-item">
-                                        <iframe 
+                                        {/* <iframe 
                                             // onLoad={ this.setIframeHeight }
+                                            title="Recruit-iframe"
                                             id="recruit-frame"
                                             frameBorder="0"
                                             scrolling="yes"
                                             seamless
                                             src ={ imgPrefix + item.richTextKey }>
-                                        </iframe>
+                                        </iframe> */}
+                                        
                                         {/* <h3>PHP工程师</h3>
                                         <h5>岗位描述</h5>
                                         <h6>▲ 负责EduSoho核心代码的开发 (https://github.com/EduSoho/EduSoho)</h6>

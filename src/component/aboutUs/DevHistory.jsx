@@ -1,7 +1,7 @@
 
 // 关于我们 》发展历程
 import React, { Component } from 'react';
-import Title from './Title.jsx';
+import Title from '../public/Title.jsx';
 import "./DevHistory.css";
 
 export default class DevHistory extends Component {

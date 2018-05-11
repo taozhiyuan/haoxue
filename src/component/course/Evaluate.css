@@ -1,0 +1,12 @@
+
+
+div.course-details-evaluate {
+    width: 950px;
+    font-size: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+    div.course-details-evaluate > div {
+        padding: 20px;
+        color: #999;
+    }
