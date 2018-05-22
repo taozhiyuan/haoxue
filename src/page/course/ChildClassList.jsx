@@ -8,97 +8,41 @@ import List from '../../component/course/List.jsx';
 import CourseDetails from './CourseDetails.jsx';
 import Path from '../../component/public/Path.jsx';
 
-import Axios from '../../global/axios.js';
 import { Route, Switch } from "react-router-dom";
+import { select } from '../../global/navSort.js';
 
 export default class ChildClass extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data : [],
-            select : [],
+            data : props.data.couseList,
             type : { index : 0, id : 0 },
             area : { index : 0, id : 0 },
-            sortId : { index : 0, id : 0 },
-            sort : ['synthesiss','scale','praise'],
-            sortText : ['综合','价格','人气'],
-            classType : [],
+            classType : props.data.class
         }
     };
-    componentWillMount = () => {
-        Axios.parentClassList().then((res)=>{
-            let arr = [];
-            for( let i of res.data.result ){
-                if(i.courseType==="child"){
-                    arr = [...arr,i]
-                }
-            }
-            this.setState({
-                data : arr,
-                select : arr
-            })
-        }).catch((err)=>{
-            console.log(err) 
-        })
-
-        // 类型分类
-        Axios.contentType({ classifyType : 'child' }).then((res)=>{
-            this.setState({
-                classType : [{ id: 0, typeName : "全部" }, ...res.data.result],
-            })
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
-    select = ( OtherId, targetId, props1, props2, data ) => {
-        let arr = [];
-        if( OtherId===0 ){
-            if( targetId===0 ){
-                arr = data;
-            }else{
-                for (let i of data) {
-                    if(i[props1] === targetId){
-                        arr = [...arr,i]
-                    }
-                }
-            }
-        }else{
-            for (let i of data) {
-                if(i[props2] === OtherId){
-                    arr = [...arr,i]
-                }
-            }
-            if(targetId!==0){
-                let arrtype = [];
-                for (let i of arr) {
-                    if(i[props1] === targetId){
-                        arrtype = [...arrtype,i]
-                    }
-                }
-                arr = arrtype;
-            }
-        }
-        return arr;
-    }
     getType = ( id ) => {
-        this.setState({type : { id : id }})
-        const { data, area } = this.state;
-        this.setState({ select : this.select( area.id, id, 'courseClassify','areaid',data ) });
+        const { area } = this.state;
+        this.setState({ 
+            type : { id : id },
+            data : select( area.id, id, 'courseClassify','areaid', this.props.data.couseList )
+        });
     }
     getArea = ( id ) => {
-        const { data, type } = this.state;
-        this.setState({ area : { id: id } });
-        this.setState({ select : this.select( type.id, id, 'areaid','courseClassify',data ) });
+        const { type } = this.state;
+        this.setState({ 
+            area : { id : id },
+            data : select( type.id, id, 'areaid','courseClassify', this.props.data.couseList )
+        });
     }
     getSort = ( data ) => {
         this.setState({
-            select : data
+            data : data
         })
     }
     render() {
-        // console.log(this.props.match)
         const { path } = this.props.match;
-        const { select, area, type, sortId, classType } = this.state;
+        const { data, classType } = this.state;
         return (
             <Switch>
                 <Route path={ `${ path }/course` } component={ CourseDetails } />
@@ -116,10 +60,10 @@ export default class ChildClass extends Component {
                                 />
                                 <NavSort 
                                     getSort={ this.getSort } 
-                                    data={ select }
+                                    data={ data }
                                 />
                             </nav>
-                            <List url={ match.url } data={ select }/>
+                            <List url={ match.url } data={ data }/>
                         </div>
                     </div>
                 )} />

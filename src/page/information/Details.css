@@ -30,3 +30,7 @@ footer.information-details-foot {
     footer.information-details-foot button:first-child {
         margin-right: 50px;
     }
+
+    article.information-details-content {
+        min-height: 400px;
+    }

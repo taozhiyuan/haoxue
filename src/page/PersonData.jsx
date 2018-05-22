@@ -8,7 +8,7 @@ import Study from '../component/personData/Study.jsx';
 import './PersonData.css';
 import { Redirect, Route, Link } from "react-router-dom";
 
-import Axios from '../global/axios.js';
+import Axios,{ ImportToken } from '../global/axios.js';
 
 export default class PersonData extends Component {
     constructor(){
@@ -36,6 +36,7 @@ export default class PersonData extends Component {
         }
     }
     componentWillMount(){
+        ImportToken(sessionStorage.getItem("access_token"))
         Axios.queryInfo({
             access_token : sessionStorage.getItem("access_token")
         }).then((res)=>{

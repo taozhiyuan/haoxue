@@ -42,6 +42,9 @@ export default class PublicFoot extends Component {
                         <img src={ require('../../img/WechatIMG29.jpeg') } alt=""/>
                         <img src={ require('../../img/WechatIMG30.jpeg') } alt=""/>
                     </div>
+                    <p>版权所有：湖南省长沙市好学家有限公司 </p>
+                    <p>服务热线：0734-09876654　　公司地址：湖南省长沙市某某区某某街道某某大厦2018房　　邮箱：email@email.com</p>
+                    <p>Copyright (C) 2018  www.www.cn  证书编码：湘ICP备00000000号-1</p>
                 </div>
             </footer>
         );

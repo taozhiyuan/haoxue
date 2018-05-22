@@ -18,6 +18,11 @@ export default class Paging extends Component {
         })
         this.props.PagingCallback(this.state.star + this.state.index)//初始回传active
     }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            number : nextProps.length //获取分页数量
+        })
+    }
     changeActive = (parame) => {   //点击修改active
         const { number, star } = this.state;
         if(number > 6 && parame === 5 ){ //如果分页数量大于6 并且当前点击位置等于5
@@ -82,6 +87,7 @@ export default class Paging extends Component {
     }
     render(){
         const pagingList = []; //渲染列表
+        if(this.state.number === 0){ return false }
         const n = this.state.number > 6 ? 6 : this.state.number; // 如果总数大于6则返回6，否则返回总数
         for (let i=0; i<n; i++) {
             pagingList.push(

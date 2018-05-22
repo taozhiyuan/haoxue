@@ -5,16 +5,19 @@ import NavSort from '../component/public/ClassSorting/NavSort.jsx';
 import CourseItem from '../component/course/CourseItem.jsx';
 import AgencyItem from '../component/agency/AgencyItem.jsx';
 import NoSearch from '../component/search/NoSearch.jsx';
+import Loading from '../component/public/Loading.jsx';
+import './Search.css';
 
 import Axios from '../global/axios.js';
 import { inject, observer } from 'mobx-react';
-@inject('search')
+@inject('search','Interactive')
 
 @observer
 export default class Search extends Component {
     constructor(props){
         super(props)
         this.store = this.props.search;
+        this.interactive = this.props.Interactive;
         this.state = {
             data : null,
             radio : true,
@@ -25,6 +28,7 @@ export default class Search extends Component {
     };
     request = () => {
         if(this.store.value){
+            this.interactive.switch()
             if(this.store.type){ //判断搜索的类型，决定请求的接口
                 Axios.parentClassList({ courseName : this.store.value }).then((res)=>{
                     let courseArr = [];
@@ -46,12 +50,14 @@ export default class Search extends Component {
                             data : courseArr
                         })
                     }
+                    this.interactive.switch()
                 })
             }else{
                 Axios.MechanismList({ orgName : this.store.value }).then((res)=>{
                     this.setState({
                         data : res.data.result
                     })
+                    this.interactive.switch()
                 })
             }
         }
@@ -70,32 +76,22 @@ export default class Search extends Component {
     }
     render() {
         const { data } = this.state;
+        const SearchResult = data ? (this.store.type ? 
+                            <ul className="agency-course-list">{ data.map((item, index)=>(
+                                <CourseItem url={ item.link } data={ item } key={ index } />
+                            )) }
+                            </ul> :
+                            <ul className="agency-course-list">{ data.map((item, index)=>(
+                                    <AgencyItem url="/agencyList" data={ item } key={ index } />
+                                )) }
+                            </ul>) : <NoSearch />;
         return (
             <section className="search">
                 <div className="main-public">
                     <nav className="nav-class-sorting">
                         <NavSort data={ data } getSort={ this.getSort }/>
                     </nav>
-                    { data ? (this.store.type ? 
-                        <ul className="agency-course-list">
-                            { data.map((item, index)=>(
-                                <CourseItem 
-                                    url={ item.link }
-                                    data={ item }
-                                    key={ index }
-                                />
-                            )) }
-                        </ul>:
-                        <ul className="agency-course-list">
-                            { data.map((item, index)=>(
-                                <AgencyItem 
-                                    url="/agencyList"
-                                    data={ item }
-                                    key={ index }
-                                />
-                            )) }
-                        </ul>
-                    ):<NoSearch />}
+                    { this.interactive.loading ? <Loading /> : SearchResult }
                 </div>
             </section>
         );

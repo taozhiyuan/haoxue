@@ -17,7 +17,7 @@ ul.public-foot-list {
             color: #FFF;
         }
             ul.public-foot-list > li > dl > dd {
-                font-size: 12px;
+                font-size: 14px;
                 color: #e6e6e6;
             }
 
@@ -33,3 +33,10 @@ div.public-foot-prompt {
     div.public-foot-prompt > img:first-child {
         margin-right: 35px;
     }
+
+
+
+footer.index-public-foot p {
+    text-align: center;
+    line-height: 30px;
+}

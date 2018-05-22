@@ -15,6 +15,7 @@ div.agency-detailed-region {
         ul.agency-detailed-region-list > li {
             vertical-align: top;
             margin-top: 10px;
+            display: inline-block;
         }
         ul.agency-detailed-region-list > li:not(:nth-child(4n)){
             margin-right: 23.3px;

@@ -15,7 +15,7 @@ export default class CourseMain extends Component {
             popupText : null,
             popupState : false,
             token : sessionStorage.getItem("access_token"),
-            collectionState : "false",
+            collectionState : false,
             imgPrefix : sessionStorage.getItem("imgPrefix")
         }
     }
@@ -50,7 +50,7 @@ export default class CourseMain extends Component {
                 if(res.data.code === "0"){
                     this.setState({
                         popupState : true,
-                        collectionState : 'true'
+                        collectionState : true
                     })
                 }else{
                     this.setState({
@@ -82,7 +82,7 @@ export default class CourseMain extends Component {
                 if(res.data.code === "0"){
                     this.setState({
                         popupState : true,
-                        collectionState : 'false'
+                        collectionState : false
                     })
                 }else{
                     this.setState({
@@ -120,7 +120,7 @@ export default class CourseMain extends Component {
                 <li>
                     <h5 className="popularity">人气：<span>{ data.browsing }</span></h5>
                     <h5 className="collection">
-                        { collectionState === 'true'?
+                        { collectionState ?
                             <i className="iconfont icon-guanzhu2" onClick={ this.cancel }></i>:
                             <i className="iconfont icon-guanzhu" onClick={ this.collection }></i>
                         }

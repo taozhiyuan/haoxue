@@ -35,10 +35,10 @@ export default class PersonInfo extends Component {
             console.log(err)
         })
     }
-    getData = (param) => {
+    getData = (param, state) => {
         this.setState({
             data : { ...this.state.data,...param },
-            submit: true
+            submit: state
         })
     }
     InfoSubmit = () => {

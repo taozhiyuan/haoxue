@@ -27,10 +27,10 @@ export default class Name extends Component {
         })
         if( value.length > 1 ){ 
             this.setState({judge : true})
-            this.props.callback({ name:value }) 
+            this.props.callback({ trueName : value },true) 
         }else{ 
             this.setState({judge : false})
-            this.props.callback({ name:"" })
+            this.props.callback({ trueName : "" },false)
         }
     }
     render() {

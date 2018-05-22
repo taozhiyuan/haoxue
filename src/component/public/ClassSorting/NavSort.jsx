@@ -18,7 +18,7 @@ export default class NavSort extends Component {
         const data = this.props.data.sort(
             sort( this.state.sort, parame )
         )
-        console.log(this.state.sort, parame)
+        // console.log(this.state.sort, parame)
         this.props.getSort(data) //回传数据
     }
     render(){

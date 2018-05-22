@@ -1,0 +1,91 @@
+
+
+    div.request-loading {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 10;
+        /* opacity: 1; */
+        visibility: visible;
+    }
+    div.request-loading-hidden {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 10;
+        transition: all 2s;
+        opacity: 0;
+        visibility: hidden;
+    }
+          div.request-loading > div {
+              width: 150px;
+              height: 15px;
+              position: absolute;
+              margin-left: -75px;
+              top: 50%;
+              left: 50%;
+              text-align: center;
+          }
+            div.request-loading span {
+                display: inline-block;
+                width: 15px;
+                height: 100%;
+                margin-right: 5px;
+                background: #999;
+                animation: first-load 1s ease infinite;
+                -webkit-animation: first-load 1s ease infinite;
+            }
+            div.request-loading span:last-child {
+                margin-right: 0px; 
+            }
+  
+          @-webkit-keyframes first-load {
+              0%{
+                  opacity: 1;
+                  transform: scale(1.2);
+                  -webkit-transform: scale(1.2);
+              }
+              100%{
+                  opacity: .2;
+                  transform: scale(.2);
+                  -webkit-transform: scale(.2);
+              }
+          }
+          @keyframes first-load {
+              0%{
+                  opacity: 1;
+                  transform: scale(1.2);
+                  -webkit-transform: scale(1.2);
+              }
+              100%{
+                  opacity: .2;
+                  transform: scale(.2);
+                  -webkit-transform: scale(.2);
+              }
+          }
+          div.request-loading span:nth-child(1){
+              animation-delay:0.13s;
+              -webkit-animation-delay:0.13s;
+          }
+          div.request-loading span:nth-child(2){
+              animation-delay:0.26s;
+              -webkit-animation-delay:0.26s;
+          }
+          div.request-loading span:nth-child(3){
+              animation-delay:0.39s;
+              -webkit-animation-delay:0.39s;
+          }
+          div.request-loading span:nth-child(4){
+              animation-delay:0.52s;
+              -webkit-animation-delay:0.52s;
+          }
+          div.request-loading span:nth-child(5){
+              animation-delay:0.65s;
+              -webkit-animation-delay:0.65s;
+          }

@@ -6,7 +6,7 @@ export default class Gender extends Component {
     constructor(){
         super()
         this.state = {
-            userSex : true
+            userSex : "true"
         }
     }
     componentWillMount(){
@@ -16,15 +16,15 @@ export default class Gender extends Component {
     }
     getSexMale = (e) => {
         this.setState({
-            userSex : true
+            userSex : "true"
         })
-        this.props.callback( {userSex : true} );
+        this.props.callback( {userSex : "true"} );
     }
     getSexFemale = (e) => {
         this.setState({
-            userSex : false
+            userSex : "false"
         })
-        this.props.callback( {userSex : false} );
+        this.props.callback( {userSex : "false"} );
     }
     render() {
         const { userSex } = this.state;
@@ -32,11 +32,11 @@ export default class Gender extends Component {
             <div className="gender">
                 <label>性&emsp;&emsp;别：</label>
                 <input type="radio" id="male" name="gender" value="male"
-                    checked={ userSex?true:false }
+                    checked={ userSex==="true"?true:false }
                     onChange={ this.getSexMale }
                 /><label htmlFor="male">男</label>
                 <input type="radio" id="female" name="gender" value="female"
-                    checked={ userSex?false:true }
+                    checked={ userSex==="true"?false:true }
                     onChange={ this.getSexFemale }
                 /><label htmlFor="female">女</label>
             </div>

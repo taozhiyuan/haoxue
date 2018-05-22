@@ -29,6 +29,7 @@
 
 section.public-body {
     min-height: 600px;
+    position: relative;
 }
 
 ul.agency-course-list {

@@ -11,10 +11,9 @@ const imgPath = process.env.NODE_ENV === "development"?
 
 sessionStorage.setItem("imgPrefix", imgPath);
 Axios.defaults.baseURL = urlPath;
-// Axios.defaults.headers.deviceId = "fynmm";
+// Axios.defaults.headers.deviceId = window.returnCitySN["cip"];
 // Axios.defaults.headers.post['content-Type'] = 'multipart/form-data';
 
-console.log(typeof window.returnCitySN["cip"])
 export function ImportToken( props ) {
     // Axios.defaults.headers.common["Authorization"] = props;
 };
@@ -23,7 +22,7 @@ export { urlPath };
 //添加一个请求拦截器
 Axios.interceptors.request.use(function(config){
     //在请求发出之前进行一些操作
-    console.log(config.params)
+    console.log(config.data)
     return config;
 },function(err){
     console.error(err)
@@ -45,11 +44,10 @@ Axios.interceptors.response.use(function(res){
 
 const AxiosHome = {
     //机构列表
-    MechanismList : (params) => {
+    MechanismList : () => {
         return Axios({
             method:"get",
-            url:'/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgAll',
-            params
+            url:'/hxj-agency-noauthority-ui/agencyOrg/getAgencyOrgAll'
         });
     },
     //内容分类 
@@ -323,11 +321,27 @@ const AxiosHome = {
     GiveThumbs : (data) => {
         return Axios({
             method: "post",
-            url: '/hxj-agency-ui/agencyPraise/insertAgencyPraise',
+            url: `/hxj-agency-ui/agencyPraise/insertAgencyPraise?access_token=${data.access_token}`,
             data,
             headers : {
                 deviceId : 'hxj'
             }
+        })
+    },
+    // 点赞状态
+    GiveThumbsState : (params) => {
+        return Axios({
+            method: "get",
+            url: "/hxj-agency-ui/agencyPraise/queryAgencyPraise",
+            params
+        })
+    },
+    // 获取富文本
+    getStringByKey : (params) => {
+        return Axios({
+            method: "get",
+            url: "/hxj-base-noauthority-ui/util/getStringByKey",
+            params
         })
     },
 }

@@ -6,11 +6,11 @@ export default class Search {
     constructor() {
         this.type = true;  //初始化可监测的数据
         this.value = "";
-        autorun(() => console.log('有收到更新'));
+        // autorun(() => console.log('有收到更新'));
     }
     @action changeValue(type, value){
         this.type = type;
         this.value = value;
-        console.log(this.type)
+        // console.log(this.type)
     }
 }

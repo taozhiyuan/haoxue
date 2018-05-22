@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import "./Lecturer.css"
 import Title from "./Title.jsx";
-import PropTypes from 'prop-types';
 
 export default class Lecturer extends Component {
     constructor(){
@@ -38,7 +37,3 @@ export default class Lecturer extends Component {
         );
     }
 }
-
-Lecturer.contextTypes = {
-    imgPrefix : PropTypes.string,
-};

@@ -13,10 +13,14 @@ import './CourseDetails.css';
 import { Switch, Route } from "react-router-dom";
 import Axios from '../../global/axios.js';
 import { getUrlParam } from '../../global/getUrlParam.js';
+import { inject, observer } from 'mobx-react';
+@inject('Interactive')
 
+@observer
 export default class CourseDetails extends Component {
     constructor(props){
         super(props)
+        this.interactive = this.props.Interactive;
         this.state = {
             detailsData : null,
             teacherList : null,
@@ -24,6 +28,7 @@ export default class CourseDetails extends Component {
         }
     }
     request = (params) => {
+        this.interactive.switch()
         Promise.all([
             Axios.courseDetails({
                 ip : window.returnCitySN["cip"],
@@ -37,15 +42,20 @@ export default class CourseDetails extends Component {
                 teacherList : t.data.result,
                 SimilarCourses : s.data.result
             })
+            setTimeout(()=>{
+                this.interactive.switch()
+            },500)
         })
     }
     componentWillMount(){
         this.request(getUrlParam(this.props.location).id)
     }
     componentWillReceiveProps(nextProps){
+        console.log('componentWillReceiveProps')
         this.request(getUrlParam(nextProps.location).id)
     }
     render() {
+        console.log('render')
         const { path } = this.props.match;
         const { search } = this.props.location;
         const { detailsData, teacherList, SimilarCourses } = this.state;

@@ -11,31 +11,37 @@ export default class TextContainer extends Component {
         super()
         this.imgPrefix = sessionStorage.getItem("imgPrefix");
         this.state = {
-            GiveThumbs : false,
             popup : false,
             popupText : null,
             popupState : false,
         }
     }
     componentWillMount(){
-        if(sessionStorage.getItem("access_token")){
-            Axios.CollectionState({
-                token : sessionStorage.getItem("access_token"),
-                id : this.props.data.id
-            }).then(res=>{
-                this.setState({ collectionState : res.data.result })
+        Axios.getStringByKey({ key : this.props.data.richTextKey }).then((res) => {
+            this.setState({
+                getStringByKey : res.data.result,
             })
+        });
+        if(sessionStorage.getItem("access_token")){
+            Promise.all([
+                Axios.CollectionState({ //获取收藏状态
+                    token : sessionStorage.getItem("access_token"),
+                    id : this.props.data.id
+                }),
+                Axios.GiveThumbsState({ //获取点赞状态
+                    access_token : sessionStorage.getItem("access_token"),
+                    commid : this.props.data.id
+                })
+            ])
+            .then(([c, g, k]) => {
+                this.setState({
+                    collectionState : c.data.result,
+                    GiveThumbsState : g.data.result,
+                })
+            });
         }
     }
-    GiveThumbs = () => {
-        Axios.GiveThumbs({
-            praiseType : "1",
-            praiseId : this.props.data.id,
-            ipAddress : window.returnCitySN["cip"],
-            access_token : sessionStorage.getItem("access_token")
-        }).then((res)=>{
-            GiveThumbs : res.data.result
-        })
+    GiveThumbs = () => { //点赞
         if(sessionStorage.getItem("access_token")){
             Axios.GiveThumbs({
                 praiseType : "1",
@@ -67,10 +73,10 @@ export default class TextContainer extends Component {
         }
         setTimeout(() => { this.setState({ popup : false }) }, 1000);
     }
-    collection = () => {
+    collection = () => { // 收藏
         if(sessionStorage.getItem("access_token")){
             Axios.collectionCourse({
-                collectionType : "2",
+                collectionType : "1",
                 collectionId : this.props.data.id,
             },{
                 access_token : sessionStorage.getItem("access_token")
@@ -99,10 +105,11 @@ export default class TextContainer extends Component {
         }
         setTimeout(() => { this.setState({ popup : false }) }, 1000);
     }
-    cancel = () => {
-        const { token } = this.state;
+    cancel = () => { //取消收藏
+        const token = sessionStorage.getItem("access_token");
         if(!token){
             this.setState({
+                popupState : false,
                 popup : true,
                 popupText : "请登录",
             })
@@ -116,7 +123,7 @@ export default class TextContainer extends Component {
                 if(res.data.code === "0"){
                     this.setState({
                         popupState : true,
-                        collectionState : 'false'
+                        collectionState : false,
                     })
                 }else{
                     this.setState({
@@ -133,27 +140,28 @@ export default class TextContainer extends Component {
     }
     render() {
         const data = this.props.data;
-        const { GiveThumbs, collectionState, popup, popupText, popupState } = this.state;
-        if(!data){ return false }
+        const { GiveThumbsState, collectionState, popup, popupText, popupState, getStringByKey } = this.state;
         return (
             <div className="text-container">
                 <header>
                     <h1>{ data.orgName }</h1>
                     <h3><i className="iconfont icon-kejian"></i>{ data.browsing }</h3>
                     <h4>
-                        { GiveThumbs ? 
-                            <i className="iconfont icon-guanzhu2" />:
-                            <i className="iconfont icon-guanzhu" onClick={ this.GiveThumbs } />
-                        }{ data.like  }
-                    </h4>
-                    <h4>
-                        { collectionState === 'true' ? 
-                            <i className="iconfont icon-dianzan1" onClick={ this.cancel } />:
-                            <i className="iconfont icon-dianzan" onClick={ this.collection } />
+                        { collectionState ? 
+                            <i className="iconfont icon-guanzhu2" onClick={ this.cancel } />:
+                            <i className="iconfont icon-guanzhu" onClick={ this.collection } />
                         }{ data.collections  }
                     </h4>
+                    <h4>
+                        { GiveThumbsState ? 
+                            <i className="iconfont icon-dianzan1" />:
+                            <i className="iconfont icon-dianzan" onClick={ this.GiveThumbs } />
+                        }{ data.like }
+                    </h4>
                 </header>
-                <aside><img src={ this.imgPrefix + data.photoOsskey } alt=""/></aside>
+                <div className="imgPlaceholder">
+                    <img src={ this.imgPrefix + data.photoOsskey } alt="" />
+                </div>
                 <table className="text-item">
                     <tbody>
                         <tr>
@@ -178,16 +186,10 @@ export default class TextContainer extends Component {
                         </tr>
                         <tr>
                             <th>机构介绍：</th>
-                            <td colSpan="2">
-                                <iframe 
-                                    // onLoad={ this.setIframeHeight }
-                                    title="TextContainer-iframe"
-                                    id="agency-detailed-frame"
-                                    frameBorder="0"
-                                    scrolling="yes"
-                                    seamless
-                                    src ={ this.imgPrefix + data.richTextKey }>
-                                </iframe>
+                            <td 
+                                colSpan="2" 
+                                dangerouslySetInnerHTML={{ __html: getStringByKey }}
+                            >
                             </td>
                         </tr>
                     </tbody>

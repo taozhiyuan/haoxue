@@ -77,6 +77,11 @@ export default class SignUp extends Component {
             }
         })
     }
+    Keydown = ( event ) => { //绑定回车键
+        if(event.keyCode === 13){
+            this.storage()
+        }
+    }
     render() {
         const { path } = this.props.match;
         const { data, popup, popupText, submit } = this.state;
@@ -94,9 +99,12 @@ export default class SignUp extends Component {
                         <Nickname callback={ this.getData } />
                         <Password callback={ this.getData } place="设置6至16位字符的密码" />
                         <RepeatPassword callback={ this.getData } password={ data.password }/>
-                        { submit 
-                            ? <button onClick={ this.SignUpSubmit }>注&emsp;册</button>
-                            : <button className="disable">注&emsp;册</button>
+                        { submit ? 
+                            <button 
+                                onClick={ this.SignUpSubmit }
+                                onKeyDown={ this.Keydown }
+                            >注&emsp;册</button> : 
+                            <button className="disable">注&emsp;册</button>
                         }
                         
                         <footer>

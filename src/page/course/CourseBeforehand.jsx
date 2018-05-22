@@ -25,17 +25,21 @@ export default class CourseBeforehand extends Component {
             token : sessionStorage.getItem("access_token"),
             popup : false,
             popupText : null,
-            submitState : false
+            submitState : false,
+            getStringByKey : ""
         }
     }
     componentWillMount(){
         Axios.courseDetails({
             ip : window.returnCitySN["cip"],
             id : getUrlParam(this.props.location).id,
-        }).then((res)=>{
-            this.setState({
-                data : res.data.result
-            })
+        }).then(( d )=>{
+            Axios.getStringByKey({ key : d.data.result.richTextCourseKey }).then((g) => {
+                this.setState({
+                    data : d.data.result,
+                    getStringByKey : g.data.result,
+                })
+            });
         })
     }
     increase = () => {
@@ -44,7 +48,7 @@ export default class CourseBeforehand extends Component {
         });
     }
     reduce = () => {
-        if(this.state.number === 1 ) return false;
+        if(this.state.number === 1) return false;
         this.setState((prevState) => ({
             number: prevState.number - 1
         }));
@@ -72,12 +76,6 @@ export default class CourseBeforehand extends Component {
         })
     }
     SubmitReservation = () => {
-        // const { pathname, search } = this.props.location;
-        // const { name, tel, QQ, email, token, number, data } = this.state;
-        // this.props.history.push(`${pathname}/success${search}`,{
-        //     orgName: data.orgName,
-        //     courseName : data.courseName
-        // });
         const { name, tel, QQ, email, token, number, data } = this.state;
         const { pathname, search } = this.props.location;
         if(!token){
@@ -124,7 +122,7 @@ export default class CourseBeforehand extends Component {
     render() {
         // console.log(this.props.location)
         const { path } = this.props.match;
-        const { name, tel, QQ, email, number, data, imgPrefix, popup, submitState, popupText } = this.state;
+        const { name, tel, QQ, email, number, data, imgPrefix, popup, submitState, popupText, getStringByKey } = this.state;
         if(!data){ return false }
         const userInfo = [{
                 name : "预定姓名：",
@@ -181,16 +179,7 @@ export default class CourseBeforehand extends Component {
                                     </div>
                                     <h4>{ data.orgName }</h4>
                                     <h5>课程简介：</h5>
-                                    <article dangerouslySetInnerHTML={{ __html: data.courseBewrite }}></article>
-                                    {/* <iframe 
-                                        frameBorder="0"
-                                        scrolling="yes"
-                                        seamless
-                                        width="100%"
-                                        height="100%"
-                                        title="Evaluate-iframe"
-                                        src ={ this.imgPrefix + data.richTextCourseKey }>
-                                    </iframe> */}
+                                    <article dangerouslySetInnerHTML={{ __html: getStringByKey }}></article>
                                     <h6 className="tel">客服咨询：{ data.coursePhone }</h6>
                                 </div>
                                 <div className="course-beforehand-detailed">

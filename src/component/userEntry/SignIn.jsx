@@ -55,6 +55,11 @@ class SignIn extends Component {
             }
         })
     }
+    Keydown = ( event ) => { //绑定回车键
+        if(event.keyCode === 13){
+            this.storage()
+        }
+    }
     render() {
         // const { path, url } = this.props.match;
         return (

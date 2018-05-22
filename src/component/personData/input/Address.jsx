@@ -27,10 +27,10 @@ export default class Address extends Component {
         })
         if( value.length > 4 ){ 
             this.setState({judge : true})
-            this.props.callback({ userHomeAddress: value })
+            this.props.callback({ userHomeAddress: value },true)
         }else{ 
             this.setState({judge : false})
-            this.props.callback({ userHomeAddress: "" })
+            this.props.callback({ userHomeAddress: "" },false)
         }
     }
     render() {
