@@ -1,20 +1,31 @@
 import React, { Component } from 'react'
+import region from '../../static/region';
 
 export default class Filter extends Component {
     state = {
-        type : ["全部", "英语", "美术", "舞蹈"],
         typeTarget : 0,
         area : ["全部", "岳麓区", "雨花区", "天心区"],
         areaTarget : 0,
     }
-    typeTarget = (parame) => {
-        this.setState({ typeTarget : parame })
+    componentDidMount(){
+        this.setState({ area : this.filterArea[0].area })
     }
-    areaTarget = (parame) => {
-        this.setState({ areaTarget : parame })
+    get filterArea() {
+    	return region.filter(
+			item => item.id === "430000"
+        )[0].city.filter( item => item.id === "430100" );
+        
+    }
+    typeTarget = (index, id) => {
+        this.setState({ typeTarget : index })
+        this.props.getType(id)
+    }
+    areaTarget = (index, id) => {
+        this.setState({ areaTarget : index })
+        this.props.getArea(id)
     }
     render(){
-        const { type, area, typeTarget, areaTarget } = this.state;
+        const { area, typeTarget, areaTarget } = this.state;
         const { data } = this.props;
         return(
             <nav>
@@ -23,7 +34,7 @@ export default class Filter extends Component {
                     <ul>
                         { data.map((item, index)=>(
                             <li key={ index }
-                                onClick={ ()=>{ this.typeTarget(index) } }
+                                onClick={ ()=>{ this.typeTarget(index, item.id) } }
                                 className={ typeTarget === index ? "active" : null }
                             >{ item.typeName }</li>
                         )) }
@@ -36,7 +47,7 @@ export default class Filter extends Component {
                             <li key={ index }
                                 onClick={ ()=>{ this.areaTarget(index) } }
                                 className={ areaTarget === index ? "active" : null }
-                            >{ item }</li>
+                            >{ item.name }</li>
                         )) }
                     </ul>
                 </h5>

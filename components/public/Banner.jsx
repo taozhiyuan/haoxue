@@ -46,7 +46,6 @@ export default class Banner extends Component {
                 <style jsx>{`
                         section {
                             height : 400px;
-                            background : #666;
                         }
                         aside {
                             height : 400px;

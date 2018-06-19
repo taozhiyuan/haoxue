@@ -112,9 +112,9 @@ export default class Login extends Component {
                 </div>
                 <style jsx>{`
                     div {
-                        width : 500px;
+                        // width : 500px;
                         height : 100%;
-                        padding : 50px 105px;
+                        padding : 50px 159px;
                         display: inline-block;
                         vertical-align: top;
                         position : relative;
@@ -176,8 +176,8 @@ export default class Login extends Component {
                                 background-color : #f5a00a;
                             }
                             h6 {
-                                line-height : 50px;
-                                height : 50px;
+                                line-height : 40px;
+                                height : 40px;
                                 text-align : center;
                                 color : red;
                             }

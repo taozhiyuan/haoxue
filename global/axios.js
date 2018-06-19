@@ -2,13 +2,17 @@ import Axios from 'axios';
 
 // "http://120.79.247.254:1111":
 // "http://47.107.18.73:1111";
+// www.haoxuehome.com
 // 192.192.168.11:1111
 const urlPath = process.env.NODE_ENV === "development"?
                 "http://120.79.247.254:1111":
-                "http://47.107.18.73:1111";
+                "www.haoxuehome.com";
 const imgPath = process.env.NODE_ENV === "development"?
                 "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/":
                 "http://hxj-oss-prod.oss-cn-shenzhen.aliyuncs.com/";
+
+// const urlPath = 'www.haoxuehome.com';
+// const imgPath = 'http://hxj-oss-prod.oss-cn-shenzhen.aliyuncs.com/';
 
 Axios.defaults.baseURL = urlPath;
 // Axios.defaults.headers.deviceId = window.returnCitySN["cip"];
@@ -167,16 +171,16 @@ const data = {
         return Axios.post('/hxj-base-ui/user/registered', params);
     },
     // 用户登录
-    SignIn : (data) => {
+    SignIn : (params) => {
         return Axios({
             method: "post",
-            // url: `/hxj-base-ui/admin/admin?deviceId=${window.returnCitySN["cip"]}&hxjAuth=Basic aHh3Omh4d1NlY3JldA==`,
-            url: `/hxj-base-ui/admin/admin`,
-            data,
-            headers : {
-                // deviceId : window.returnCitySN["cip"],
-                hxjAuth : "Basic aHh3Omh4d1NlY3JldA=="
-            }
+            url: `/hxj-base-ui/admin/admin?deviceId=${window.returnCitySN["cip"]}&hxjAuth=Basic aHh3Omh4d1NlY3JldA==`,
+            // url: `/hxj-base-ui/admin/admin`,
+            params
+            // headers : {
+            //     // deviceId : window.returnCitySN["cip"],
+            //     hxjAuth : "Basic aHh3Omh4d1NlY3JldA=="
+            // }
         });
     },
     // 用户完善信息

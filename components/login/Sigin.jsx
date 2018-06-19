@@ -75,9 +75,9 @@ export default class Sigin extends Component {
                 </div>
                 <style jsx>{`
                     div {
-                        width : 500px;
+                        // width : 500px;
                         height : 100%;
-                        padding : 50px 105px;
+                        padding : 50px 159px;
                         display: inline-block;
                         vertical-align: top;
                         position : relative;

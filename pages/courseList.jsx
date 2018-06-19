@@ -24,7 +24,7 @@ export default class CourseList extends Component {
     }
     state = {
         paging : 1,
-        number : 10,
+        number : 20,
         data : this.props.data
     }
     PagingCallback = (param) => {

@@ -8,7 +8,7 @@ export default [
             id:"110100",
             name:"北京城区",
             arealevel:"2",
-            parent_id:"110000"，
+            parent_id:"110000",
             area :[
                 {id:"110101",name:"东城区",arealevel:"3",parent_id:"110100"},
                 {id:"110102",name:"西城区",arealevel:"3",parent_id:"110100"},
@@ -3949,7 +3949,7 @@ export default [
             id:"510900",
             name:"遂宁市",
             arealevel:"2",
-            parent_id:"510000"
+            parent_id:"510000",
             area:[
                 {id:"510903",name:"船山区",arealevel:"3",parent_id:"510900"},
                 {id:"510904",name:"安居区",arealevel:"3",parent_id:"510900"},
@@ -5474,9 +5474,7 @@ export default [
         },
     ]
 },
-
 {id:"710000",name:"台湾省",arealevel:"1"},
-
 {id:"810000",name:"香港特别行政区",arealevel:"1"},
-
 {id:"820000",name:"澳门特别行政区",arealevel:"1"}
+]

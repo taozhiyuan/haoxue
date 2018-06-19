@@ -6,6 +6,7 @@ import List from '../components/agency/List.jsx'
 import Paging from '../components/public/Paging.jsx'
 import Error from 'next/error'
 import axios from '../global/axios'
+import { select } from '../global/navSort'
 
 export default class AgencyList extends Component {
     static async getInitialProps({ req }) {
@@ -23,7 +24,10 @@ export default class AgencyList extends Component {
     }
     state = {
         paging : 1,
-        number : 10
+        number : 20,
+        typeId : 0,
+        areaId : 0,
+        data : this.props.data
     }
     PagingCallback = (param) => {
         this.setState({
@@ -35,9 +39,23 @@ export default class AgencyList extends Component {
             paging : 1
         })
     }
+    getType = ( id ) => {
+        const { areaId } = this.state;
+        this.setState({ 
+            typeId : id,
+            data : select( areaId, id, 'orgClassifyArr','area', this.props.data )
+        });
+    }
+    getArea = ( id ) => {
+        const { typeId } = this.state;
+        this.setState({ 
+            areaId : id,
+            data : select( typeId, id, 'area','orgClassifyArr', this.props.data )
+        });
+    }
     render(){
-        const { data, type, status } = this.props;
-        const { paging, number } = this.state;
+        const { type, status } = this.props;
+        const { paging, number, data } = this.state;
         if(!data){ return false }
         let pagingStart = paging * number - number; //起始点=页码*2-2
         let pagingEnd = paging * number; //结束点=页码*2
@@ -50,7 +68,11 @@ export default class AgencyList extends Component {
             <Layout>
                 <div className="main-public">
                     <Path prev={['机构']} target='全部' />
-                    <Filter data={ type } />
+                    <Filter 
+                        data={ type } 
+                        getType={ this.getType }
+                        getArea={ this.getArea }
+                    />
                     <List data={ visibi }/>
                     <Paging 
                         length={ Math.ceil(data.length/number) }
