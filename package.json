@@ -1,0 +1,26 @@
+{
+  "name": "learn-next",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "node server.js",
+    "dev": "next",
+    "build": "next build",
+    "export": "next export",
+    "start": "next build && next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ionicons": "^4.1.2",
+    "maptalks": "^0.40.2",
+    "mockjs": "^1.0.1-beta3",
+    "next": "^6.0.3",
+    "react": "^16.4.0",
+    "react-bmap": "^1.0.71",
+    "react-dom": "^16.4.0",
+    "swiper": "^4.3.3"
+  }
+}
