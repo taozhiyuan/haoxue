@@ -11,7 +11,7 @@ import axios from '../global/axios'
 export default class CourseDetails extends Component {
     static async getInitialProps({ query }) {
         try {
-            const detail = await axios.getAgencyCourseDetail({ ip : 1, id : query.id });
+            const detail = await axios.getAgencyCourseDetail({ id : query.id });
             const relevant = await axios.pushAgencyCourse({ courseId : query.id });
             const video = await axios.getVideoManager({ id : query.id, type : '2' });
             return { 

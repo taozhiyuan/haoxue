@@ -6,13 +6,13 @@ import List from '../components/agency/List.jsx'
 import Paging from '../components/public/Paging.jsx'
 import Error from 'next/error'
 import axios from '../global/axios'
-import { select } from '../global/navSort'
+import { orgSelect } from '../global/navSort'
 
 export default class AgencyList extends Component {
     static async getInitialProps({ req }) {
         try {
             const list = await axios.getAgencyOrgAll();//机构列表
-            const type = await axios.getCommClassifyAll({ classifyType : 'parent' });//类型分类
+            const type = await axios.getCommClassifyAll({ classifyType : 'orgType' });//类型分类
             return {
                 data : list.data.result,
                 type : [ { typeName : "全部", id : 0 }, ...type.data.result ],
@@ -41,16 +41,16 @@ export default class AgencyList extends Component {
     }
     getType = ( id ) => {
         const { areaId } = this.state;
-        this.setState({ 
+        this.setState({
             typeId : id,
-            data : select( areaId, id, 'orgClassifyArr','area', this.props.data )
+            data : orgSelect( areaId, id, 'orgClassifyArr','area', this.props.data )
         });
     }
     getArea = ( id ) => {
         const { typeId } = this.state;
         this.setState({ 
             areaId : id,
-            data : select( typeId, id, 'area','orgClassifyArr', this.props.data )
+            data : orgSelect( typeId, id, 'orgClassifyArr','area', this.props.data )
         });
     }
     render(){

@@ -30,6 +30,7 @@ export default class Index extends Component {
         }
         catch(err) {
             if(!err.response) return { status : 404 }
+            console.log(err.response)
             return { status : err.response.status  }
         }
     }
@@ -40,7 +41,7 @@ export default class Index extends Component {
         }
         return(
             <Layout>
-                <Banner />
+                <Banner data={ data.bannerList.list } />
                 <Forward />
                 <Course data={ data.courseList } />
                 <SubBanner />

@@ -2,16 +2,16 @@ import Axios from 'axios';
 
 // "http://120.79.247.254:1111":
 // "http://47.107.18.73:1111";
-// www.haoxuehome.com
+// www.haoxuehome.com:1111
 // 192.192.168.11:1111
 const urlPath = process.env.NODE_ENV === "development"?
                 "http://120.79.247.254:1111":
-                "www.haoxuehome.com";
+                'http://www.haoxuehome.com:1111';
 const imgPath = process.env.NODE_ENV === "development"?
                 "http://hxj-oss-bucket.oss-cn-shenzhen.aliyuncs.com/":
                 "http://hxj-oss-prod.oss-cn-shenzhen.aliyuncs.com/";
 
-// const urlPath = 'www.haoxuehome.com';
+// const urlPath = 'http://192.168.1.203:1111/';
 // const imgPath = 'http://hxj-oss-prod.oss-cn-shenzhen.aliyuncs.com/';
 
 Axios.defaults.baseURL = urlPath;

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import CourseItem from './CourseItem.jsx'
+import NotFind from '../search/NotFind'
 
 export default class List extends Component {
     render(){
         const { data } = this.props;
+        if(data.length === 0) return <NotFind />;
         return(
             <ul>
                 { data.map((item, index)=>(

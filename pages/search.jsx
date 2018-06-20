@@ -30,7 +30,6 @@ export default class Search extends Component {
     }
     render(){
         let { data, query, status } = this.props;
-        console.log(data, query)
         const { paging, number } = this.state;
         let pagingStart = paging * number - number; //起始点=页码*2-2
         let pagingEnd = paging * number; //结束点=页码*2
@@ -55,18 +54,20 @@ export default class Search extends Component {
         return (
             <Layout>
                 <div className="main-public">
-                    { data && data.length !== 0 ? <>
-                        <Prompt keyword={ query.name } />
-                        <ul>
-                            { visibi.map((item, index)=>(
-                                <Item data={ item } key={index} />
-                            )) }
-                        </ul>
-                        <Paging 
-                            length={ Math.ceil(data.length/number) }
-                            PagingCallback={ this.PagingCallback }
-                        />
-                    </> : <NotFind /> }
+                    { data && data.length !== 0 ? 
+                        <>
+                            <Prompt keyword={ query.name } />
+                            <ul>
+                                { visibi.map((item, index)=>(
+                                    <Item data={ item } key={index} />
+                                )) }
+                            </ul>
+                            <Paging 
+                                length={ Math.ceil(data.length/number) }
+                                PagingCallback={ this.PagingCallback }
+                            />
+                        </> : <><Prompt /><NotFind /></>
+                    }
                     <style jsx>{`
                         ul {
                             background-color : #FFF;

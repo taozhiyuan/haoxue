@@ -8,9 +8,9 @@ export default class Filter extends Component {
         areaTarget : 0,
     }
     componentDidMount(){
-        this.setState({ area : this.filterArea[0].area })
+        this.setState({ area : [{id : 0, name : '全部'}, ...this.filterArea[0].area] })
     }
-    get filterArea() {
+    get filterArea(){
     	return region.filter(
 			item => item.id === "430000"
         )[0].city.filter( item => item.id === "430100" );
@@ -45,7 +45,7 @@ export default class Filter extends Component {
                     <ul>
                         { area.map((item, index)=>(
                             <li key={ index }
-                                onClick={ ()=>{ this.areaTarget(index) } }
+                                onClick={ ()=>{ this.areaTarget(index, item.id) } }
                                 className={ areaTarget === index ? "active" : null }
                             >{ item.name }</li>
                         )) }

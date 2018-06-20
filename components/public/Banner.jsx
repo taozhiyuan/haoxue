@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import Swiper from 'swiper';
+import { imgPath } from '../../global/axios'
 
 export default class Banner extends Component {
     state = {
@@ -23,7 +25,7 @@ export default class Banner extends Component {
         })
     }
     render(){
-        const { data } = this.state;
+        const { data } = this.props;
         return(
             <section>
                 <Head>
@@ -33,9 +35,11 @@ export default class Banner extends Component {
                     <div className="swiper-container" id="swiper1">
                         <div className="swiper-wrapper">
                             { data.map((item, index)=>(
-                                <div className="swiper-slide" key={ index }>
-                                    <aside><img src="/static/img/home/banner.png" alt="" /></aside>
+                                <Link href={ item.articleUrl } key={ index }>
+                                <div className="swiper-slide">
+                                    <aside><img src={ imgPath + item.articleFile } alt="" /></aside>
                                 </div>
+                                </Link>
                             )) }
                         </div>
                         <div className="swiper-pagination"></div>
