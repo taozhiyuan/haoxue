@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import CourseItem from './CourseItem.jsx'
 import NotFind from '../search/NotFind'
+import Loading from '../public/Loading'
 
 export default class List extends Component {
     render(){
-        const { data } = this.props;
+        const { data, paging, number } = this.props;
+        if(!data){ return <Loading /> }
+        let pagingStart = paging * number - number; //起始点=页码*2-2
+        let pagingEnd = paging * number; //结束点=页码*2
+        const visibi = data.slice(pagingStart, pagingEnd); //切开课程列表，只显示2个
         if(data.length === 0) return <NotFind />;
         return(
             <ul>
-                { data.map((item, index)=>(
+                { visibi.map((item, index)=>(
                     <CourseItem data={ item } key={ index } />
                 )) }
                 <style jsx>{`

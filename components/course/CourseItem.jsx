@@ -27,6 +27,7 @@ export default class CourseItem extends Component {
                         height : 220px;
                         float : left;
                         background-color : #FFF;
+                        transition : all 0.5s;
                     }
                     li:hover {
                         position: relative;
@@ -43,9 +44,11 @@ export default class CourseItem extends Component {
                             padding-top : 10px;
                             color : #999;
                         }
+                            img {
+                                transition : all 0.5s;
+                            }
                             img:hover {
                                 transform : scale(1.3);
-                                transition : all 0.5s;
                             }
                     `}</style>
             </li>

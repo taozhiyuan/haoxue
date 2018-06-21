@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Title from '../Title.jsx';
 import Link from 'next/link';
+import NoData from '../../public/NoData';
 import { imgPath } from '../../../global/axios';
 
 export default class AsideInfo extends Component {
@@ -9,7 +10,7 @@ export default class AsideInfo extends Component {
         return(
             <aside>
                 <Title name={ title } />
-                <ul>
+                { data&&data.length!==0 ? <ul>
                     { data.map((item, index)=>(
                         <li key={ index }>
                             <div className="default"><img src={ imgPath + item.articleFile } alt="" /></div>
@@ -24,7 +25,7 @@ export default class AsideInfo extends Component {
                             </div>
                         </li>
                     )) }
-                </ul>
+                </ul> : <NoData /> }
                 <style jsx>{`
                     aside {
                         width : 280px;

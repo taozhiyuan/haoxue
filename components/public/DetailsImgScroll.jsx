@@ -3,11 +3,10 @@ import { imgPath } from '../../global/axios'
 
 export default class DetailsImgScroll extends Component {
     state = {
-        imgList : this.props.data || [],
         n : 0
     }
     right = () => {
-        if(this.state.n === this.state.imgList.length-1) return false;
+        if(this.state.n === this.props.data.length-1) return false;
         this.setState((prevState, props)=>({
             n : prevState.n+1
         }))
@@ -19,32 +18,35 @@ export default class DetailsImgScroll extends Component {
         }))
     }
     render(){
-        const { imgList, n } = this.state;
+        const { n } = this.state;
+        const { data } = this.props;
         return(
-            <div>
+            <div className="default">
                 <ul style={{ 
-                        width : imgList.length * 100 + "%" ,
-                        transform: `translateX(${-n/imgList.length*100}%)`
+                        width : data.length * 100 + "%" ,
+                        transform: `translateX(${-n/data.length*100}%)`
                     }}>
-                    { imgList.map((item, index)=>(
+                    { data.map((item, index)=>(
                         <li key={ index }><img src={ imgPath + item } alt="" /></li>
                     )) }
                 </ul>
-                <aside 
-                    className="icon ion-ios-arrow-back"
-                    onClick={ this.left }
-                ></aside>
-                <aside 
-                    className="icon ion-ios-arrow-forward"
-                    onClick={ this.right }
-                ></aside>
-                <span>{n+1}/{ imgList.length }</span>
+                { data && data.length !== 0 && <>
+                        <aside 
+                            className="icon ion-ios-arrow-back"
+                            onClick={ this.left }
+                        ></aside>
+                        <aside 
+                            className="icon ion-ios-arrow-forward"
+                            onClick={ this.right }
+                        ></aside>
+                        <span>{ n+1 }/{ data.length }</span>
+                    </>
+                }
                 <style jsx>{`
                     div {
                         width : 520px;
                         height : 325px;
                         margin-right : 30px;
-                        background-color : #666;
                         float : left;
                         overflow : hidden;
                         position : relative;

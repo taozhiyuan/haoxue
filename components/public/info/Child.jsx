@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'next/link';
 import Title from '../Title.jsx';
+import NoData from '../../public/NoData';
 import { imgPath } from '../../../global/axios';
 
 export default class Child extends Component {
@@ -9,14 +10,14 @@ export default class Child extends Component {
         return(
             <article>
                 <Title name={ name } url={ url } />
-                <ul>
+                { data&&data.length!==0 ? <ul>
                     { data.map((item, index)=>(
                         <li key={ index }>
                             <div className="default"><img src={ imgPath + item.articleFile } alt=""/></div>
                             <div className="info-child">
                                 <h3 className="ellipsis">{ item.articleTitle }</h3>
                                 <h5>
-                                    { item.articleContent }
+                                    { item.articleAbstract }
                                     <Link href={{ 
                                         pathname : "/infoDetails",
                                         query : { id : item.id }
@@ -30,8 +31,8 @@ export default class Child extends Component {
                                 </h6>
                             </div>
                         </li>
-                    )) }
-                </ul>
+                    ))}
+                </ul> : <NoData /> }
                 <style jsx>{`
                     article {
                         width : 900px;

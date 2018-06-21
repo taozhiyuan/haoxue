@@ -1,14 +1,13 @@
-import Link from 'next/link';
-import Router from 'next/router';
+
 import React, { Component } from 'react';
-console.log(Router)
+import Active from './Active';
 
 export default class Nav extends Component {
     constructor(props){
         super(props);
         this.state = {
             menuPara : [
-                { text : "首  页", path : "/", to : "/" },
+                { text : "首  页", path : "/", to : "/", active : "home-link" },
                 { text : "好课程", path : "/courseList/:bar*", to : "/courseList" },
                 { text : "好机构", path : "/agencyList/:bar*", to : "/agencyList" },
                 { text : "关于我们", path : "/aboutUs/:bar*", to : "/aboutUs" }
@@ -19,15 +18,13 @@ export default class Nav extends Component {
         return (
             <nav>
                 { this.state.menuPara.map(( item, index ) => (
-                    <Link 
+                    <Active 
+                        activeClassName='active'
                         href={ item.to }
                         key={ index }
-                    ><a>{ item.text }</a></Link>
-                    // <Route exact path={ item.path } key={ index }
-                    //     children={({ match }) => (
-                    //         <Link href={ item.to }>{ item.text }</Link>
-                    //     )}
-                    // />
+                    >
+                        <a className='nav-link'>{ item.text }</a>
+                    </Active>
                 ))}
                 <style jsx>{`
                     nav {

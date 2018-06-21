@@ -3,51 +3,6 @@ import Child from '../public/info/Child.jsx';
 import AsideInfo from '../public/info/AsideInfo';
 
 export default class Information extends Component {
-    state = {
-        data : {
-            child : [{
-                id : "id",
-                articleFile : "articleFile",
-                articleTitle : 'articleTitle',
-                articleContent : 'articleContent',
-                articleSource : "articleSource",
-                articleAuthor : "articleAuthor",
-                createTime : "createTime"
-            },{
-                id : "id",
-                articleFile : "articleFile",
-                articleTitle : 'articleTitle',
-                articleContent : 'articleContent',
-                articleSource : "articleSource",
-                articleAuthor : "articleAuthor",
-                createTime : "createTime"
-            },{
-                id : "id",
-                articleTitle : 'articleTitle',
-                articleContent : 'articleContent',
-                articleSource : "articleSource",
-                articleAuthor : "articleAuthor",
-                createTime : "createTime",
-                articleFile : "articleFile"
-            }],
-            news : [{
-                articleTitle : 'articleTitle',
-                createTime : "createTime",
-            },{
-                articleTitle : 'articleTitle',
-                createTime : "createTime",
-            },{
-                articleTitle : 'articleTitle',
-                createTime : "createTime",
-            },{
-                articleTitle : 'articleTitle',
-                createTime : "createTime",
-            },{
-                articleTitle : 'articleTitle',
-                createTime : "createTime",
-            }]
-        }
-    }
     render(){
         const { data } = this.props;
         return(

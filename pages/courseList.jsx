@@ -11,15 +11,16 @@ import { courseSelect } from '../global/navSort'
 export default class CourseList extends Component {
     static async getInitialProps({ req }) {
         try {
-            const list = await axios.getAgencyCourseAll();//课程列表
-            const type = await axios.getCommClassifyAll({ classifyType : 'orgType' });//类型分类
+            // const list = await axios.getAgencyCourseAll();//课程列表
+            const type = await axios.getCommClassifyAll({ classifyType : 'parent' });//类型分类
             return {
-                data : list.data.result,
+                // data : list.data.result,
                 type : [ { typeName : "全部", id : 0 }, ...type.data.result ],
                 status : 200
             }
         }catch(err){
-            return { status : 404 }
+            if(!err.response) return { status : 404 }
+            return { status : err.response.status }
         }
         
     }
@@ -28,7 +29,16 @@ export default class CourseList extends Component {
         number : 20,
         typeId : 0,
         areaId : 0,
-        data : this.props.data
+        data : null,
+        select : null
+    }
+    componentDidMount(){
+        axios.getAgencyCourseAll().then((res)=>{
+            this.setState({
+                data : res.data.result,
+                select : res.data.result
+            })
+        })
     }
     PagingCallback = (param) => {
         this.setState({
@@ -44,24 +54,19 @@ export default class CourseList extends Component {
         const { areaId } = this.state;
         this.setState({
             typeId : id,
-            data : courseSelect( areaId, id, 'orgClassifyArr','area', this.props.data )
+            select : courseSelect( areaId, id, 'courseClassify','area', this.state.data )
         });
     }
     getArea = ( id ) => {
         const { typeId } = this.state;
         this.setState({ 
             areaId : id,
-            data : courseSelect( typeId, id, 'area','orgClassifyArr', this.props.data )
+            select : courseSelect( typeId, id, 'area','courseClassify', this.state.data )
         });
     }
     render(){
         const { type, status } = this.props;
-        const { paging, number, data } = this.state;
-        if(!data){ return false }
-        let pagingStart = paging * number - number; //起始点=页码*2-2
-        let pagingEnd = paging * number; //结束点=页码*2
-        const visibi = data.slice(pagingStart, pagingEnd); //切开课程列表，只显示2个
-
+        const { paging, number, data, select } = this.state;
         if ( status !== 200 ) {
             return <Error statusCode={ status } />
         }
@@ -74,11 +79,11 @@ export default class CourseList extends Component {
                         getType={ this.getType }
                         getArea={ this.getArea }
                     />
-                    <List data={ visibi } />
-                    <Paging 
+                    <List data={ select } paging={ paging } number={ number }/>
+                    { data && <Paging 
                         length={ Math.ceil(data.length/number) }
                         PagingCallback={ this.PagingCallback }
-                    />
+                    />}
                 </div>
             </Layout>
         )

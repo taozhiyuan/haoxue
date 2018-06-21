@@ -10,7 +10,7 @@ export default class DetailsText extends Component {
                     <dt>所授课程：</dt>
                         <dd>{ data.teachCourse }</dd>
                     <dt>机构类型：</dt>
-                        <dd>{ data.memberType }</dd>
+                        <dd>{ data.memberTypeName }</dd>
                     <dt>营业时间：</dt>
                         <dd>{ data.business }</dd>
                     <dt>师资力量：</dt>

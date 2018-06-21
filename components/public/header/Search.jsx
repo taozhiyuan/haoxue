@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { Component } from 'react';
+import Router from 'next/router'
 
 export default class Search extends Component {
     state = {
@@ -22,12 +23,15 @@ export default class Search extends Component {
     getText = (e) => {
         this.setState({ name : this.trim(e.target.value) })
     }
-    // Keydown = ( event ) => {
-    //     if(event.keyCode === 13 && this.state.text){
-    //         this.changeValue(this.state.radio, this.state.text)
-    //         this.props.history.push('/search')
-    //     }
-    // }
+    Keydown = ( event ) => {
+        const { name, target } = this.state;
+        if(event.keyCode === 13 && name){
+            Router.push({
+                pathname :'/search',
+                query : { name, type : target+1 }
+            })
+        }
+    }
     render(){
         const { select, name, type, target } = this.state;
         return (
@@ -51,6 +55,7 @@ export default class Search extends Component {
                     <input type="text" placeholder="找课程、机构、视频"
                         value={ name }
                         onChange={ this.getText }
+                        onKeyDown={ this.Keydown }
                     />
                 </div>
                 { name ? <Link href={{
