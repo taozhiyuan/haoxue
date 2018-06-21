@@ -15,11 +15,13 @@ export default class InfoDetails extends Component {
             const detail = await axios.DetailsArticle({ id : query.id });
             const richText = await axios.getStringByKey({ key : detail.data.result.richTextKey });
             const recommend = await axios.getArticleList({ articleType : '3', pageSize : 5 });
+            const aboutList = await axios.getArticleList({ articleType : detail.data.result.articleType, pageSize : 10 });
             return {
                 data : {
                     detail : detail.data.result, 
                     richText : richText.data.result,
-                    recommendList : recommend.data.result.list
+                    recommendList : recommend.data.result.list,
+                    aboutList : aboutList.data.result.list
                 },
                 status : 200
             }
@@ -64,7 +66,7 @@ export default class InfoDetails extends Component {
                         <Title data={ data.detail } />
                         <article dangerouslySetInnerHTML={{ __html: data.richText }}></article>
                         <Share data={ data.detail } />
-                        <Correlation />
+                        <Correlation data={ data.aboutList } />
                     </section>
                     <aside>
                         <AsideInfo data={ data.recommendList } title="推荐阅读" />

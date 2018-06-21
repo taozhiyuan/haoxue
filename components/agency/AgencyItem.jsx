@@ -26,6 +26,7 @@ export default class AgencyItem extends Component {
                         height : 200px;
                         float : left;
                         background-color : #FFF;
+                        transition : all 0.5s;
                     }
                     li:hover {
                         position: relative;
@@ -38,6 +39,9 @@ export default class AgencyItem extends Component {
                         h4 {
                             padding-top : 18px;
                         }
+                            img {
+                                transition : all 0.5s;
+                            }
                             img:hover {
                                 transform : scale(1.3);
                                 transition : all 0.5s;

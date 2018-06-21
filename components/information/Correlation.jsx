@@ -6,7 +6,7 @@ export default class Correlation extends Component {
         data : [1,1,1,2,2,2,2,2,2]
     }
     render(){
-        const { data } = this.state;
+        const { data } = this.props;
         return(
             <div>
                 <h3>相关新闻</h3>
@@ -15,9 +15,9 @@ export default class Correlation extends Component {
                         <li key={ index }>
                             <Link href={{ 
                                 pathname : "/infoDetails", 
-                                query : { id : "8987" } }}
+                                query : { id : item.id } }}
                             >
-                                <a className="ellipsis">属性指示如何相对于对象的内容绘制列表项标记。</a>
+                                <a className="ellipsis">{ item.articleTitle }</a>
                             </Link>
                         </li>
                     )) }

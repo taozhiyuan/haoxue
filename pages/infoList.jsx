@@ -91,7 +91,7 @@ export default class infoList extends Component {
         const visibi = data.childList.slice(pagingStart, pagingEnd); //切开课程列表，只显示2个
         return(
             <Layout>
-                <Banner />
+                <Banner data={ data.bannerList } />
                 <div className="main-public">
                     <section>
                         <Child data={ visibi } name="新闻资讯" />

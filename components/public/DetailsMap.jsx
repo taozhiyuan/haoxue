@@ -13,7 +13,6 @@ export default class DetailsMap extends Component {
     render(){
         const { Map, Marker } = this.state;
         const position = {lng: 116.402544, lat: 39.928216};
-        const { data } = this.props;
         return(
             <section onClick={ this.props.mapClick }>
                 <div onClick={ (e)=>{ e.stopPropagation() } }>
@@ -33,12 +32,14 @@ export default class DetailsMap extends Component {
                     }
                         div {
                             height : 400px;
-                            width : 100%;
-                            position : absolute;
+                            width : 50%;
+                            position : relative;
                             top : 50%;
                             left : 0;
-                            margin-top : -200px;
+                            margin : -200px auto 0px;
                             background-color : #FFF;
+                            border-radius : 5px;
+                            overflow : hidden;
                         }
                 `}</style>
             </section>

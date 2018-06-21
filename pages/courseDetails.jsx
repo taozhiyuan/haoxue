@@ -26,13 +26,6 @@ export default class CourseDetails extends Component {
             return { status : err.response.status }
         }
     }
-    // componentDidMount(){
-    //     axios.getAgencyCourseDetail({ ip : 1, id : 'a3f94c53-9cb1-4a5b-b902-2b4fefa330fc' }).then((res)=>{
-    //         console.log(res)
-    //     }).catch((err)=>{
-    //         console.log(err.response)
-    //     })
-    // }
     render(){
         const { data, status } = this.props;
         if ( status !== 200 ) {

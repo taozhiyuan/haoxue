@@ -15,8 +15,8 @@ export default class Index extends Component {
             const banner = await axios.getArticleList({ articleType : '1' });
             const org = await axios.getPushList({ pushType : '1', number : 10 })
             const course = await axios.getPushList({ pushType : '2', number : 10 })
-            const child = await axios.getArticleList({ articleType : '3', pageSize : 3 })
-            const recommend = await axios.getArticleList({ articleType : '3', pageSize : 5 });
+            const child = await axios.getArticleList({ articleType : '15', pageSize : 3 })
+            const recommend = await axios.getArticleList({ articleType : '14', pageSize : 5 });
             return {
                 data : {
                     bannerList : banner.data.result, 

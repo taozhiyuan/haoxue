@@ -7,7 +7,7 @@ export default class Guild extends Component {
     render(){
         return(
             <div>
-                <h3>全国客服：<span>400-666-8888</span></h3>
+                <h3>全国客服：<span>400-068-0258</span></h3>
                 <Partner />
                 <Nav />
                 <QRCode />

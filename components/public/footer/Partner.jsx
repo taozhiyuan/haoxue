@@ -16,7 +16,7 @@ export default class Partner extends Component {
                     }
                         li {
                             display: inline-block;
-                            height : 35px;
+                            height : 50px;
                         }
                         li:not(:last-child){
                             margin-right : 20px;
