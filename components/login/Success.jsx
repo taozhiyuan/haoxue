@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 
 export default class Success extends Component {
     render(){
+        const { data } = this.props;
         return(
             <div>
                 <i className="icon ion-md-checkmark-circle-outline"></i>
-                <h4>注册成功</h4>
+                <h4>{ data }</h4>
                 <button>进入首页</button>
                 <style jsx>{`
                     i {

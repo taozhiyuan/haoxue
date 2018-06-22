@@ -6,18 +6,18 @@ export default class DetailsText extends Component {
         return(
             <div>
                 <h2>{ data.courseName }</h2>
-                <h4>{ data.orgName }</h4>
+                <h4>{ data.orgName||<span className="temporary">暂无</span> }</h4>
                 <dl>
                     <dt>课程周期：</dt>
-                    <dd>{ data.courseCycle }</dd>
+                    <dd>{ data.courseCycle||<span className="temporary">暂无</span> }</dd>
                     <dt>上课时间：</dt>
-                    <dd>{ data.courseClassTime }</dd>
+                    <dd>{ data.courseClassTime||<span className="temporary">暂无</span> }</dd>
                     <dt>上课地址：</dt>
-                    <dd>{ data.courseAddress }&emsp;
+                    <dd>{ data.courseAddress||<span className="temporary">暂无</span> }&emsp;
                         <em onClick={ this.props.mapClick }><i className="icon ion-md-pin"/>&nbsp;查看地图</em>
                     </dd>
                 </dl>
-                <h5>课程价格：<em>￥{ data.coursePrice }</em></h5>
+                <h5>课程价格：<em>￥{ data.coursePrice||<span className="temporary">暂无</span> }</em></h5>
                 <button>预约体验</button>
                 <button>分期服务</button>
                 <style jsx>{`

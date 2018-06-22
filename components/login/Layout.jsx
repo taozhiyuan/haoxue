@@ -5,7 +5,6 @@ export default class Layout extends Component {
         return(
             <section>
                 <div>
-                    {/* <aside><img src="/static/img/public/login.png" alt=""/></aside> */}
                     { this.props.children }
                 </div>
                 <style jsx>{`
@@ -27,11 +26,6 @@ export default class Layout extends Component {
                             top : 50%;
                             box-shadow: 0px 0px 10px #555;
                         }
-                            // aside {
-                            //     width : 340px;
-                            //     height : 100%;
-                            //     display: inline-block;
-                            // }
                 `}</style>
             </section>
         )

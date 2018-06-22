@@ -12,6 +12,7 @@ export default class Header extends Component {
     }
     render(){
         const { login } = this.state;
+        const { setVisibi, siginSucess } = this.props;
         return (
             <header className="public">
                 <div className="main-public">
@@ -21,7 +22,7 @@ export default class Header extends Component {
                     <Position />
                     <Search />
                     <Nav />
-                    { login ? <LoginAfter /> : <LoginBefore setVisibi={ this.props.setVisibi } /> }
+                    { siginSucess ? <LoginAfter setVisibi={ setVisibi } /> : <LoginBefore setVisibi={ setVisibi } /> }
                 </div>
                 <style jsx global>{`
                     header.public {

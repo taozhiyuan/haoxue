@@ -4,17 +4,28 @@ import Footer from './public/Footer'
 import Sigin from './login/Sigin'
 import Login from './login/Login'
 import Head from 'next/head'
+import { setAuth } from '../global/axiosPublic';
 
 export default class Layout extends Component {
     state = {
         sigin : false,
-        login : false
+        login : false,
+        siginSucess : false
     }
     setVisibi = (parame) => {
         this.setState({ ...this.state, ...{[parame]:!this.state[parame]} })
     }
+    componentDidMount(){
+        const token = setAuth(sessionStorage.getItem("token"));
+        if(token){
+            setAuth(token)
+            this.setState({ siginSucess : true })
+        }else{
+            this.setState({ siginSucess : false })
+        }
+    }
     render(){
-        const { sigin, login } = this.state;
+        const { sigin, login, siginSucess } = this.state;
         return(
             <React.Fragment>
                 <Head>
@@ -26,7 +37,7 @@ export default class Layout extends Component {
                     <link rel="shortcut icon" href="/static/favicon.ico" />
                     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
                 </Head>
-                <Header setVisibi={ this.setVisibi } />
+                <Header setVisibi={ this.setVisibi } siginSucess={ siginSucess }/>
                 { sigin && <Sigin setVisibi={ this.setVisibi } /> }
                 { login && <Login setVisibi={ this.setVisibi } /> }
                 { this.props.children }

@@ -8,19 +8,19 @@ export default class DetailsText extends Component {
                 <h2>{ data.orgName }</h2>
                 <dl>
                     <dt>所授课程：</dt>
-                        <dd>{ data.teachCourse }</dd>
+                        <dd>{ data.teachCourse||<span className="temporary">暂无</span> }</dd>
                     <dt>机构类型：</dt>
-                        <dd>{ data.memberTypeName }</dd>
+                        <dd>{ data.memberTypeName||<span className="temporary">暂无</span> }</dd>
                     <dt>营业时间：</dt>
-                        <dd>{ data.business }</dd>
+                        <dd>{ data.business||<span className="temporary">暂无</span> }</dd>
                     <dt>师资力量：</dt>
-                        <dd>{ data.orgResources }</dd>
+                        <dd>{ data.orgResources||<span className="temporary">暂无</span> }</dd>
                     <dt>经营周期：</dt>
-                        <dd>{ data.cycle }</dd>
+                        <dd>{ data.cycle||<span className="temporary">暂无</span> }</dd>
                     <dt>学员规模：</dt>
-                        <dd>{ data.students }</dd>
+                        <dd>{ data.students||<span className="temporary">暂无</span> }</dd>
                     <dt>上课地址：</dt>
-                        <dd>{ data.orgAddressDetail }&emsp;
+                        <dd>{ data.orgAddressDetail||<span className="temporary">暂无</span> }&emsp;
                             <em onClick={ this.props.mapClick }><i className="icon ion-md-pin"/>&nbsp;查看地图</em>
                         </dd>
                 </dl>

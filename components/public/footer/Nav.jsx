@@ -6,11 +6,11 @@ export default class Nav extends Component {
         return(
             <nav>
                 <Link href="/"><a>分期服务</a></Link>
-                <Link href="/"><a>关于我们</a></Link>
+                <Link href="/aboutUs"><a>关于我们</a></Link>
                 <Link href="/"><a>公司资质</a></Link>
                 <Link href="/"><a>品牌文化</a></Link>
                 <Link href="/"><a>愿景理念</a></Link>
-                <Link href="/orgEntry"><a>机构入驻</a></Link>
+                <Link href="/organHome"><a>机构入驻</a></Link>
                 <style jsx>{`
                     nav {
                         color : #505b64;
