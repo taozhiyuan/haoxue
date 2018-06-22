@@ -5,7 +5,7 @@ import Axios from 'axios';
 // www.haoxuehome.com:1111
 // 192.192.168.11:1111
 const urlPath = process.env.NODE_ENV === "development"?
-                "http://120.79.247.254:1111":
+                "http://192.192.168.11:1111":
                 'http://www.haoxuehome.com:1111';
 
 // const urlPath = 'http://192.168.1.203:1111/';

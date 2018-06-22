@@ -10,7 +10,7 @@ export default class Nav extends Component {
                 <Link href="/"><a>公司资质</a></Link>
                 <Link href="/"><a>品牌文化</a></Link>
                 <Link href="/"><a>愿景理念</a></Link>
-                <Link href="/"><a>机构入驻</a></Link>
+                <Link href="/orgEntry"><a>机构入驻</a></Link>
                 <style jsx>{`
                     nav {
                         color : #505b64;

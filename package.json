@@ -21,6 +21,7 @@
     "react": "^16.4.0",
     "react-bmap": "^1.0.71",
     "react-dom": "^16.4.0",
-    "swiper": "^4.3.3"
+    "swiper": "^4.3.3",
+    "wangeditor": "^3.1.1"
   }
 }
