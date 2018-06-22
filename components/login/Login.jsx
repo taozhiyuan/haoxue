@@ -52,36 +52,34 @@ export default class Login extends Component {
                 break;
             default:
                 this.setState({ msg : null, submit : true })
+                this.submit()
         }
     }
     submit = () => {
         const { data } = this.state;
-        this.verifica()
-        if(this.state.submit){
-            axios.SMSVerification({ // 匹配短信验证码
-                smsCode : data.msg_code
-            }).then((res)=>{
-                if(res.data.code === "0"){
-                    axios.UserRegist({ // 注册
-                        loginUser : data.user_name,
-                        userName : null,
-                        password : data.password
-                    }).then((res)=>{
-                        if(res.data.code === "0"){
-                            this.setState({ success : true }) // 设置注册成功状态
-                        }else{
-                            this.setState({ msg : res.data.msg }) // 设置报错
-                        }
-                    }).catch((err)=>{
-                        this.setState({ msg : err.respones.msg || "注册失败" })// 设置报错
-                    })
-                }else{
-                    this.setState({ msg : res.data.msg })// 设置报错
-                }
-            }).catch((err)=>{
-                this.setState({ msg : '验证码不匹配' })// 设置报错
-            })
-        }
+        axios.SMSVerification({ // 匹配短信验证码
+            smsCode : data.msg_code
+        }).then((res)=>{
+            if(res.data.code === "0"){
+                axios.UserRegist({ // 注册
+                    loginUser : data.user_name,
+                    userName : null,
+                    password : data.password
+                }).then((res)=>{
+                    if(res.data.code === "0"){
+                        this.setState({ success : true }) // 设置注册成功状态
+                    }else{
+                        this.setState({ msg : res.data.msg }) // 设置报错
+                    }
+                }).catch((err)=>{
+                    this.setState({ msg : err.respones.msg || "注册失败" })// 设置报错
+                })
+            }else{
+                this.setState({ msg : res.data.msg })// 设置报错
+            }
+        }).catch((err)=>{
+            this.setState({ msg : '验证码不匹配' })// 设置报错
+        })
     }
     render(){
         const { msg, data, success } = this.state;
@@ -90,7 +88,7 @@ export default class Login extends Component {
             <Layout>
                 <div>
                     <p>注册<i className="icon ion-md-close" onClick={ ()=>{ setVisibi('login') } }></i></p>
-                    { success ? <Success /> : 
+                    { success ? <Success data="注册成功" /> : 
                         <>
                             <UserName 
                                 callback={ this.getDate } 
@@ -105,14 +103,14 @@ export default class Login extends Component {
                             <Protocol callback={ this.getDate } />
                             <h6> { msg } </h6>
                             <button
-                                onClick={ this.submit }
+                                onClick={ this.verifica }
                             >立即注册</button>
                         </>
                     }
                 </div>
                 <style jsx>{`
                     div {
-                        // width : 500px;
+                        width: 100%;
                         height : 100%;
                         padding : 50px 159px;
                         display: inline-block;

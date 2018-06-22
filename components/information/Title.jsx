@@ -9,7 +9,7 @@ export default class Title extends Component {
                 <h6>
                     <span>文章来源：{ data.articleSource }</span>
                     <span>作者：{ data.articleAuthor }</span>
-                    <span>发布时间：！后台无字段</span>
+                    <span>发布时间：{ data.createTime }</span>
                 </h6>
                 <style jsx>{`
                     h2 {

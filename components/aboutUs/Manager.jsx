@@ -20,21 +20,21 @@ export default class Manager extends Component {
                             </footer>
                         </li>
                         <li>
-                            <div className="default"></div>
+                            <div className="default"><img src="/static/img/aboutUs/manager_1.png" alt=""/></div>
                             <footer>
                                 <h3>肖 薇</h3>
                                 <h5>总经理（CEO）</h5>
                             </footer>
                         </li>
                         <li>
-                            <div className="default"></div>
+                            <div className="default"><img src="/static/img/aboutUs/manager_2.png" alt=""/></div>
                             <footer>
                                 <h3>王 旺</h3>
                                 <h5>运营总监（COO）</h5>
                             </footer>
                         </li>
                         <li>
-                            <div className="default"></div>
+                            <div className="default"><img src="/static/img/aboutUs/manager_3.png" alt=""/></div>
                             <footer>
                                 <h3>葛 勇</h3>
                                 <h5>商务总监</h5>

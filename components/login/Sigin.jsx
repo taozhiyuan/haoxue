@@ -3,13 +3,16 @@ import Layout from './Layout'
 import UserName from './input/SignUserName'
 import Password from './input/Password'
 import ChartCode from './input/ChartCode'
+import Success from './Success'
 import Axios from '../../global/axios';
+import { setAuth } from '../../global/axiosPublic';
 
 export default class Sigin extends Component {
     state = {
         active : 0,
         type : ['个人', '机构'],
         msg : null,
+        success : false, //登录是否成功
         data : {}
     }
     switech = (parame) => { //切换active
@@ -33,49 +36,59 @@ export default class Sigin extends Component {
                 break;
             default:
                 this.setState({ msg : null })
+                this.submit()
         }
     }
     submit = () => {
         const { data } = this.state;
-        this.verifica()
         Axios.SignIn({
             username : data.user_name,
             password : data.password,
             imageCode : data.chart_code
         }).then(res => {
             console.log(res)
+            if(res.data.access_token){
+                this.setState({ success : true })
+                sessionStorage.setItem( "token", res.data.access_token )
+                this.props.setVisibi('siginSucess')
+                setAuth( res.data.access_token )
+            }else{
+                this.setState({ msg : res.data })
+            }
         }).catch((err)=>{
-            console.log('err'+err.response)
+            console.log('err'+err)
         })
     }
     render(){
-        const { active, msg, type } = this.state;
+        const { active, msg, type, success } = this.state;
         const { setVisibi } = this.props;
         return(
             <Layout>
                 <div>
                     <p>登录<i className="icon ion-md-close" onClick={ ()=>{ setVisibi('sigin') } }></i></p>
-                    <ul>
-                        { type.map((item, index)=>(
-                            <li 
-                                onClick={ ()=>{ this.switech(index) } } 
-                                key={ index }
-                                className={ active === index ? "active" : null }
-                            >{ item }</li>
-                        )) }
-                    </ul>
-                    <UserName callback={ this.getDate } />
-                    <Password callback={ this.getDate } />
-                    <ChartCode callback={ this.getDate } />
-                    <h6> { msg } </h6>
-                    <button
-                        onClick={ this.submit }
-                    >立即登录</button>
-                    <h5>{ active ? '免费申请入驻' : '还没有账号？立即注册' }</h5>
+                    { success ? <Success data="登录成功" /> : <>
+                        <ul>
+                            { type.map((item, index)=>(
+                                <li 
+                                    onClick={ ()=>{ this.switech(index) } } 
+                                    key={ index }
+                                    className={ active === index ? "active" : null }
+                                >{ item }</li>
+                            )) }
+                        </ul>
+                        <UserName callback={ this.getDate } />
+                        <Password callback={ this.getDate } />
+                        <ChartCode callback={ this.getDate } />
+                        <h6> { msg } </h6>
+                        <button
+                            onClick={ this.verifica }
+                        >立即登录</button>
+                        <h5>{ active ? '免费申请入驻' : '还没有账号？立即注册' }</h5>
+                    </>}
                 </div>
                 <style jsx>{`
                     div {
-                        // width : 500px;
+                        width: 100%;
                         height : 100%;
                         padding : 50px 159px;
                         display: inline-block;

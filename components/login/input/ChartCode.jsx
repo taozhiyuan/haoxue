@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from '../../../global/axios'
+const urlPath = process.env.NODE_ENV === "development"?
+                "http://120.79.247.254:1111":
+                'http://www.haoxuehome.com:1111';
 
 export default class ChartCode extends Component {
     state = {
         value : "",
-        refresh : `http://120.79.247.254:1111/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36`
+        refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36`
     }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -22,12 +25,13 @@ export default class ChartCode extends Component {
         }
     }
     componentDidMount(){
-        axios.getGraphicCode( window.returnCitySN["cip"] ).then((res)=>{
-            this.setState({ chart_code : res.data })
+        axios.getGraphicCode(  ).then((res)=>{
+            console.log(res)
+            this.setState({ chart_code : res.data.result })
         })
     }
     refresh = () => {
-        this.setState({ refresh : `http://120.79.247.254:1111/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
+        this.setState({ refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
     }
     render(){
         const { value, chart_code } = this.state;

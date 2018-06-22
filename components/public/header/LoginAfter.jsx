@@ -11,6 +11,10 @@ export default class LoginAfter extends Component {
     Leave = () => {
         this.setState({ active : false })
     }
+    signOut = () => {
+        this.props.setVisibi('siginSucess')
+        sessionStorage.removeItem('token')
+    }
     render(){
         const { active } = this.state;
         return (
@@ -28,6 +32,7 @@ export default class LoginAfter extends Component {
                 <ul>
                     <li><Link href="/">个人管理</Link></li>
                     <li><Link href="/">机构管理</Link></li>
+                    <li onClick={ this.signOut }>退出登录</li>
                 </ul>
                 <style jsx>{`
                     div {

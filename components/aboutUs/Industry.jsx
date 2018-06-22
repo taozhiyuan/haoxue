@@ -8,15 +8,15 @@ export default class Industry extends Component {
                 <h5>好学家联合培训行业内8名权威专家共同发起湖南省培训产业联盟，联盟成员为培训领域的各类协会及其培训机构会员单位，产业联盟将积极促进行业资源共享，拉动协会会员共同发展进步。</h5>
                 <ul>
                     <li>
-                        <div className="default"></div>
+                        <div className="default"><img src="/static/img/aboutUs/association_1.jpeg" alt=""/></div>
                         <h4>中国教育协会</h4>
                     </li>
                     <li>
-                        <div className="default"></div>
+                        <div className="default"><img src="/static/img/aboutUs/association_2.jpeg" alt=""/></div>
                         <h4>中国教育交流协会</h4>
                     </li>
                     <li>
-                        <div className="default"></div>
+                        <div className="default"><img src="/static/img/aboutUs/association_3.jpeg" alt=""/></div>
                         <h4>中国当代教育协会</h4>
                     </li>
                 </ul>
@@ -50,6 +50,7 @@ export default class Industry extends Component {
                                     div {
                                         height : 180px;
                                         background-color : #eee;
+                                        border: 1px solid #eee;
                                     }
                                     h4 {
                                         color : #666;
