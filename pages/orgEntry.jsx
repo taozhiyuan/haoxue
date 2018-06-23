@@ -4,6 +4,7 @@ import Info from '../components/orgAdmission/Info'
 import Tel from '../components/orgAdmission/Tel'
 import Protocols from '../components/orgAdmission/Protocols'
 import Axios from '../global/orgRequests'
+import Router from 'next/router'
 
 
 export default class orgEntry extends Component {
@@ -72,7 +73,14 @@ export default class orgEntry extends Component {
                     }
                 }
 
-                Axios.orgInfoConfirmJoin(obj)
+                Axios.orgInfoConfirmJoin(obj).then(res => {
+                    if (res.data.code == 0) {
+                        alert(res.data.msg)
+                        Router.push('/organSuce')
+                    }else {
+                        alert(res.data.msg)
+                    }
+                })
             }  
         })
     }
