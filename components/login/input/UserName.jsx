@@ -17,9 +17,9 @@ export default class UserName extends Component {
         if( value.length > 10 && match ){
             axios.VerificationMobile({ loginUser : value }).then((res)=>{
                 if(res.data.code === "1"){
-                    this.props.getMsg({ msg : res.data.msg })
+                    this.props.getMsg(res.data.msg)
                 }else{
-                    this.props.getMsg({ msg : null })
+                    this.props.getMsg(null)
                     this.props.callback({ user_name : value })
                 }
             })

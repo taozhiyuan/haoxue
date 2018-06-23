@@ -73,18 +73,17 @@ const data = {
         });
     },
     // 获取图形验证码
-    getGraphicCode : (params) => {
+    getGraphicCode : () => {
         return Axios({
             method: "get",
             url: "/hxj-agency-ui/code/image",
             params : {
-                width : 90,
+                width : 100,
                 height : 36,
-                deviceId : params
+                deviceId : window.returnCitySN["cip"]
             },
             headers : {
-                Accept: "image/webp,image/apng,image/*,*/*;q=0.8",
-                deviceId : params
+                "Accept": "image/webp,image/apng,image/*,*/*;q=0.8"
             }
         });
     },

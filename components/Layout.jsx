@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Header from './public/Header'
 import Footer from './public/Footer'
-import Sigin from './login/Sigin'
-import Login from './login/Login'
+import Sigin from './login/SiginIn'
+import Login from './login/SiginUp'
 import Head from 'next/head'
 import { setAuth } from '../global/axiosPublic';
 

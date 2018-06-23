@@ -60,8 +60,10 @@ export default class Protocols extends Component {
                     .msg-box>div {
                         width: 80%;
                         height: 65%;
-                        margin: 25px auto 25px auto;
+                        margin: 25px auto;
+                        padding : 0% 3%;
                         overflow-y: auto;
+                        border : 1px solid #ddd;
                     }
                     .msg-box>div>p {
                         margin: 30px 0 20px 0;

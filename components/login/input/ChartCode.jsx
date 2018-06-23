@@ -7,7 +7,7 @@ const urlPath = process.env.NODE_ENV === "development"?
 export default class ChartCode extends Component {
     state = {
         value : "",
-        refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36`
+        chart : null
     }
     trim = (str) => {
         return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -24,26 +24,42 @@ export default class ChartCode extends Component {
             this.props.callback({ chart_code : null })
         }
     }
-    // componentDidMount(){
-    //     axios.getGraphicCode(  ).then((res)=>{
-    //         console.log(res)
-    //         this.setState({ chart_code : res.data.result })
-    //     })
-    // }
-    refresh = () => {
-        this.setState({ refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
+    componentDidMount(){
+        axios.getGraphicCode().then((res)=>{
+            var blob = new Blob([res.data],{type: "*/*"}); 
+            console.log(blob);
+            console.log(blob.size);
+            console.log(blob.type);
+            console.log(window.URL.createObjectURL(blob))
+            this.setState({ chart : window.URL.createObjectURL(blob) })
+        })
+        // this.getChartCode()
+    }
+    getChartCode = () => {
+        this.setState({ chart : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
+    }
+    load = (event) => {
+        window.URL.revokeObjectURL(this.src); 
+        console.log(event)
+    }
+    onerror = (event) => {
+        console.log(event)
     }
     render(){
-        const { value, chart_code } = this.state;
+        const { value, chart } = this.state;
         return(
             <div>
                 <input type="text" placeholder="请输入验证码" maxLength="6" 
-                    value={ value } 
+                    value={ value }
                     onChange={ this.getValue }
                 />
-                {/* <em><img src={ chart_code } alt=""/></em> */}
-                <em><img src={ this.state.refresh } alt=""/></em>
-                <span onClick={ this.refresh }>换一张</span>
+                <em>
+                    <img src={ chart } alt=""
+                        onLoad={ this.load }
+                        onError={ this.onerror }
+                    />
+                </em>
+                <span onClick={ this.getChartCode }>换一张</span>
                 <style jsx>{`
                     div {
                         margin-top : 20px;

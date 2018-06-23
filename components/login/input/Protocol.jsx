@@ -15,7 +15,10 @@ export default class Protocol extends Component {
                 <input type="checkbox" id="protocol" value="" checked={ check }
                     onClick={ this.check }
                 />
-                <label htmlFor="protocol">我已阅读并同意<span>《好学家用户注册协议》</span></label>
+                <label htmlFor="protocol">我已阅读并同意</label>
+                <span onClick={ 
+                    ()=>{ this.props.getAgreement(true) } //弹出协议书
+                }>《好学家用户注册协议》</span>
                 <style jsx>{`
                     div {
                         margin-top : 20px;
@@ -30,6 +33,8 @@ export default class Protocol extends Component {
                         }
                             span {
                                 color : #f5a00a;
+                                cursor : pointer;
+                                font-size : 12px;
                             }
                 `}</style>
             </div>
