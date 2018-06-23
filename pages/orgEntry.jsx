@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import Layout from '../components/Layout.jsx'
-import Info from '../components/admission/Info'
-import Tel from '../components/admission/Tel'
-import Protocols from '../components/admission/Protocols'
+import Info from '../components/orgAdmission/Info'
+import Tel from '../components/orgAdmission/Tel'
+import Protocols from '../components/orgAdmission/Protocols'
 import Axios from '../global/orgRequests'
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 
 export default class orgEntry extends Component {
@@ -43,35 +42,33 @@ export default class orgEntry extends Component {
     }
 
     submitAll = () => {       
-        let _this = this
-        console.log(this.state)
         if (!this.state.checked) {
             alert('请阅读并同意机构入驻服务协议后再提交资料')
-            return
+            return false;
         }
         Axios.orgRichContextToOss({
-            str: _this.state.orgInfoConfirm.str
+            str: this.state.orgInfoConfirm.str
         }).then(res => {
             if (res.data) {
-                let state = _this.state, obj = {}
+                let state = this.state, obj = {}
                 let reg = /^[1][3,4,5,7,8][0-9]{9}$/  
 
-                _this.setState({richTextKey: res.data.result})
+                this.setState({richTextKey: res.data.result})
                 state.orgInfoConfirm.richTextKey = res.data.result
                 obj = {userInert: state.userInsert, orgInfoConfirm: state.orgInfoConfirm}
                 for (let k in obj.userInert) {
                     if (!obj.userInert[k]) {
                         alert('请填写手机号码')
-                        return
+                        return false;
                     }else if (reg.test(obj.userInert[k])) {
                         alert('请填写正确手机号')
-                        return
+                        return false;
                     }
                 }
                 for (let k in obj.orgInfoConfirm) {
                     if (!obj.orgInfoConfirm[k]) {
                         alert('资料未完成填写，请把所有资料填写完成后再提交！')
-                        return
+                        return false;
                     }
                 }
 

@@ -5,7 +5,7 @@ export default class organHome extends Component {
     render(){
         return(
             <div>
-                <Link href="/"><a>机构免费入驻</a></Link>
+                <Link href="/orgEntry"><a>机构免费入驻</a></Link>
                 <h6>申请到开通1个工作日内</h6>
                 <style jsx>{`
                     div {

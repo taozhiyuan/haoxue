@@ -105,11 +105,12 @@ const data = {
         })
     },
     // 用户登录
-    SignIn : (data) => {
+    SignIn : (params) => {
         return Axios({
             method: "post",
             url: `/hxj-base-ui/admin/admin`,
-            data,
+            // url: `/hxj-base-ui/admin/admin?deviceId=${}&hxjAuth=Basic aHh3Omh4d1NlY3JldA==`,
+            params,
             // headers : {
             //     "deviceId" : window.returnCitySN["cip"],
             //     "hxjAuth" : "Basic aHh3Omh4d1NlY3JldA==",

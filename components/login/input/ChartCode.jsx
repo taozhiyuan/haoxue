@@ -24,12 +24,12 @@ export default class ChartCode extends Component {
             this.props.callback({ chart_code : null })
         }
     }
-    componentDidMount(){
-        axios.getGraphicCode(  ).then((res)=>{
-            console.log(res)
-            this.setState({ chart_code : res.data.result })
-        })
-    }
+    // componentDidMount(){
+    //     axios.getGraphicCode(  ).then((res)=>{
+    //         console.log(res)
+    //         this.setState({ chart_code : res.data.result })
+    //     })
+    // }
     refresh = () => {
         this.setState({ refresh : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
     }

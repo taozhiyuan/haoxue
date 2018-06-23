@@ -44,9 +44,10 @@ export default class Sigin extends Component {
         Axios.SignIn({
             username : data.user_name,
             password : data.password,
-            imageCode : data.chart_code
+            imageCode : data.chart_code,
+            deviceId : window.returnCitySN["cip"],
+            hxjAuth : "Basic aHh3Omh4d1NlY3JldA=="
         }).then(res => {
-            console.log(res)
             if(res.data.access_token){
                 this.setState({ success : true })
                 sessionStorage.setItem( "token", res.data.access_token )
