@@ -14,8 +14,6 @@ export default class UploadImg extends Component {
             showImg : window.URL.createObjectURL(file)
         })
         let data = new FormData();
-        console.log(event.target.files[0])
-        console.log(window.URL.createObjectURL(file))
         if (file.size > 2000000) {
             alert('上传图标不能大于2M，请重新上传')
             event.target.value = ''

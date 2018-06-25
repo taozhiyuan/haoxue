@@ -76,12 +76,13 @@ const data = {
     getGraphicCode : () => {
         return Axios({
             method: "get",
-            url: "/hxj-agency-ui/code/image",
+            url: `/hxj-agency-ui/code/image`,
             params : {
                 width : 100,
                 height : 36,
                 deviceId : window.returnCitySN["cip"]
             },
+            responseType: 'arraybuffer',
             headers : {
                 "Accept": "image/webp,image/apng,image/*,*/*;q=0.8"
             }

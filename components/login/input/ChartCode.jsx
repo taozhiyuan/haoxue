@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import axios from '../../../global/axios'
-const urlPath = process.env.NODE_ENV === "development"?
-                "http://120.79.247.254:1111":
-                'http://www.haoxuehome.com:1111';
 
 export default class ChartCode extends Component {
     state = {
@@ -25,25 +22,17 @@ export default class ChartCode extends Component {
         }
     }
     componentDidMount(){
-        axios.getGraphicCode().then((res)=>{
-            var blob = new Blob([res.data],{type: "*/*"}); 
-            console.log(blob);
-            console.log(blob.size);
-            console.log(blob.type);
-            console.log(window.URL.createObjectURL(blob))
-            this.setState({ chart : window.URL.createObjectURL(blob) })
-        })
-        // this.getChartCode()
+        this.getChartCode()
     }
     getChartCode = () => {
-        this.setState({ chart : `${ urlPath }/hxj-base-ui/code/image?deviceId=${window.returnCitySN["cip"]}&width=90&height=36#${Math.floor((Math.random()*10)+1)}` })
-    }
-    load = (event) => {
-        window.URL.revokeObjectURL(this.src); 
-        console.log(event)
-    }
-    onerror = (event) => {
-        console.log(event)
+        axios.getGraphicCode().then(response => {
+            return 'data:image/png;base64,' + btoa(
+                new Uint8Array(response.data)
+                    .reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+        }).then(data => {
+            this.setState({ chart : data })
+        })
     }
     render(){
         const { value, chart } = this.state;
@@ -53,12 +42,7 @@ export default class ChartCode extends Component {
                     value={ value }
                     onChange={ this.getValue }
                 />
-                <em>
-                    <img src={ chart } alt=""
-                        onLoad={ this.load }
-                        onError={ this.onerror }
-                    />
-                </em>
+                <em><img src={ chart } alt=""/></em>
                 <span onClick={ this.getChartCode }>换一张</span>
                 <style jsx>{`
                     div {

@@ -30,7 +30,6 @@ export default class Index extends Component {
         }
         catch(err) {
             if(!err.response) return { status : 404 }
-            console.log(err.response)
             return { status : err.response.status  }
         }
     }

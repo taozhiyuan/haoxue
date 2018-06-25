@@ -31,7 +31,7 @@ export default class Banner extends Component {
                 <Head>
                     <link rel="stylesheet" href="/static/swiper.css" />
                 </Head>
-                <div className="main-public">
+                {/* <div className="main-public"> */}
                     <div className="swiper-container" id="swiper1">
                         <div className="swiper-wrapper">
                             { data.map((item, index)=>(
@@ -46,7 +46,7 @@ export default class Banner extends Component {
                         <div className="swiper-button-prev"></div>
                         <div className="swiper-button-next"></div>
                     </div>
-                </div>
+                {/* </div> */}
                 <style jsx>{`
                         section {
                             height : 400px;

@@ -17,7 +17,7 @@ export default class DetailsMain extends Component {
         return(
             <section>
                 <div className="main-public">
-                    <Path prev={['课程']} target='入门课程' />
+                    <Path prev={['课程']} target={ data.courseName } />
                     <DetailsImgScroll data={ data.coursePhotoList } />
                     <DetailsText mapClick={ this.mapClick } data={ data } />
                 </div>

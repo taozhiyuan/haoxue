@@ -16,7 +16,7 @@ export default class Path extends Component {
                 <style jsx>{`
                     h4 {
                         line-height : 60px;
-                        color : #666;
+                        color : #ccc;
                     }
                         h4 > a:last-child {
                             color : #f5a00a;
@@ -24,7 +24,7 @@ export default class Path extends Component {
                         i {
                             display: inline-block;
                             padding : 0px 20px;
-                            color : #999;
+                            color : #ccc;
                         }
                 `}</style>
             </h4>

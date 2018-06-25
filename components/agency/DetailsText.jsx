@@ -14,7 +14,7 @@ export default class DetailsText extends Component {
                     <dt>营业时间：</dt>
                         <dd>{ data.business||<span className="temporary">暂无</span> }</dd>
                     <dt>师资力量：</dt>
-                        <dd>{ data.orgResources||<span className="temporary">暂无</span> }</dd>
+                        <dd title={ data.orgResources }>{ data.orgResources||<span className="temporary">暂无</span> }</dd>
                     <dt>经营周期：</dt>
                         <dd>{ data.cycle||<span className="temporary">暂无</span> }</dd>
                     <dt>学员规模：</dt>
@@ -59,6 +59,7 @@ export default class DetailsText extends Component {
                                 height: 41px;
                                 display: inline-block;
                                 vertical-align: top;
+                                overflow : hidden;
                             }
                                 dd > em {
                                     cursor : pointer;

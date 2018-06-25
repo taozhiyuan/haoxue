@@ -22,7 +22,11 @@ export default class DetailsMain extends Component {
                     <DetailsImgScroll data={ data.orgPhotoList } />
                     <DetailsText mapClick={ this.mapClick } data={ data } />
                 </div>
-                { map && <DetailsMap mapClick={ this.mapClick } /> }
+                { map && <DetailsMap 
+                    mapClick={ this.mapClick } 
+                    orgLat={ data.orgLat } 
+                    orgLng={ data.orgLng } 
+                /> }
                 <style jsx>{`
                     section {
                         background-color : #FFF;

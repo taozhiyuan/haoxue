@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
 import Layout from './Layout'
 import UserName from './input/SignUserName'
 import Password from './input/Password'
@@ -54,11 +55,21 @@ export default class SiginIn extends Component {
                 this.props.setVisibi('siginSucess')
                 setAuth( res.data.access_token )
             }else{
-                this.setState({ msg : res.data })
+                if(res.data === "坏的凭证"){
+                    this.setState({ msg : "密码错误" })
+                }else{
+                    this.setState({ msg : res.data })
+                }
             }
         }).catch((err)=>{
             console.log('err'+err)
         })
+    }
+    SwitechToSignUp = () => {
+        this.props.setVisibi('sigin')
+        setTimeout(()=>{
+            this.props.setVisibi('login')
+        },100)
     }
     render(){
         const { active, msg, type, success } = this.state;
@@ -86,7 +97,9 @@ export default class SiginIn extends Component {
                     <button
                         onClick={ this.verifica }
                     >立即登录</button>
-                    <h5>{ active ? '免费申请入驻' : '还没有账号？立即注册' }</h5>
+                    <h5>{ active ? <Link href="/organHome"><a>免费申请入驻</a></Link> : 
+                        <span onClick={ this.SwitechToSignUp }>还没有账号？立即注册</span> 
+                    }</h5>
                 </>}
                 <style jsx>{`
                     ul {

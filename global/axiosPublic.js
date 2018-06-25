@@ -4,7 +4,7 @@ import Axios from 'axios';
 // "http://47.107.18.73:1111";
 // www.haoxuehome.com:1111
 // 192.192.168.11:1111
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
 const urlPath = process.env.NODE_ENV === "development"?
                 "http://120.79.247.254:1111":
                 'http://www.haoxuehome.com:1111';
@@ -24,7 +24,7 @@ export function setAuth(param){
 //添加一个请求拦截器
 Axios.interceptors.request.use(function(config){
     //在请求发出之前进行一些操作
-    console.log(config)
+    // console.log(config)
     return config;
 },function(err){
     //Do something with request error
